@@ -8,7 +8,10 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   site: "https://gymtabaku.guillermoveraghanain.workers.dev",
-  adapter: cloudflare(),
+  output: "server",
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
 
   vite: {
     plugins: [tailwindcss()],
