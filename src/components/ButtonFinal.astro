@@ -1,0 +1,96 @@
+<button
+    id="scroll-to-top"
+    class="fixed right-6 bottom-6 z-50 flex h-14 w-14 transform items-center justify-center rounded-full bg-gym-text-primary shadow-lg transition-all duration-300 opacity-100 cursor-pointer"
+    aria-label="Volver arriba"
+>
+    <svg
+        class="absolute top-0 left-0 h-full w-full -rotate-90"
+        viewBox="0 0 36 36"
+    >
+        <circle
+            cx="18"
+            cy="18"
+            r="16"
+            fill="none"
+            class="stroke-gym-yellow"
+            stroke-width="1"></circle>
+        <circle
+            id="progress-circle"
+            cx="18"
+            cy="18"
+            r="16"
+            fill="none"
+            class="stroke-gym-yellow transition-[stroke-dashoffset] duration-100 ease-out"
+            stroke-width="5"
+            stroke-dasharray="100.53"
+            stroke-dashoffset="100.53"></circle>
+    </svg>
+
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="currentColor"
+        class="relative z-10 h-6 w-6 stroke-gym-yellow"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            pathLength="1"
+            d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"></path>
+    </svg>
+</button>
+
+<script>
+    const button = document.getElementById("scroll-to-top");
+    const progressCircle = document.getElementById(
+        "progress-circle",
+    ) as SVGCircleElement | null;
+
+    console.log(button, progressCircle);
+
+    if (button && progressCircle) {
+        // El radio del círculo es 16. La longitud del borde (circunferencia) es 2 * PI * r = 2 * 3.1416 * 16 ≈ 100.53
+        const circumference = 100.53;
+
+        const updateScroll = () => {
+            const scrollTop = window.scrollY;
+            const docHeight =
+                document.documentElement.scrollHeight - window.innerHeight;
+            console.log(scrollTop, docHeight);
+
+            if (docHeight <= 0) return;
+
+            // Calcular el porcentaje de scroll (de 0 a 1)
+            const scrollPercent = scrollTop / docHeight;
+
+            // Actualizar el stroke-dashoffset para "rellenar" el círculo
+            const offset = circumference - scrollPercent * circumference;
+            progressCircle.style.strokeDashoffset = offset.toString();
+
+            // Mostrar u ocultar el botón dependiendo de si bajamos más de 100px
+            if (scrollTop > 100) {
+                button.classList.remove("translate-y-20", "opacity-0");
+                button.classList.add("translate-y-0", "opacity-100");
+            } else {
+                button.classList.remove("translate-y-0", "opacity-100");
+                button.classList.add("translate-y-20", "opacity-0");
+            }
+        };
+
+        // Al hacer click, sube suavemente
+        button.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+
+        // Escuchar el evento de scroll
+        window.addEventListener("scroll", updateScroll);
+
+        // Ejecutar una vez al inicio por si la página ya carga con scroll
+        updateScroll();
+    }
+</script>

@@ -35,14 +35,14 @@ import ItemService from "./ItemService.astro";
   </div>
 
   <div
-    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-3 gap-3 items-center"
+    class="group/grid max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-3 gap-3 items-center mt-6"
   >
     <ItemService
       img="/img/services/pesas.webp"
       title="Zonas de Entrenamiento"
       subtitle="Espacios diseñados para cada objetivo"
       icon="zonas"
-      description="Contamos con áreas independientes para pesas, cardio y glúteo-pierna, brindando mayor comodidad y una mejor experiencia."
+      description="Contamos con áreas independientes para pesas, cardio y glúteo, brindando mayor comodidad y una mejor experiencia."
       url="#"
     />
     <ItemService
@@ -52,13 +52,14 @@ import ItemService from "./ItemService.astro";
       icon="coach"
       description="Nuestros entrenadores te acompañan durante todo el proceso, guiándote en cada ejercicio para que alcances tus metas de forma segura y efectiva."
       url="#"
+      active
     />
     <ItemService
       img="/img/services/zumba.webp"
       title="Clases Grupales"
       subtitle="Energía, diversión y comunidad"
       icon="zumba"
-      description="Disfruta de nuestras clases grupales de baile, una forma divertida de ejercitarte, liberar estrés y compartir con una comunidad llena de buena energía."
+      description="Disfruta de nuestras clases grupales de baile, una forma divertida de ejercitarte, liberar estrés y compartir con buena energía."
       url="#"
     />
   </div>

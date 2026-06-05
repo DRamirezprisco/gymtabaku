@@ -3,6 +3,7 @@ import "@fontsource/permanent-marker";
 import "@fontsource-variable/inter/wght.css";
 import "@fontsource/poppins";
 import "@/styles/global.css";
+import ButtonFinal from "@/components/ButtonFinal.astro";
 ---
 
 <!doctype html>
@@ -14,8 +15,9 @@ import "@/styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>Gym Tabaku</title>
   </head>
-  <body>
+  <body class="relative">
     <slot />
+    <ButtonFinal client:load />
   </body>
 </html>
 

@@ -4,8 +4,13 @@ import Titulo from "./Titulo.astro";
 ---
 
 <section
-  class="relative bg-gym-bg bg-[url('/img/fondoyellow.webp')] bg-contain bg-no-repeat bg-bottom-right h-300 w-full overflow-hidden"
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-contain bg-repeat bg-bottom-right h-300 w-full overflow-hidden"
 >
+  <img
+    src="/img/bg/fondoyellow.webp"
+    alt=""
+    class="absolute object-cover -bottom-10 right-0 w-full"
+  />
   <img
     src="/img/bg/bgyellow.webp"
     alt=""
@@ -20,7 +25,7 @@ import Titulo from "./Titulo.astro";
     class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
   >
     <div
-      class="bg-secondary-800/10 rounded-xl animate-fade-in-up flex flex-col justify-center items-center gap-3 lg:mx-3 z-20 px-5 py-7 mt-14"
+      class="bg-secondary-800/10 flex flex-col items-center gap-3 mx-auto rounded-md w-3/4 animate-fade-in-up z-20 py-7 mt-14"
     >
       <Titulo title="profesores" />
 
@@ -36,7 +41,7 @@ import Titulo from "./Titulo.astro";
         contamos con un equipo de profesionales comprometidos con tu bienestar,
         tu progreso y tu motivación. Lo que encontraras:
       </p>
-      <div class="flex gap-3">
+      <div class="flex gap-4">
         <div class="w-1/2">
           <ul class="list-none md:text-base xl:text-lg text-gym-text-secondary">
             <li

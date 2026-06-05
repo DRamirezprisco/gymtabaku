@@ -3,7 +3,9 @@ import Button from "@/components/Button.astro";
 import Titulo from "@/components/Titulo.astro";
 ---
 
-<section class="relative bg-gym-bg bg-cover h-200 w-full overflow-hidden">
+<section
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover h-200 w-full overflow-hidden"
+>
   <img
     src="/img/bg/bgyellow.webp"
     alt=""
@@ -26,10 +28,10 @@ import Titulo from "@/components/Titulo.astro";
         <h1
           class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-bg-card-hover text-center"
         >
-          ¡Más que un gimnasio. <br /> Tu hogar para entrenar.!
+          ¡Más que un gimnasio. <br /> Tu hogar para entrenar!
         </h1>
 
-        <div class="flex gap-3">
+        <div class="flex gap-2">
           <img
             src="/img/aboutdos.webp"
             alt=""
@@ -37,7 +39,7 @@ import Titulo from "@/components/Titulo.astro";
           />
           <div>
             <p
-              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-2"
+              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-2 mx-1"
             >
               Aquí no eres un número más. Somos una comunidad que comparte el
               esfuerzo, la disciplina y el deseo de mejorar cada día. <strong
@@ -46,7 +48,7 @@ import Titulo from "@/components/Titulo.astro";
               >
             </p>
             <p
-              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-4"
+              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-4 mx-1"
             >
               Entrena en un espacio cómodo, con el acompañamiento de
               profesionales que realmente se preocupan por tu progreso.
@@ -77,7 +79,7 @@ import Titulo from "@/components/Titulo.astro";
         <img
           src="/img/logo.webp"
           alt=""
-          class="absolute size-22 2xl:size-26 top-40 -left-16"
+          class="absolute size-22 2xl:size-26 top-40 -left-18"
         />
         <img
           src="/img/about.webp"
