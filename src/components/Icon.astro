@@ -1,0 +1,23 @@
+<div
+  class="text-center
+    duration-250
+    ease-in-out
+    disabled:hover:none
+    disabled:pointer-events-none relative
+    h-12
+      px-1.5
+      pt-[1.063rem]
+      pb-[0.938rem]
+      bg-primary-500 hover:bg-primary-400
+      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      border-2 border-primary-500 hover:border-primary-400
+      before:content-['']
+      before:w-full before:h-full before:absolute before:top-0 before:left-0
+      before:border-primary-500 hover:before:border-primary-400 before:border-2 before:translate-y-2 before:-translate-x-2
+      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)] before:-z-10
+      hover:before:translate-x-0 hover:before:translate-y-0
+      active:before:translate-x-0 active:before:translate-y-0
+       inline-flex items-center justify-center"
+>
+  <slot />
+</div>

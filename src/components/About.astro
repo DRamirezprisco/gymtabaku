@@ -1,0 +1,90 @@
+---
+import Button from "@/components/Button.astro";
+import Titulo from "@/components/Titulo.astro";
+---
+
+<section class="relative bg-gym-bg bg-cover h-200 w-full overflow-hidden">
+  <img
+    src="/img/bg/bgyellow.webp"
+    alt=""
+    class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-100"
+  />
+  <img
+    src="/img/bg/bgclarotexture.webp"
+    alt=""
+    class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-96"
+  />
+
+  <div
+    class="flex justify-between gap-5 max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full mt-10"
+  >
+    <div class="w-1/2">
+      <div
+        class="flex flex-col gap-3 lg:mx-3 z-20 text-center md:text-left px-5 py-7 mt-14"
+      >
+        <Titulo title="sobre nosotros" />
+        <h1
+          class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-bg-card-hover text-center"
+        >
+          ¡Más que un gimnasio. <br /> Tu hogar para entrenar.!
+        </h1>
+
+        <div class="flex gap-3">
+          <img
+            src="/img/aboutdos.webp"
+            alt=""
+            class="w-70 h-100 object-cover rounded-md"
+          />
+          <div>
+            <p
+              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-2"
+            >
+              Aquí no eres un número más. Somos una comunidad que comparte el
+              esfuerzo, la disciplina y el deseo de mejorar cada día. <strong
+                class="from-neutral-950"
+                >¡Entrenamos juntos, crecemos juntos!.</strong
+              >
+            </p>
+            <p
+              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-4"
+            >
+              Entrena en un espacio cómodo, con el acompañamiento de
+              profesionales que realmente se preocupan por tu progreso.
+            </p>
+            <div class="w-full pt-8 px-4">
+              <Button text="horarios" url="/" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="relative w-1/2 flex items-center justify-center z-20">
+      <div class="w-[110%] absolute inset-0 flex justify-center items-center">
+        <div
+          class="bg-gym-yellow h-2 w-full -rotate-45 -translate-x-20 -translate-y-4"
+        >
+        </div>
+      </div>
+      <div class="w-[110%] absolute inset-0 flex justify-center items-center">
+        <div
+          class="bg-gym-yellow h-1 w-full -rotate-45 -translate-x-15 translate-y-1"
+        >
+        </div>
+      </div>
+      <div
+        class="relative after:content-[''] after:absolute after:bg-gym-bg-card-hover/95 after:rounded-sm after:mt-16 after:mr-36 after:-ml-7 after:h-9/12 after:w-full after:-z-10 after:-top-1"
+      >
+        <img
+          src="/img/logo.webp"
+          alt=""
+          class="absolute size-22 2xl:size-26 top-40 -left-16"
+        />
+        <img
+          src="/img/about.webp"
+          alt=""
+          class="w-auto h-full xl:h-150 2xl:h-138"
+        />
+      </div>
+    </div>
+  </div>
+</section>

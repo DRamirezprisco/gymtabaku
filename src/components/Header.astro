@@ -1,0 +1,45 @@
+---
+import Menu from "@/components/Menu.astro";
+import Button from "@/components/Button.astro";
+---
+
+<header
+  class="relative bg-secondary-950 bg-[url('/img/bg/heeder.webp')] bg-cover h-175 md:h-235 w-full overflow-hidden"
+>
+  <Menu />
+
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+  >
+    <div
+      class="bg-secondary-800/50 rounded-xl animate-fade-in-up lg:mx-3 w-lg z-20 text-center px-5 py-7 mt-14"
+    >
+      <h3
+        class="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-50"
+      >
+        ¡Entrena con fuerza. Crece en familia!
+      </h3>
+      <h1
+        class="my-5 text-4xl sm:text-5xl md:text-3xl xl:text-6xl font-bold uppercase font-serif text-primary-500"
+      >
+        GYM TABAKU
+      </h1>
+      <p
+        class="my-5 text-letter text-base sm:text-lg xl:text-xl font-medium text-secondary-200"
+      >
+        Creamos un espacio donde cada persona importa, con un ambiente acogedor.
+        Aqui el ejercicio se vive con confianza y acompañamiento, no solo es
+        motivación sino contar con un equipo comprometido con tu bienestar.
+      </p>
+
+      <p
+        class="my-5 text-letter text-base sm:text-lg xl:text-xl font-medium text-secondary-200"
+      >
+        Porque alcanzar tus objetivos es más fácil cuando no lo haces solo.
+      </p>
+      <div class="w-full pb-5 px-4">
+        <Button text="Contactanos" url="/" />
+      </div>
+    </div>
+  </div>
+</header>

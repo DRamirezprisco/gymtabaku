@@ -1,0 +1,65 @@
+---
+import Titulo from "./Titulo.astro";
+import ItemService from "./ItemService.astro";
+---
+
+<section
+  class="relative bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] bg-cover h-300 w-full overflow-hidden"
+>
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+  >
+    <div class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-7 mt-14">
+      <Titulo title="nuestros servicios" isdark />
+      <h1
+        class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-text-primary"
+      >
+        ¡Entrena, crece y pertenece!
+      </h1>
+      <p
+        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+      >
+        Descubre un lugar donde cada entrenamiento cuenta, cada persona importa
+        y cada meta se construye acompañado de una comunidad que te impulsa a
+        ser tu mejor versión. En nuestro gimnasio encontrarás mucho más que
+        máquinas y rutinas.
+      </p>
+      <p
+        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+      >
+        Somos una comunidad que entrena en un ambiente familiar haciendo la
+        experiencia agradable. Aquí cada persona es bienvenida, cada logro se
+        celebra y cada entrenamiento se siente como estar en casa
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-3 gap-3 items-center"
+  >
+    <ItemService
+      img="/img/services/pesas.webp"
+      title="Zonas de Entrenamiento"
+      subtitle="Espacios diseñados para cada objetivo"
+      icon="zonas"
+      description="Contamos con áreas independientes para pesas, cardio y glúteo-pierna, brindando mayor comodidad y una mejor experiencia."
+      url="#"
+    />
+    <ItemService
+      img="/img/services/coach.webp"
+      title="Entrenadores Personalizados"
+      subtitle="Entrena con apoyo profesional"
+      icon="coach"
+      description="Nuestros entrenadores te acompañan durante todo el proceso, guiándote en cada ejercicio para que alcances tus metas de forma segura y efectiva."
+      url="#"
+    />
+    <ItemService
+      img="/img/services/zumba.webp"
+      title="Clases Grupales"
+      subtitle="Energía, diversión y comunidad"
+      icon="zumba"
+      description="Disfruta de nuestras clases grupales de baile, una forma divertida de ejercitarte, liberar estrés y compartir con una comunidad llena de buena energía."
+      url="#"
+    />
+  </div>
+</section>

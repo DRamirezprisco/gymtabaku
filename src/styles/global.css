@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter Variable", sans-serif;
+  --font-serif: "Permanent Marker", serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  --color-primary-50: #fffbeb;
+  --color-primary-100: #fef3c7;
+  --color-primary-200: #fde68a;
+  --color-primary-300: #fcd34d;
+  --color-primary-400: #ffde4d; /* Color de Hover */
+  --color-primary-500: #ffcc00; /* Amarillo Base */
+  --color-primary-600: #d4a900;
+  --color-primary-700: #aa8700;
+  --color-primary-800: #806500;
+  --color-primary-900: #554300;
+  --color-primary-950: #2b2200;
+
+  --color-secondary-50: #f8fafc; /* Texto Principal */
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1; /* Texto Secundario */
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b; /* Fondo Principal (claro) */
+  --color-secondary-600: #475569;
+  --color-secondary-700: #2d3748; /* Fondo de Hover */
+  --color-secondary-800: #1a202c; /* Fondo de Tarjeta (Surface) */
+  --color-secondary-900: #0f172a;
+  --color-secondary-950: #0b0e14; /* Fondo Principal (oscuro) */
+
+  --color-gym-bg: var(--color-secondary-300);
+  --color-gym-bg-card: var(--color-secondary-700);
+  --color-gym-bg-card-hover: var(--color-secondary-950);
+  --color-gym-text-primary: var(--color-secondary-900);
+  --color-gym-text-secondary: var(--color-secondary-950);
+
+  --color-gym-dark-bg: var(--color-secondary-950);
+  --color-gym-dark-bg-card: var(--color-secondary-800);
+  --color-gym-dark-bg-card-hover: var(--color-secondary-700);
+  --color-gym-dark-text-primary: var(--color-secondary-50);
+  --color-gym-dark-text-secondary: var(--color-secondary-300);
+
+  --color-gym-yellow: var(--color-primary-500);
+  --color-gym-yellow-hover: var(--color-primary-400);
+}

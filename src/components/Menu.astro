@@ -1,0 +1,68 @@
+---
+import Button from "@/components/Button.astro";
+
+const menu = [
+  {
+    name: "Servicios",
+    url: "",
+  },
+  {
+    name: "Nosotros",
+    url: "",
+  },
+  {
+    name: "Horarios",
+    url: "",
+  },
+  {
+    name: "Profesores",
+    url: "",
+  },
+  {
+    name: "Testimonios",
+    url: "",
+  },
+  {
+    name: "Contactanos",
+    url: "",
+  },
+];
+---
+
+<nav
+  class="max-w-7xl w-full mx-auto bg-secondary-950 bg-repeat bg-contain flex items-center justify-between relative z-20 mt-6 px-4 after:-skew-x-12 after:w-[105%] after:h-[101%] after:content-[''] after:absolute after:top-0 after:left-1/2 after:-translate-x-1/2 after:-z-10 after:bg-secondary-950 after:bg-[url('/img/bg/bgmenu.webp')] after:bg-contain after:bg-repeat"
+>
+  <div class="flex items-center justify-between py-4 gap-5">
+    <a
+      href="/"
+      class="transition delay-150 duration-300 ease-in-out hover:scale-110 size-16"
+    >
+      <img src="/img/logo.webp" alt="logo gym" class="object-cover" />
+    </a>
+
+    <div class="hidden lg:flex justify-between items-center w-full">
+      <ul class="flex">
+        {
+          menu.map((item) => (
+            <li>
+              <a class="text-lg capitalize font-bold m-5 text-secondary-50 hover:text-primary-400 cursor-pointer">
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="flex justify-end items-center w-full gap-4">
+    <Button text="Inscribete" url="/" />
+
+    <button
+      id="menuNavMobileBut"
+      aria-label="mobile menu"
+      class="block lg:hidden cursor-pointer transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-110"
+    >
+    </button>
+  </div>
+</nav>

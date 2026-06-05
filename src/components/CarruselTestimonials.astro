@@ -1,0 +1,269 @@
+---
+import Titulo from "./Titulo.astro";
+const testimonials = [
+  {
+    image: "/img/testimonios/testimonio1.webp",
+    name: "Maria Rodriguez",
+    text: "En solo 4 meses logré bajar 4 kg de forma saludable y constante. Lo que más me gustó fue el acompañamiento de los profesores y el ambiente tan familiar del gimnasio. Hoy me siento con más energía, confianza y motivación para seguir avanzando",
+    stars: 3,
+  },
+  {
+    image: "/img/testimonios/testimonio2.webp",
+    name: "Andres Martinez",
+    text: "No buscaba resultados rápidos, buscaba un cambio real. En 4 meses logré bajar 4 kg, sentirme más saludable y recuperar la confianza en mí mismo. Lo mejor ha sido contar con un equipo que siempre está dispuesto a apoyar y motivar",
+    stars: 5,
+  },
+  {
+    image: "/img/testimonios/testimonio3.webp",
+    name: "Carolina Perez",
+    text: "Más que perder kg, gané salud, disciplina y confianza. Cada entrenamiento me acercó a mis objetivos y me hizo sentir mejor conmigo, baje mas de 10 kg y hoy me siento bien",
+    stars: 4,
+  },
+  {
+    image: "/img/testimonios/testimonio4.webp",
+    name: "Ewduar Gomez",
+    text: "Entrar al gimnasio fue una de las mejores decisiones que tomé este año. En 4 meses bajé 4 kg, mejoré mi resistencia y recuperé hábitos que había dejado de lado. Cada entrenamiento me acercó un poco más a mis metas.",
+    stars: 5,
+  },
+  {
+    image: "/img/testimonios/testimonio5.webp",
+    name: "Daniela Ramirez",
+    text: "Logré bajar 4 kg de manera saludable y mejorar mi condición física. El acompañamiento de los entrenadores y el ambiente del gimnasio fueron clave para mantener la constancia. Hoy me siento más fuerte, con más energía y motivada para seguir avanzando",
+    stars: 4,
+  },
+];
+
+const backgroundImage = "/img/testimonios/bg.webp";
+---
+
+<section
+  class="bg-gym-dark-bg bg-[url('/img/bg/bgoscuroflip.webp')] bg-cover py-20 px-4 flex justify-center items-center select-none relative"
+>
+  <img
+    src="/img/testimonios/bg.webp"
+    alt=""
+    class="absolute inset-0 w-7/12 h-full object-cover"
+  />
+
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 min-h-125 overflow-hidden rounded-lg shadow-2xl"
+  >
+    <div
+      class="md:col-span-6 relative min-h-87.5 md:min-h-full flex items-center justify-end p-4 md:p-8"
+    >
+      <div
+        class="relative z-10 w-100 h-120 shadow-xl overflow-hidden transition-all duration-500"
+      >
+        {
+          testimonials.map((t, index) => (
+            <img
+              src={t.image}
+              alt={t.name}
+              data-img-index={index}
+              class={`absolute inset-0 w-full h-full object-cover border-6 border-gym-bg transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="md:col-span-6 p-4 md:p-6 flex flex-col justify-center relative">
+      <div class="relative min-h-70 mb-6">
+        {
+          testimonials.map((t, index) => (
+            <div
+              data-text-index={index}
+              class={`absolute inset-0 transition-all duration-500 flex flex-col justify-between ${index === 0 ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95"}`}
+            >
+              <div class="flex items-center justify-start gap-3">
+                <div class="bg-gym-yellow h-1 w-50" />
+                <h3 class="font-serif text-base sm:text-lg md:text-xl lg:text-3xl text-gym-yellow">
+                  {t.name}
+                </h3>
+              </div>
+
+              <div class="bg-gym-bg-card/30 rounded-lg py-8 px-4 mt-8">
+                <p class="text-gray-400 italic text-sm md:text-base leading-relaxed ">
+                  {t.text}
+                </p>
+
+                <div>
+                  <div class="flex gap-1 my-4 text-gym-yellow text-4xl">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <span>{i < t.stars ? "★" : "☆"}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <div
+        class="flex justify-end gap-5 mt-auto md:absolute md:bottom-28 md:right-12"
+      >
+        <button
+          id="prevBtn"
+          class="text-center
+    duration-250
+    ease-in-out
+    disabled:hover:none
+    disabled:pointer-events-none relative
+      leading-5
+      text-2xl font-serif
+      tracking-0.125
+      px-2
+      pt-[1.063rem]
+      pb-[0.938rem]
+      bg-primary-500 hover:bg-primary-400
+      text-secondary-950
+      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      border-2 border-primary-500 hover:border-primary-400
+      before:content-['']
+      before:w-full before:h-full before:absolute before:top-0 before:left-0
+      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
+      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      hover:before:translate-x-0 hover:before:translate-y-0
+      active:before:translate-x-0 active:before:translate-y-0
+       inline-flex items-center justify-center w-full cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-8 rotate-180"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M9 6l6 6l-6 6"></path></svg
+          >
+        </button>
+        <button
+          id="nextBtn"
+          class="text-center
+    duration-250
+    ease-in-out
+    disabled:hover:none
+    disabled:pointer-events-none relative
+      leading-5
+      text-2xl font-serif
+      tracking-0.125
+      px-2
+      pt-[1.063rem]
+      pb-[0.938rem]
+      bg-primary-500 hover:bg-primary-400
+      text-secondary-950
+      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      border-2 border-primary-500 hover:border-primary-400
+      before:content-['']
+      before:w-full before:h-full before:absolute before:top-0 before:left-0
+      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
+      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      hover:before:translate-x-0 hover:before:translate-y-0
+      active:before:translate-x-0 active:before:translate-y-0
+       inline-flex items-center justify-center w-full cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-8"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M9 6l6 6l-6 6"></path></svg
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initSlider() {
+    const images = document.querySelectorAll("[data-img-index]");
+    const texts = document.querySelectorAll("[data-text-index]");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+    const totalSlides = images.length;
+    let autoPlayInterval: number;
+
+    function showSlide(index: number) {
+      // Manejo del ciclo (cíclico)
+      if (index >= totalSlides) currentIndex = 0;
+      else if (index < 0) currentIndex = totalSlides - 1;
+      else currentIndex = index;
+
+      // Actualizar Imágenes
+      images.forEach((img, i) => {
+        if (i === currentIndex) {
+          img.classList.remove("opacity-0", "z-0");
+          img.classList.add("opacity-100", "z-10");
+        } else {
+          img.classList.remove("opacity-100", "z-10");
+          img.classList.add("opacity-0", "z-0");
+        }
+      });
+
+      // Actualizar Textos
+      texts.forEach((txt, i) => {
+        if (i === currentIndex) {
+          txt.classList.remove("opacity-0", "pointer-events-none", "scale-95");
+          txt.classList.add("opacity-100", "pointer-events-auto", "scale-100");
+        } else {
+          txt.classList.remove(
+            "opacity-100",
+            "pointer-events-auto",
+            "scale-100",
+          );
+          txt.classList.add("opacity-0", "pointer-events-none", "scale-95");
+        }
+      });
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayInterval = window.setInterval(() => {
+        showSlide(currentIndex + 1);
+      }, 5000); // Cambia cada 5 segundos automáticamente
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+
+    // Eventos Click
+    nextBtn?.addEventListener("click", () => {
+      showSlide(currentIndex + 1);
+      startAutoPlay(); // Reinicia el contador para que no salte de golpe
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      showSlide(currentIndex - 1);
+      startAutoPlay();
+    });
+
+    // Iniciar
+    startAutoPlay();
+  }
+
+  // Ejecutar tanto en carga inicial como si usas ViewTransitions de Astro
+  document.addEventListener("astro:page-load", initSlider);
+  // Fallback si no usas ViewTransitions
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSlider);
+  } else {
+    initSlider();
+  }
+</script>

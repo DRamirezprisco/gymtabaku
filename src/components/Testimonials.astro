@@ -1,0 +1,37 @@
+---
+import Titulo from "./Titulo.astro";
+import CarruselTestimonials from "./CarruselTestimonials.astro";
+---
+
+<section
+  class="relative bg-gym-dark-bg bg-[url('/img/bg/bgoscuroflip.webp')] bg-cover w-full pb-15 overflow-hidden"
+>
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+  >
+    <div
+      class="animate-fade-in-up flex flex-col justify-center items-center gap-3 lg:mx-3 z-20 px-5 py-7 mt-14"
+    >
+      <Titulo title="testimonios" isdark />
+
+      <h1
+        class="my-2 text-4xl sm:text-5xl md:text-3xl xl:text-4xl text-gym-dark-text-primary"
+      >
+        Historias que nos inspiran
+      </h1>
+
+      <p
+        class="md:text-base xl:text-lg text-gym-dark-text-secondary w-9/12 text-center"
+      >
+        Cada persona que cruza nuestras puertas llega con una meta, un desafío y
+        una historia por escribir. Por eso creemos que nada habla mejor de
+        nuestro trabajo que la experiencia de quienes han encontrado en nuestro
+        gimnasio mucho más que un lugar para entrenar: una comunidad que los
+        apoya, profesores que los acompañan y un segundo hogar donde cada logro
+        se celebra en familia.
+      </p>
+    </div>
+  </div>
+</section>
+
+<CarruselTestimonials />

@@ -1,0 +1,47 @@
+---
+const Coaches = [
+  { img: "/img/coach/coach6.webp", name: "Jorge", experiencia: "2 años" },
+  { img: "/img/coach/coach3.webp", name: "Andres", experiencia: "2 años" },
+  { img: "/img/coach/coach7.webp", name: "Indio", experiencia: "2 años" },
+  { img: "/img/coach/coach5.webp", name: "Ewduar", experiencia: "2 años" },
+  { img: "/img/coach/coach8.webp", name: "Pepe", experiencia: "2 años" },
+];
+---
+
+<div class="rounded-2xl overflow-hidden h-150 flex my-20">
+  <div class="group flex w-full h-full gap-1">
+    {
+      Coaches.map((coach, index) => {
+        if (index == 0) {
+          return (
+            <div class="group/coach w-200 group-hover:w-60 hover:w-200! transition-all duration-500 ease-in-out h-full overflow-hidden cursor-pointer grayscale-0 brightness-100 group-hover:grayscale group-hover:brightness-80 hover:grayscale-0! hover:brightness-100! relative">
+              <img
+                src={coach.img}
+                alt=""
+                class="object-cover object-top w-full h-full"
+              />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gym-bg-card-hover/80 text-white opacity-100 group-hover:opacity-0 group-hover/coach:opacity-100! transition-opacity duration-500 ease-in-out pointer-events-none text-center">
+                <h3 class="text-xl font-bold">{coach.name}</h3>
+                <p class="text-sm text-gray-300">{coach.experiencia}</p>
+              </div>
+            </div>
+          );
+        } else {
+          return (
+            <div class="group/coach relative w-60 group-hover:w-60 hover:w-200! transition-all duration-500 ease-in-out h-full overflow-hidden cursor-pointer grayscale brightness-80 hover:grayscale-0! hover:brightness-100!">
+              <img
+                src={coach.img}
+                alt=""
+                class="object-cover object-top w-full h-full"
+              />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gym-bg-card-hover/80 text-white opacity-0 group-hover/coach:opacity-100! transition-opacity duration-500 ease-in-out pointer-events-none text-center">
+                <h3 class="text-xl font-bold">{coach.name}</h3>
+                <p class="text-sm text-gray-300">{coach.experiencia}</p>
+              </div>
+            </div>
+          );
+        }
+      })
+    }
+  </div>
+</div>
