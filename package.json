@@ -1,5 +1,5 @@
 {
-  "name": "gymtabaku",
+  "name": "gymtabaku2",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -13,16 +13,16 @@
     "generate-types": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.6.0",
-    "@fontsource-variable/inter": "^5.2.8",
-    "@fontsource/permanent-marker": "^5.2.7",
-    "@fontsource/poppins": "^5.2.7",
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.4.2",
-    "tailwindcss": "^4.3.0",
-    "wrangler": "^4.95.0"
+    "@astrojs/cloudflare": "^14.2.4",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/permanent-marker": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.6",
+    "tailwindcss": "^4.3.3",
+    "wrangler": "^4.125.0"
   },
-  "overrides": {
-    "vite": "^7"
+  "allowScripts": {
+    "esbuild": true
   }
 }

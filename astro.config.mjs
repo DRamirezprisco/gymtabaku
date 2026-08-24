@@ -1,19 +1,20 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig } from 'astro/config';
 
-import cloudflare from "@astrojs/cloudflare";
+import cloudflare from '@astrojs/cloudflare';
 
-import tailwindcss from "@tailwindcss/vite";
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://gymtabaku.guillermoveraghanain.workers.dev",
-  output: "server",
-  adapter: cloudflare({
-    imageService: "passthrough",
-  }),
+  adapter: cloudflare(),
 
   vite: {
     plugins: [tailwindcss()],
-  },
+    server: {
+      watch: {
+        ignored: ['**/.astro/**', '**/.wrangler/**', '**/dist/**']
+      }
+    }
+  }
 });
