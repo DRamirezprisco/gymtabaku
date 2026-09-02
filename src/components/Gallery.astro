@@ -1,4 +1,6 @@
 ---
+import Titulo from "./Titulo.astro";
+
 // Props opcionales para pasar imágenes dinámicas desde Services.astro
 export interface Props {
     images?: Array<{ src: string; alt: string }>;
@@ -34,17 +36,18 @@ const columns = [
     galleryImages.slice(9, 12),
 ];
 ---
-<h2 
+<div 
 class:list={[
-        "hidden mt-5 sm:text-4xl md:text-2xl xl:text-3xl font-serif text-gym-text-primary tracking-wide text-center mb-8 uppercase [.is-active&]:block",
+        "gallery-title hidden mt-5 sm:text-4xl md:text-2xl xl:text-3xl font-serif text-gym-text-primary tracking-wide text-center mb-8 uppercase [.is-active&]:block",
         { "is-active": isActive },
     ]}
 >
-                        {title}
-                    </h2>
+    <Titulo title={title}></Titulo>                    
+</div>
+
 <div 
 class:list={[
-        "hidden grid-cols-2 md:grid-cols-4 gap-4 [.is-active&]:grid",
+        "gallery-wrapper hidden grid-cols-2 md:grid-cols-4 gap-4 [.is-active&]:grid",
         { "is-active": isActive },
     ]}>
     {columns.map((col) => (
@@ -73,75 +76,78 @@ class:list={[
             ))}
         </div>
     ))}
+
+    <!-- Modal Popup perfectamente centrado -->
+    <dialog class="gallery-modal fixed inset-0 m-auto bg-transparent backdrop:bg-black/0 p-0 max-w-4xl w-auto h-auto outline-none overflow-hidden transition-all border-none">
+        <div class="relative flex items-center justify-center p-2 sm:p-4">
+            <!-- Botón de Cierre -->
+            <button class="close-modal absolute top-4 right-4 z-20 bg-red-500 hover:bg-black/70 text-white rounded-full p-2.5 transition-colors duration-200 cursor-pointer shadow-lg m-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <!-- Contenedor y Foto centrada -->
+            <div class="relative flex items-center justify-center">
+                <img class="modal-img max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl" src="" alt="" />
+            </div>
+        </div>
+    </dialog>
 </div>
 
-<!-- Modal Popup perfectamente centrado -->
-<dialog id="gallery-modal" class="fixed inset-0 m-auto bg-transparent backdrop:bg-black/0 p-0 max-w-4xl w-auto h-auto outline-none overflow-hidden transition-all border-none">
-    <div class="relative flex items-center justify-center p-2 sm:p-4">
-        <!-- Botón de Cierre -->
-        <button id="close-modal" class="absolute top-4 right-4 z-20 bg-red-500 hover:bg-black/70 text-white rounded-full p-2.5 transition-colors duration-200 cursor-pointer shadow-lg m-4">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
 
-        <!-- Contenedor y Foto centrada -->
-        <div class="relative flex items-center justify-center">
-            <img id="modal-img" class="max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl" src="" alt="" />
-        </div>
-    </div>
-</dialog>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const modal = document.getElementById('gallery-modal') as HTMLDialogElement;
-        const modalImg = document.getElementById('modal-img') as HTMLImageElement;
-        const closeBtn = document.getElementById('close-modal');
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        document.querySelectorAll(".gallery-wrapper").forEach((gallery) => {
+            const modal = gallery.querySelector(".gallery-modal") as HTMLDialogElement;
+            const modalImg = gallery.querySelector(".modal-img") as HTMLImageElement;
+            const closeBtn = gallery.querySelector(".close-modal") as HTMLButtonElement;
+            const galleryItems = gallery.querySelectorAll(".gallery-item");
 
-        if (!modal || !modalImg || !closeBtn) return;
+            if (!modal || !modalImg || !closeBtn) return;
 
-        // Abrir el modal al hacer clic en cualquier imagen
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const img = item.querySelector('.gallery-img') as HTMLImageElement;
-                if (img) {
+            galleryItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    const img = item.querySelector(".gallery-img") as HTMLImageElement;
+
+                    if (!img) return;
+
                     modalImg.src = img.src;
                     modalImg.alt = img.alt;
+
                     modal.showModal();
-                    document.body.style.overflow = 'hidden';
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            const closeModal = () => {
+                modal.close();
+                document.body.style.overflow = "";
+            };
+
+            closeBtn.addEventListener("click", closeModal);
+
+            modal.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal();
                 }
             });
-        });
 
-        // Cierre del modal
-        const closeModal = () => {
-            modal.close();
-            document.body.style.overflow = '';
-        };
-
-        closeBtn.addEventListener('click', closeModal);
-
-        // Cierre al dar clic al fondo oscuro
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        modal.addEventListener('cancel', () => {
-            document.body.style.overflow = '';
+            modal.addEventListener("cancel", () => {
+                document.body.style.overflow = "";
+            });
         });
     });
 </script>
 
 <style>
     /* Estilos para centrado perfecto y animación de apertura */
-    dialog#gallery-modal {
+    dialog.gallery-modal {
         display: none;
     }
 
-    dialog#gallery-modal[open] {
+    dialog.gallery-modal[open] {
         display: flex;
         align-items: center;
         justify-content: center;

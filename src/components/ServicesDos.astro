@@ -1,6 +1,5 @@
 ---
 import Menu from "@/components/Menu.astro";
-import Titulo from "./Titulo.astro";
 import Button2 from "@/components/Button2.astro";
 import ServiceItems from "@/components/ServiceItems.astro";
 import Gallery from "./Gallery.astro";
@@ -263,7 +262,7 @@ const items = [
         class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-90"
     />
     <img
-        src="/img/bg/bgclarotexture.webp"
+        src="/img/bg/bgoscurotexture.webp"
         alt=""
         class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86"
     />
@@ -287,8 +286,9 @@ const items = [
     const container = document.getElementById("servicesItemContainer");
     const serviceItems = container?.querySelectorAll("article");
     const galleryContainer = document.getElementById("galleryContainer");
-    const galleriesTitles = galleryContainer?.querySelectorAll("h2");
-    const galleries = galleryContainer?.querySelectorAll("div");
+    const galleriesTitles =
+        galleryContainer?.querySelectorAll(".gallery-title");
+    const galleries = galleryContainer?.querySelectorAll(".gallery-wrapper");
 
     buttons?.forEach((button, index) => {
         button.addEventListener("click", () => {
