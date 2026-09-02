@@ -1,30 +1,39 @@
 ---
 import Button from "@/components/Button.astro";
+import { isMenuActive } from "@/utils/menu";
+
+const pathname = Astro.url.pathname;
 
 const menu = [
   {
     name: "Servicios",
-    url: "",
+    url: "/servicios",
+    isActive: isMenuActive(pathname, "servicios"),
   },
   {
     name: "Nosotros",
-    url: "",
+    url: "/nosotros",
+    isActive: isMenuActive(pathname, "nosotros"),
   },
   {
     name: "Horarios",
-    url: "",
+    url: "/horarios",
+    isActive: isMenuActive(pathname, "horarios"),
   },
   {
     name: "Profesores",
-    url: "",
+    url: "/profesores",
+    isActive: isMenuActive(pathname, "profesores"),
   },
   {
     name: "Testimonios",
-    url: "",
+    url: "/testimonios",
+    isActive: isMenuActive(pathname, "testimonios"),
   },
   {
     name: "Contactanos",
-    url: "",
+    url: "/contactanos",
+    isActive: isMenuActive(pathname, "contactanos"),
   },
 ];
 ---
@@ -45,7 +54,10 @@ const menu = [
         {
           menu.map((item) => (
             <li>
-              <a class="text-lg capitalize font-bold m-5 text-secondary-50 hover:text-primary-400 cursor-pointer">
+              <a
+                href={item.url}
+                class={`text-lg capitalize font-bold m-5 ${item.isActive ? "text-primary-400" : "text-secondary-50"} hover:text-primary-400 cursor-pointer`}
+              >
                 {item.name}
               </a>
             </li>

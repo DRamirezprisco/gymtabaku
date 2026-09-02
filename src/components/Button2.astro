@@ -1,0 +1,25 @@
+---
+interface Props {
+    text: string;
+    isActive?: boolean;
+}
+
+const { text, isActive = false } = Astro.props;
+---
+
+<button
+    class:list={[
+        "block text-center text-secondary-50 leading-5 text-2xl font-serif tracking-0.125 mb-[10px] py-[15px] relative transition-all duration-500 z-10 cursor-pointer w-70 h-18",
+        "before:content-[''] before:absolute before:top-0 before:h-full before:transition-all before:duration-500 before:-z-10 before:right-[-15px] before:w-[7px] before:translate-x-0 before:-skew-x-[10deg]",
+        "after:content-[''] after:absolute after:top-0 after:h-full after:transition-all after:duration-500 after:-z-10 after:right-0 after:w-[calc(100%+70px)] after:-skew-x-[10deg] after:translate-x-0",
+        // Estado transparente por defecto
+        "before:bg-transparent after:bg-transparent",
+        // Hover
+        "hover:before:bg-black hover:after:bg-black",
+        // Clase condicional activa con Tailwind
+        "[.is-active&]:before:bg-black [.is-active&]:after:bg-black",
+        { "is-active": isActive },
+    ]}
+>
+    {text}
+</button>

@@ -1,0 +1,161 @@
+---
+// Props opcionales para pasar imágenes dinámicas desde Services.astro
+export interface Props {
+    images?: Array<{ src: string; alt: string }>;
+    isActive?: boolean;
+    title?: string;
+}
+
+const { images, isActive, title } = Astro.props;
+
+// Arreglo por defecto
+const defaultImages = [
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg", alt: "Área de peso libre" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg", alt: "Entrenamiento funcional" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg", alt: "Zona cardio" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg", alt: "Clases grupales" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg", alt: "Máquinas musculación" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg", alt: "Crossfit zone" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg", alt: "Spinning room" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg", alt: "Área de estiramiento" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg", alt: "Boxeo y artes marciales" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg", alt: "Entrenamiento personal" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg", alt: "Zona VIP" },
+    { src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg", alt: "Nutrición y suplementos" },
+];
+
+const galleryImages = images || defaultImages;
+
+
+const columns = [
+    galleryImages.slice(0, 3),
+    galleryImages.slice(3, 6),
+    galleryImages.slice(6, 9),
+    galleryImages.slice(9, 12),
+];
+---
+<h2 
+class:list={[
+        "hidden mt-5 sm:text-4xl md:text-2xl xl:text-3xl font-serif text-gym-text-primary tracking-wide text-center mb-8 uppercase [.is-active&]:block",
+        { "is-active": isActive },
+    ]}
+>
+                        {title}
+                    </h2>
+<div 
+class:list={[
+        "hidden grid-cols-2 md:grid-cols-4 gap-4 [.is-active&]:grid",
+        { "is-active": isActive },
+    ]}>
+    {columns.map((col) => (
+        <div class="grid gap-4">
+            {col.map((img) => (
+                <div class="gallery-item group relative overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <img 
+                        class="gallery-img h-auto max-w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                        src={img.src} 
+                        alt={img.alt} 
+                        loading="lazy"
+                    />
+
+                    <!-- Capa superior (Overlay) -->
+                    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 pointer-events-none">
+                        <div class="flex items-center justify-between text-white">
+                            <span class="font-bold text-md uppercase tracking-wider text-primary-400 drop-shadow">
+                                {img.alt}
+                            </span>
+                            <svg class="w-6 h-6 text-white transform group-hover:scale-125 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    ))}
+</div>
+
+<!-- Modal Popup perfectamente centrado -->
+<dialog id="gallery-modal" class="fixed inset-0 m-auto bg-transparent backdrop:bg-black/0 p-0 max-w-4xl w-auto h-auto outline-none overflow-hidden transition-all border-none">
+    <div class="relative flex items-center justify-center p-2 sm:p-4">
+        <!-- Botón de Cierre -->
+        <button id="close-modal" class="absolute top-4 right-4 z-20 bg-red-500 hover:bg-black/70 text-white rounded-full p-2.5 transition-colors duration-200 cursor-pointer shadow-lg m-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Contenedor y Foto centrada -->
+        <div class="relative flex items-center justify-center">
+            <img id="modal-img" class="max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl" src="" alt="" />
+        </div>
+    </div>
+</dialog>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('gallery-modal') as HTMLDialogElement;
+        const modalImg = document.getElementById('modal-img') as HTMLImageElement;
+        const closeBtn = document.getElementById('close-modal');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        if (!modal || !modalImg || !closeBtn) return;
+
+        // Abrir el modal al hacer clic en cualquier imagen
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('.gallery-img') as HTMLImageElement;
+                if (img) {
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+                    modal.showModal();
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Cierre del modal
+        const closeModal = () => {
+            modal.close();
+            document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+
+        // Cierre al dar clic al fondo oscuro
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        modal.addEventListener('cancel', () => {
+            document.body.style.overflow = '';
+        });
+    });
+</script>
+
+<style>
+    /* Estilos para centrado perfecto y animación de apertura */
+    dialog#gallery-modal {
+        display: none;
+    }
+
+    dialog#gallery-modal[open] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
