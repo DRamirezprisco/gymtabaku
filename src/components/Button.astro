@@ -1,9 +1,13 @@
 ---
-const { text, url } = Astro.props;
+const { text, url, white } = Astro.props;
+
+const buttoncolor = white
+  ? "bg-white hover:bg-white border-white hover:border-white before:border-white hover:before:border-white"
+  : "bg-primary-500 hover:bg-primary-400 border-primary-500 hover:border-primary-400 before:border-primary-500 hover:before:border-primary-400";
 ---
 
 <a
-  class="text-center
+  class={`text-center
     duration-250
     ease-in-out
     disabled:hover:none
@@ -14,16 +18,16 @@ const { text, url } = Astro.props;
       px-3
       pt-[1.063rem]
       pb-[0.938rem]
-      bg-primary-500 hover:bg-primary-400
+      ${buttoncolor}
       text-secondary-950
       ease-[cubic-bezier(0.33, 1, 0.68, 1)]
-      border-2 border-primary-500 hover:border-primary-400
+      border-2 
       before:content-['']
       before:w-full before:h-full before:absolute before:top-0 before:left-0
-      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
+       before:border-3 before:translate-y-3 before:-translate-x-3
       before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
       hover:before:translate-x-0 hover:before:translate-y-0
       active:before:translate-x-0 active:before:translate-y-0
-       inline-flex items-center justify-center w-full min-w-56 sm:max-w-64 sm:w-auto"
+       inline-flex items-center justify-center w-full min-w-56 sm:max-w-90 sm:w-auto cursor-pointer`}
   href={url}>{text}</a
 >

@@ -1,0 +1,288 @@
+---
+export interface ComparisonItem {
+  id: string;
+  title: string;
+  beforeImg: string;
+  afterImg: string;
+  description: string;
+}
+
+export interface Props {
+  items?: ComparisonItem[];
+}
+
+const { items } = Astro.props;
+
+// 3 elementos para el carrusel
+const defaultComparisons: ComparisonItem[] = [
+  {
+    id: "instalacionesPp",
+    title: "Zona de máquinas",
+    beforeImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
+    afterImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+    description:
+      "Ampliación de espacio, piso técnico de alto impacto y mancuernas profesionales de uretano.",
+  },
+  {
+    id: "zonaBaile",
+    title: "Área de clases grupales",
+    beforeImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+    afterImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+    description:
+      "Incorporación de caminadoras de última generación con pantallas interactivas y mejor ventilación.",
+  },
+  {
+    id: "instalaciones",
+    title: "Instalaciones",
+    beforeImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+    afterImg:
+      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+    description:
+      "Racks modulares integrados, césped sintético y zona de trineo de arrastre.",
+  },
+];
+
+const galleryItems =
+  items && items.length > 0 ? items.slice(0, 3) : defaultComparisons;
+---
+
+<div class="relative w-full max-w-4xl mx-auto flex flex-col gap-4">
+  <!-- Contenedor Principal del Slider Comparador -->
+  <div
+    class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-black/80 group select-none"
+  >
+    <!-- Flecha Anterior -->
+    <button
+      id="prev-btn"
+      class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-gym-dark-bg-card-hover hover:bg-primary-500 text-white hover:text-black p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all transform hover:scale-110 cursor-pointer shadow-lg"
+      aria-label="Anterior"
+    >
+      <svg
+        class="w-5 h-5 sm:w-6 sm:h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- Flecha Siguiente -->
+    <button
+      id="next-btn"
+      class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-gym-dark-bg-card-hover hover:bg-primary-500 text-white hover:text-black p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all transform hover:scale-110 cursor-pointer shadow-lg"
+      aria-label="Siguiente"
+    >
+      <svg
+        class="w-5 h-5 sm:w-6 sm:h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- Imagen DESPUÉS (Fondo) -->
+    <img
+      id="after-img"
+      src={galleryItems[0].afterImg}
+      alt={`Después - ${galleryItems[0].title}`}
+      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300"
+    />
+
+    <!-- Imagen ANTES (Capa superior recortada con filtro envejecido) -->
+    <div
+      id="before-wrapper"
+      class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-primary-500 z-10"
+    >
+      <img
+        id="before-img"
+        src={galleryItems[0].beforeImg}
+        alt={`Antes - ${galleryItems[0].title}`}
+        class="before-img absolute top-0 left-0 max-w-none h-full object-cover filter grayscale-85 sepia-15 contrast-90 brightness-90 transition-opacity duration-300"
+        style="width: 100%; height: 100%; object-fit: cover;"
+      />
+    </div>
+
+    <!-- Input Range para deslizar la comparación -->
+    <input
+      id="slider-range"
+      type="range"
+      min="0"
+      max="100"
+      value="50"
+      class="absolute inset-0 w-full h-full opacity-0 z-20 cursor-ew-resize"
+      aria-label="Deslizar para comparar imágenes"
+    />
+
+    <!-- Línea divisora central con tirador -->
+    <div
+      id="divider-line"
+      class="absolute top-0 bottom-0 left-1/2 -ml-px w-0.5 bg-primary-500 z-10 pointer-events-none flex items-center justify-center"
+    >
+      <div
+        class="w-8 h-8 bg-primary-500 rounded-full text-black flex items-center justify-center shadow-lg border border-black/20 transform group-hover:scale-110 transition-transform"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M8 7l-5 5 5 5M16 7l5 5-5 5"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Título Flotante Inferior con degradado -->
+    <div
+      class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/40 to-transparent p-5 sm:p-6 pt-12 z-20 pointer-events-none"
+    >
+      <h3
+        id="item-title"
+        class="text-lg sm:text-2xl font-bold uppercase tracking-wide text-primary-500 drop-shadow-md"
+      >
+        {galleryItems[0].title}
+      </h3>
+    </div>
+  </div>
+
+  <!-- Controles Inferiores: Descripción + Indicadores (Dots) -->
+  <div
+    class="flex flex-col sm:flex-row items-center justify-between gap-3 px-1"
+  >
+    <p id="item-desc" class="text-neutral-300 text-sm sm:text-base font-medium">
+      {galleryItems[0].description}
+    </p>
+
+    <!-- Indicadores de puntos (Dots) -->
+    <div class="flex items-center gap-2 shrink-0">
+      {
+        galleryItems.map((_, idx) => (
+          <button
+            class="dot-btn w-2.5 h-2.5 rounded-full bg-neutral-600 transition-all cursor-pointer"
+            data-index={idx}
+            aria-label={`Ir a la diapositiva ${idx + 1}`}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script is:inline define:vars={{ galleryItems }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    let currentIndex = 0;
+
+    const beforeWrapper = document.getElementById("before-wrapper");
+    const dividerLine = document.getElementById("divider-line");
+    const beforeImg = document.getElementById("before-img");
+    const afterImg = document.getElementById("after-img");
+    const sliderRange = document.getElementById("slider-range");
+    const itemTitle = document.getElementById("item-title");
+    const itemDesc = document.getElementById("item-desc");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const dots = document.querySelectorAll(".dot-btn");
+    const container = sliderRange?.parentElement;
+
+    // Actualiza la posición de la línea divisora del comparador
+    const updateSliderPosition = (val) => {
+      if (!beforeWrapper || !dividerLine || !beforeImg || !container) return;
+      beforeWrapper.style.width = `${val}%`;
+      dividerLine.style.left = `${val}%`;
+      beforeImg.style.width = `${container.offsetWidth}px`;
+    };
+
+    // Carga los datos del elemento actual
+    const loadItem = (index) => {
+      const item = galleryItems[index];
+      if (!item) return;
+
+      if (afterImg) afterImg.src = item.afterImg;
+      if (beforeImg) beforeImg.src = item.beforeImg;
+      if (itemTitle) itemTitle.textContent = item.title;
+      if (itemDesc) itemDesc.textContent = item.description;
+
+      // Reinicia el slider a la mitad al cambiar de imagen
+      if (sliderRange) sliderRange.value = "50";
+      updateSliderPosition("50");
+
+      // Actualiza estado de los puntos (dots)
+      dots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.classList.add("bg-primary-500", "w-6");
+          dot.classList.remove("bg-neutral-600", "w-2.5");
+        } else {
+          dot.classList.remove("bg-primary-500", "w-6");
+          dot.classList.add("bg-neutral-600", "w-2.5");
+        }
+      });
+    };
+
+    // Event listener del deslizador
+    if (sliderRange) {
+      sliderRange.addEventListener("input", (e) => {
+        updateSliderPosition(e.target.value);
+      });
+
+      window.addEventListener("resize", () => {
+        updateSliderPosition(sliderRange.value);
+      });
+    }
+
+    // Botón Anterior
+    prevBtn?.addEventListener("click", () => {
+      currentIndex =
+        (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      loadItem(currentIndex);
+    });
+
+    // Botón Siguiente
+    nextBtn?.addEventListener("click", () => {
+      currentIndex = (currentIndex + 1) % galleryItems.length;
+      loadItem(currentIndex);
+    });
+
+    // Clic en los puntos
+    dots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        const index = parseInt(
+          e.currentTarget.getAttribute("data-index") || "0",
+        );
+        currentIndex = index;
+        loadItem(currentIndex);
+      });
+    });
+
+    // Carga inicial
+    loadItem(0);
+  });
+</script>
+
+<style>
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 40px;
+    height: 100%;
+    cursor: ew-resize;
+  }
+</style>
