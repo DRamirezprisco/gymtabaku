@@ -1,0 +1,74 @@
+---
+const posts = [
+  {
+    imageUrl: "/img/about/instagram1.webp",
+    postUrl: "https://www.instagram.com/p/DIPkQiAgsX8/?stkn=MWMzZm1temFleW00YQ==",
+    alt: "Entrenamiento de gimnasio 1"
+  },
+  {
+    imageUrl: "/img/about/instagram2.webp",
+    postUrl: "https://www.instagram.com/p/DNCdJztAMQc/?stkn=MTcwZ28yZWFlZjczYw==",
+    alt: "Entrenamiento de gimnasio 2"
+  },
+  {
+    imageUrl: "/img/about/instagram3.webp",
+    postUrl: "https://www.instagram.com/reel/DaorENagDCm/?stkn=MTNub2Z3aW9wZnpz",
+    alt: "Entrenamiento de gimnasio 3"
+  },
+  {
+    imageUrl: "/img/about/instagram4.webp",
+    postUrl: "https://www.instagram.com/p/DTQ5p2LlR2z/?stkn=MW1hMXJoZjNkMHZydQ==",
+    alt: "Entrenamiento de gimnasio 4"
+  },
+   {
+    imageUrl: "/img/about/instagram5.webp",
+    postUrl: "https://www.instagram.com/reel/DbVvhKRAX4D/?stkn=YW5zY2RxdnI0NDgx",
+    alt: "Entrenamiento de gimnasio 5"
+  },
+ {
+    imageUrl: "/img/about/instagram6.webp",
+    postUrl: "https://www.instagram.com/p/DWDIH3kjMsz/?stkn=MWJkNm50ajY5Z3F3",
+    alt: "Entrenamiento de gimnasio 6"
+  }]
+---
+
+<section class="w-full bg-black py-8">
+  <!-- Grid adaptativa: 2 columnas en móviles, 4 en tablets y desktop -->
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 w-full overflow-hidden">
+    {
+      posts.map((post) => (
+        <a
+          href={post.postUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative block w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer"
+        >
+          <!-- Imagen de fondo -->
+          <img
+            src={post.imageUrl}
+            alt={post.alt}
+            class="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+
+          <!-- Overlay Amarillo Desplegable hacia abajo -->
+          <div class="absolute inset-0 bg-primary-400/90 flex justify-center items-center -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-10">
+            <!-- Icono de Instagram en SVG -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-12 h-12 text-white stroke-current fill-none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>

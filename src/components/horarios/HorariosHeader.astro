@@ -1,0 +1,49 @@
+---
+import Menu from "@/components/Menu.astro";
+import HorariosPrecios from "@/components/horarios/HorariosPrecios.astro";
+import HorariosItems from "@/components/home/HorariosItems.astro";
+---
+
+<section
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] z-0 bg-cover w-full overflow-hidden min-h-screen"
+>
+    <div class="relative z-10">
+        <Menu />
+
+        <main
+            class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+        >
+            <div
+                class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-4 mt-14"
+            >
+                <h1
+                    class={`font-serif sm:text-2xl lg:text-3xl xl:text-4xl text-gym-text-secondary/70 font-bold uppercase`}
+                >
+                    Más tiempo para alcanzar <span
+                        class="md:block sm:text-2xl lg:text-3xl xl:text-4xl text-gym-text-secondary mt-3"
+                        >tus objetivos</span
+                    >
+                </h1>
+                <h2
+                    class="mt-4 sm:text-xl md:text-2xl xl:text-xl text-gym-text-primary/80 font-black tracking-tight"
+                >
+                    Ampliamos nuestros horarios para ofrecerte mayor
+                    flexibilidad y un mejor servicio.
+                </h2>
+                <p
+                    class="w-10/12 mx-auto mt-5 text-center md:text-base xl:text-lg text-gym-text-secondary"
+                >
+                    Entendemos que cada persona tiene diferentes
+                    responsabilidades y rutinas. Por eso, ahora contamos con un
+                    horario más amplio que te permite organizar tus
+                    entrenamientos de acuerdo con tu disponibilidad y mantener
+                    la constancia que necesitas para alcanzar tus objetivos.
+                </p>
+            </div>
+
+            <div class="relative container mx-auto px-4 py-8 mb-10">
+                <HorariosItems />
+            </div>
+        </main>
+    </div>
+</section>

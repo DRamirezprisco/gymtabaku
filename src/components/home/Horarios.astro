@@ -1,0 +1,37 @@
+---
+import Titulo from "@/components/global/Titulo.astro";
+import HorariosItems from "@/components/home/HorariosItems.astro";
+---
+
+<section
+  class="relative bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover min-h-screen w-full overflow-hidden"
+>
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+  >
+    <div class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-7 mt-14">
+      <Titulo title="nuestros horarios" isdark />
+      <h1
+        class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-text-primary"
+      >
+        Siempre hay tiempo para tu mejor versión
+      </h1>
+      <p
+        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+      >
+        Tu ritmo de vida no se detiene, y nosotros tampoco. Abrimos todos los
+        días del año para que puedas entrenar cuando mejor te convenga.
+      </p>
+      <p
+        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+      >
+        No importa si es lunes, domingo o un día festivo. Nuestro compromiso con
+        tu bienestar está presente todos los días del año.
+      </p>
+    </div>
+
+    <div class="w-full pb-5 px-4">
+      <HorariosItems />
+    </div>
+  </div>
+</section>

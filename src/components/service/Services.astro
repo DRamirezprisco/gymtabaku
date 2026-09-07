@@ -1,0 +1,45 @@
+---
+import ServiceGallery from "@/components/service/ServiceGallery.astro";
+
+export interface ServiceItem {
+    title: string;
+    icon: string;
+    subtitle: string;
+    videoUrl: string;
+    description: string;
+    serviceItemId: string;
+    images: { src: string; alt: string }[];
+}
+
+export interface Props {
+    items?: ServiceItem[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+<section
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden min-h-screen p-10"
+>
+    <img
+        src="/img/bg/bgyellow.webp"
+        alt=""
+        class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-90"
+    />
+    <img
+        src="/img/bg/bgoscurotexture.webp"
+        alt=""
+        class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86"
+    />
+    <div id="galleryContainer" class="max-w-7xl mx-auto px-4">
+        {
+            items.map((item, index) => (
+                <ServiceGallery
+                    images={item.images}
+                    title={item.title}
+                    isActive={index === 0}
+                />
+            ))
+        }
+    </div>
+</section>

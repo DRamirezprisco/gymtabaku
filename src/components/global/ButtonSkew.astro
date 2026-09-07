@@ -1,0 +1,58 @@
+---
+interface Props {
+    text: string;
+    price?: string;
+    isActive?: boolean;
+    variant?: "dark" | "primary";
+}
+
+const { text, price, isActive = false, variant = "dark" } = Astro.props;
+
+// Estilos dinámicos según el variant
+const isPrimary = variant === "primary";
+---
+
+<button
+    class:list={[
+        // Flexbox en columna para forzar 2 líneas y centrar vertical/horizontalmente
+        "group flex flex-col justify-center items-center text-center leading-tight font-serif tracking-0.125 mb-2.5 py-2 px-4 relative transition-all duration-500 z-10 cursor-pointer w-70 min-h-18",
+        "before:content-[''] before:absolute before:top-0 before:h-full before:transition-all before:duration-500 before:-z-10 before:right-[-15px] before:w-[7px] before:translate-x-0 before:skew-x-[-10deg]",
+        "after:content-[''] after:absolute after:top-0 after:h-full after:transition-all after:duration-500 after:-z-10 after:right-0 after:w-[calc(100%+70px)] after:skew-x-[-10deg] after:translate-x-0",
+
+        // Configuración de Colores según Variant
+        isPrimary
+            ? "text-white hover:before:bg-primary-400 hover:after:bg-primary-400 [.is-active&]:before:bg-primary-400 [.is-active&]:after:bg-primary-400"
+            : "text-secondary-50 hover:before:bg-black hover:after:bg-black [.is-active&]:before:bg-black [.is-active&]:after:bg-black",
+
+        // Fondos por defecto (transparentes si no está activo/hover)
+        "before:bg-transparent after:bg-transparent",
+        { "is-active": isActive },
+    ]}
+>
+    <!-- Línea 1: Nombre -->
+    <span
+        class:list={[
+            "block text-lg sm:text-xl  leading-none font-serif tracking-normal",
+            "text-secondary-50/80",
+            isPrimary
+                ? "group-hover:text-black"
+                : "group-hover:text-secondary-50",
+        ]}
+    >
+        {text}
+    </span>
+
+    <!-- Línea 2: Precio -->
+    {
+        price && (
+            <span
+                class:list={[
+                    "block text-sm font-sans tracking-normal mt-1 leading-none font-black",
+                    "text-secondary-50/80 group-hover:text-black",
+                ]}
+            >
+                {price}
+            </span>
+        )
+    }
+</button>

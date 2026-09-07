@@ -1,6 +1,6 @@
 ---
-import Titulo from "./Titulo.astro";
-import ItemService from "./ItemService.astro";
+import Titulo from "@/components/global/Titulo.astro";
+import ServiceItems from "@/components/home/ServiceItems.astro";
 ---
 
 <section
@@ -37,7 +37,7 @@ import ItemService from "./ItemService.astro";
   <div
     class="group/grid max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-3 gap-3 items-center mt-6"
   >
-    <ItemService
+    <ServiceItems
       img="/img/services/pesas.webp"
       title="Zonas de Entrenamiento"
       subtitle="Espacios diseñados para cada objetivo"
@@ -45,7 +45,7 @@ import ItemService from "./ItemService.astro";
       description="Contamos con áreas independientes para pesas, cardio y glúteo, brindando mayor comodidad y una mejor experiencia."
       url="#"
     />
-    <ItemService
+    <ServiceItems
       img="/img/services/coach.webp"
       title="Entrenadores Personalizados"
       subtitle="Entrena con apoyo profesional"
@@ -54,7 +54,7 @@ import ItemService from "./ItemService.astro";
       url="#"
       active
     />
-    <ItemService
+    <ServiceItems
       img="/img/services/zumba.webp"
       title="Clases Grupales"
       subtitle="Energía, diversión y comunidad"

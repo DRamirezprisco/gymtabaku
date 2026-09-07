@@ -1,0 +1,62 @@
+---
+import Titulo from "@/components/global/Titulo.astro";
+import ButtonSkew from "@/components/global/ButtonSkew.astro";
+---
+
+<section class="grid grid-cols-1 lg:grid-cols-2 h-full w-full">
+    <div
+        class="bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover flex flex-col justify-center items-center p-8"
+    >
+        <div class="mx-auto my-5">
+            <Titulo title="Nuestros Planes" isdark />
+            <p
+                class="max-w-lg mx-auto text-gym-dark-text-secondary font-bold md:text-base xl:text-xl leading-relaxed mt-5 text-center"
+            >
+                Encuentra la opción que mejor se adapta a tu ritmo, tus
+                necesidades y tus metas.
+            </p>
+        </div>
+
+        <!-- Contenedor con 2 columnas separadas entre sí por gap-8 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+            <!-- Columna 1 (Tarjeta Independiente) -->
+            <div
+                class="flex flex-col gap-4 p-6 rounded-2xl bg-gym-bg-card/30 backdrop-blur-md shadow-xl w-full max-w-85 mx-auto"
+            >
+                <ButtonSkew
+                    text="Plan Mensual"
+                    price="$90.000"
+                    variant="primary"
+                />
+                <ButtonSkew
+                    text="Plan Anual"
+                    price="$800.000"
+                    variant="primary"
+                />
+            </div>
+            <!-- Columna 2 (Tarjeta Independiente) -->
+            <div
+                class="flex flex-col gap-4 p-6 rounded-2xl bg-gym-bg-card/30 backdrop-blur-md shadow-xl w-full max-w-85 mx-auto"
+            >
+                <ButtonSkew
+                    text="Plan Semestral"
+                    price="$450.000"
+                    variant="primary"
+                />
+                <ButtonSkew
+                    text="Plan Anual"
+                    price="$800.000"
+                    variant="primary"
+                />
+            </div>
+        </div>
+    </div>
+
+    <div class="relative w-full h-72 sm:h-96 lg:h-auto overflow-hidden">
+        <img
+            src="/img/precios.webp"
+            alt="Planes de gimnasio"
+            class="w-full h-full object-cover object-center"
+        />
+    </div>
+</section>

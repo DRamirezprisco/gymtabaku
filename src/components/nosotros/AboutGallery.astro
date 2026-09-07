@@ -4,7 +4,6 @@ export interface ComparisonItem {
   title: string;
   beforeImg: string;
   afterImg: string;
-  description: string;
 }
 
 export interface Props {
@@ -22,8 +21,6 @@ const defaultComparisons: ComparisonItem[] = [
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
     afterImg:
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-    description:
-      "Ampliación de espacio, piso técnico de alto impacto y mancuernas profesionales de uretano.",
   },
   {
     id: "zonaBaile",
@@ -32,8 +29,6 @@ const defaultComparisons: ComparisonItem[] = [
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
     afterImg:
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-    description:
-      "Incorporación de caminadoras de última generación con pantallas interactivas y mejor ventilación.",
   },
   {
     id: "instalaciones",
@@ -42,8 +37,6 @@ const defaultComparisons: ComparisonItem[] = [
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
     afterImg:
       "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-    description:
-      "Racks modulares integrados, césped sintético y zona de trineo de arrastre.",
   },
 ];
 
@@ -165,26 +158,17 @@ const galleryItems =
     </div>
   </div>
 
-  <!-- Controles Inferiores: Descripción + Indicadores (Dots) -->
-  <div
-    class="flex flex-col sm:flex-row items-center justify-between gap-3 px-1"
-  >
-    <p id="item-desc" class="text-neutral-300 text-sm sm:text-base font-medium">
-      {galleryItems[0].description}
-    </p>
-
-    <!-- Indicadores de puntos (Dots) -->
-    <div class="flex items-center gap-2 shrink-0">
-      {
-        galleryItems.map((_, idx) => (
-          <button
-            class="dot-btn w-2.5 h-2.5 rounded-full bg-neutral-600 transition-all cursor-pointer"
-            data-index={idx}
-            aria-label={`Ir a la diapositiva ${idx + 1}`}
-          />
-        ))
-      }
-    </div>
+  <!-- Indicadores de puntos (Dots) -->
+  <div class="flex items-center justify-end gap-2 shrink-0">
+    {
+      galleryItems.map((_, idx) => (
+        <button
+          class="dot-btn w-2.5 h-2.5 rounded-full bg-neutral-600 transition-all cursor-pointer"
+          data-index={idx}
+          aria-label={`Ir a la diapositiva ${idx + 1}`}
+        />
+      ))
+    }
   </div>
 </div>
 

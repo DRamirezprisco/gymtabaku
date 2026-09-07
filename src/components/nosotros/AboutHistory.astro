@@ -1,0 +1,47 @@
+---
+import Titulo from "@/components/global/Titulo.astro";
+import AboutGallery from "@/components/nosotros/AboutGallery.astro";
+---
+
+<section
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden p-10"
+>
+    <img
+        src="/img/bg/fondoyellow.webp"
+        alt=""
+        class="absolute object-cover -bottom-10 right-0 w-full"
+    />
+
+    <div
+        class="z-10 relative max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+    >
+        <Titulo title="Conoce nuestra historia" />
+        <h1
+            class="my-10 sm:text-3xl md:text-xl xl:text-2xl text-gym-dark-bg-card-hover font-semibold text-center capitalize"
+        >
+            Un lugar donde entrenar se convierte en compartir y crecer <br /> junto
+            a una comunidad que te acompaña.
+        </h1>
+        <p
+            class="md:text-base xl:text-lg text-gym-text-secondary my-2 text-center"
+        >
+            Porque sabemos que la disciplina se construye día a día y que tener
+            personas que te apoyen hace la diferencia. Nacimos con una idea
+            sencilla: <br class="" /> "Crear un lugar donde las personas pudieran
+            entrenar, sentirse cómodas y encontrar el acompañamiento que necesitan
+            para mejorar cada día".
+        </p>
+        <p
+            class="w-11/12 mx-6 md:text-base xl:text-lg text-gym-text-secondary mt-5 text-center"
+        >
+            Un gimnasio con equipos funcionales, espacios pensados para
+            diferentes objetivos y coaches preparados para orientarte, pero
+            sobre todo, un lugar donde el trato cercano y la confianza fueran
+            parte de cada entrenamiento.
+        </p>
+
+        <div class="max-w-7xl mx-auto mt-20">
+            <AboutGallery />
+        </div>
+    </div>
+</section>

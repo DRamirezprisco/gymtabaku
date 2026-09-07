@@ -1,0 +1,40 @@
+---
+import Titulo from "@/components/global/Titulo.astro";
+import PreciosItems from "@/components/home/PreciosItems.astro";
+---
+
+<section
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaroflip.webp')] bg-cover w-full h-170 overflow-hidden"
+>
+  <div class="absolute -bottom-50 left-0 w-full">
+    <img
+      src="/img/bg/fondoyellow.webp"
+      alt=""
+      class="w-full rotate-y-180 object-cover"
+    />
+  </div>
+
+  <div
+    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full z-10"
+  >
+    <div
+      class="bg-secondary-800/10 rounded-xl animate-fade-in-up flex flex-col justify-center items-center gap-3 lg:mx-3 z-20 px-5 py-7 mt-14 relative"
+    >
+      <Titulo title="Precios" />
+
+      <h1 class="my-2 text-4xl sm:text-5xl md:text-3xl xl:text-4xl">
+        Elige el precio que mejor se adapte a ti
+      </h1>
+
+      <p
+        class="md:text-base xl:text-lg text-gym-text-secondary w-9/12 text-center"
+      >
+        Da el primer paso hacia una vida más activa y saludable con precios
+        accesibles diseñados para ayudarte a alcanzar tus objetivos sin
+        complicaciones.
+      </p>
+    </div>
+
+    <PreciosItems />
+  </div>
+</section>
