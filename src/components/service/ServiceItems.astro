@@ -4,6 +4,7 @@ const {
     icon,
     subtitle,
     videoUrl,
+    posterUrl,
     description,
     serviceItemId,
     isActive = false,
@@ -24,9 +25,7 @@ const {
     </h2>
 
     <div class="flex items-center justify-start gap-2 mb-2">
-        {
-            /* Iconos SVG (Se mantienen exactamente igual que tu código original) */
-        }
+        {/* Iconos SVG (Se mantienen exactamente igual) */}
         {
             icon == "coach" && (
                 <svg
@@ -353,7 +352,9 @@ const {
         {
             videoUrl && (
                 <video
-                    src={videoUrl}
+                    data-src={videoUrl}
+                    poster={posterUrl}
+                    preload="none"
                     loop
                     muted
                     playsinline
@@ -374,7 +375,16 @@ const {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Obseravador para detectar cambios de clase (.is-active)
+        // Función auxiliar para activar la carga y reproducción del video
+        const playVideo = (video: HTMLVideoElement) => {
+            if (!video.src && video.dataset.src) {
+                video.src = video.dataset.src;
+            }
+            video.currentTime = 0;
+            video.play().catch(() => {});
+        };
+
+        // Observador para detectar cambios de clase (.is-active)
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (
@@ -388,12 +398,10 @@ const {
 
                     if (!video) return;
 
-                    // Si la tarjeta obtiene la clase .is-active (al hacer clic en la opción)
+                    // Si la tarjeta obtiene la clase .is-active
                     if (article.classList.contains("is-active")) {
-                        video.currentTime = 0; // Reinicia el video al segundo 0
-                        video.play().catch(() => {});
+                        playVideo(video);
                     } else {
-                        // Si pierde la clase .is-active, se pausa
                         video.pause();
                     }
                 }
@@ -404,14 +412,13 @@ const {
         document.querySelectorAll("article").forEach((article) => {
             observer.observe(article, { attributes: true });
 
-            // Verificar si alguno ya viene activo por defecto al cargar
+            // Verificar cuál viene activo por defecto al cargar la página
             if (article.classList.contains("is-active")) {
                 const video = article.querySelector(
                     "video",
                 ) as HTMLVideoElement;
                 if (video) {
-                    video.currentTime = 0;
-                    video.play().catch(() => {});
+                    playVideo(video);
                 }
             }
         });
