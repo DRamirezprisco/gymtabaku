@@ -1,0 +1,37 @@
+---
+import Menu from "@/components/Menu.astro";
+import TestimonialsItems from "@/components/home/TestimonialsItems.astro";
+---
+
+<section class="relative bg-black bg-cover w-full overflow-hidden">
+    <div class="relative z-10">
+        <Menu />
+
+        <main
+            class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+        >
+            <div
+                class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-4 mt-14"
+            >
+                <h1
+                    class={`font-serif sm:text-2xl lg:text-3xl xl:text-4xl text-gym-dark-text-secondary font-bold uppercase`}
+                >
+                    Nuestra comunidad <span
+                        class="md:block sm:text-2xl lg:text-3xl text-gym-yellow mt-3"
+                        >Experiencias reales</span
+                    >
+                </h1>
+                <h2
+                    class="mt-6 sm:text-3xl md:text-xl xl:text-2xl text-gym-dark-text-primary text-center w-9/12 mx-auto"
+                >
+                    Cada historia, cada esfuerzo y cada logro hacen parte de
+                    nuestra familia, conoce sus historias.
+                </h2>
+            </div>
+        </main>
+
+        <div class="relative w-full mx-auto pt-8">
+            <TestimonialsItems />
+        </div>
+    </div>
+</section>

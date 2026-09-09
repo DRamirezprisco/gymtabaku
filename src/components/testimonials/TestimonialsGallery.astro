@@ -1,0 +1,439 @@
+---
+import Titulo from "@/components/global/Titulo.astro";
+
+const {title} = Astro.props;
+
+const galeryFilters = [
+    {
+        name: "Dia del amor",
+        filter: "DiaDelAmor"
+    },
+    {
+        name: "Dia de las Madres",
+        filter: "DiaDelaMadre"
+    },
+    {
+        name: "Halloween",
+        filter: "Halloween"
+    },
+    {
+        name: "Navidad",
+        filter: "navidad"
+    },
+];
+
+const galleryImages = [
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
+        alt: "Área de peso libre",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+        alt: "Entrenamiento funcional",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+        alt: "Zona cardio",
+        filter: "DiaDelAmor"
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+        alt: "Clases grupales",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+        alt: "Máquinas musculación",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+        alt: "Crossfit zone",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
+        alt: "Spinning room",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
+        alt: "Área de estiramiento",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
+        alt: "Boxeo y artes marciales",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
+        alt: "Entrenamiento personal",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
+        alt: "Zona VIP",
+        filter: "DiaDelAmor",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
+        alt: "Nutrición y suplementos",
+        filter: "DiaDelAmor",
+    },
+];
+[
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
+        alt: "Área de peso libre",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+        alt: "Entrenamiento funcional",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+        alt: "Zona cardio",
+        filter: "DiaDelaMadre"
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+        alt: "Clases grupales",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+        alt: "Máquinas musculación",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+        alt: "Crossfit zone",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
+        alt: "Spinning room",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
+        alt: "Área de estiramiento",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
+        alt: "Boxeo y artes marciales",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
+        alt: "Entrenamiento personal",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
+        alt: "Zona VIP",
+        filter: "DiaDelaMadre",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
+        alt: "Nutrición y suplementos",
+        filter: "DiaDelaMadre",
+    },
+];
+[
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
+        alt: "Área de peso libre",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+        alt: "Entrenamiento funcional",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+        alt: "Zona cardio",
+        filter: "Halloween"
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+        alt: "Clases grupales",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+        alt: "Máquinas musculación",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+        alt: "Crossfit zone",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
+        alt: "Spinning room",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
+        alt: "Área de estiramiento",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
+        alt: "Boxeo y artes marciales",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
+        alt: "Entrenamiento personal",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
+        alt: "Zona VIP",
+        filter: "Halloween",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
+        alt: "Nutrición y suplementos",
+        filter: "Halloween",
+    },
+];
+[
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
+        alt: "Área de peso libre",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
+        alt: "Entrenamiento funcional",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
+        alt: "Zona cardio",
+        filter: "navidad"
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
+        alt: "Clases grupales",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
+        alt: "Máquinas musculación",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
+        alt: "Crossfit zone",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
+        alt: "Spinning room",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
+        alt: "Área de estiramiento",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
+        alt: "Boxeo y artes marciales",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
+        alt: "Entrenamiento personal",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
+        alt: "Zona VIP",
+        filter: "navidad",
+    },
+    {
+        src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
+        alt: "Nutrición y suplementos",
+        filter: "navidad",
+    },
+];
+
+const columns = [
+    galleryImages.slice(0, 3),
+    galleryImages.slice(3, 6),
+    galleryImages.slice(6, 9),
+    galleryImages.slice(9, 12),
+];
+
+const isActive = true;
+---
+
+<section class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden min-h-screen p-10"
+>
+    <div 
+class:list={[
+        "gallery-title hidden mt-15 sm:text-4xl md:text-2xl xl:text-3xl font-serif text-gym-text-primary tracking-wide text-center uppercase [.is-active&]:block",
+        { "is-active": isActive },
+    ]}
+>
+    <Titulo title={title}></Titulo>                    
+</div>
+
+<div id="filters-testimonials" class="flex items-center justify-center py-4 md:py-8 flex-wrap">
+    {galeryFilters.map((filter) => (
+        <button data-filter={filter.filter} type="button" class="cursor-pointer text-fg-brand border border-brand bg-neutral-primary focus:ring-4 focus:outline-none focus:ring-neutral-tertiary rounded-base text-base font-medium px-5 py-2.5 text-center me-3 mb-3">{filter.name}</button>
+    ))}
+</div>
+
+<div 
+class:list={[
+        "gallery-wrapper hidden grid-cols-2 md:grid-cols-4 gap-4 [.is-active&]:grid mb-20",
+        { "is-active": isActive },
+    ]}>
+    {columns.map((col) => (
+        <div class="grid gap-4">
+            {col.map((img) => (
+                <div data-filter={img.filter} class="gallery-item group relative overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                    <img 
+                        class="gallery-img h-auto max-w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                        src={img.src} 
+                        alt={img.alt} 
+                        loading="lazy"
+                    />
+
+                    <!-- Capa superior (Overlay) -->
+                    <div class="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 pointer-events-none">
+                        <div class="flex items-center justify-between text-white">
+                            <span class="font-bold text-md uppercase tracking-wider text-primary-400 drop-shadow">
+                                {img.alt}
+                            </span>
+                            <svg class="w-6 h-6 text-white transform group-hover:scale-125 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    ))}
+
+    <!-- Modal Popup perfectamente centrado -->
+    <dialog class="gallery-modal fixed inset-0 m-auto bg-transparent backdrop:bg-black/0 p-0 max-w-4xl w-auto h-auto outline-none overflow-hidden transition-all border-none">
+        <div class="relative flex items-center justify-center p-2 sm:p-4">
+            <!-- Botón de Cierre -->
+            <button class="close-modal absolute top-4 right-4 z-20 bg-red-500 hover:bg-black/70 text-white rounded-full p-2.5 transition-colors duration-200 cursor-pointer shadow-lg m-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <!-- Contenedor y Foto centrada -->
+            <div class="relative flex items-center justify-center">
+                <img class="modal-img max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl" src="" alt="" />
+            </div>
+        </div>
+    </dialog>
+</div> 
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll(".gallery-wrapper").forEach((gallery) => {
+            const modal = gallery.querySelector(".gallery-modal") as HTMLDialogElement;
+            const modalImg = gallery.querySelector(".modal-img") as HTMLImageElement;
+            const closeBtn = gallery.querySelector(".close-modal") as HTMLButtonElement;
+            const galleryItems = gallery.querySelectorAll(".gallery-item");
+
+            if (!modal || !modalImg || !closeBtn) return;
+
+            galleryItems.forEach((item) => {
+                item.addEventListener("click", () => {
+                    const img = item.querySelector(".gallery-img") as HTMLImageElement;
+
+                    if (!img) return;
+
+                    modalImg.src = img.src;
+                    modalImg.alt = img.alt;
+
+                    modal.showModal();
+                    document.body.style.overflow = "hidden";
+                });
+            });
+
+            const closeModal = () => {
+                modal.close();
+                document.body.style.overflow = "";
+            };
+
+            closeBtn.addEventListener("click", closeModal);
+
+            modal.addEventListener("click", (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            modal.addEventListener("cancel", () => {
+                document.body.style.overflow = "";
+            });
+        });
+
+        //filters
+        const filters = document.getElementById("filters-testimonials");
+        const filterBtns = filters?.querySelectorAll("button") as NodeListOf<HTMLButtonElement>;
+        const galleryItems = document.querySelectorAll(".gallery-item") as NodeListOf<HTMLDivElement>;
+
+        filterBtns?.forEach((btn: HTMLButtonElement) => {
+            btn.addEventListener("click", () => {
+                    filterBtns.forEach((b: HTMLButtonElement) => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    galleryItems?.forEach((item: HTMLDivElement) => {
+                        if (item.dataset.filter === btn.dataset.filter) {
+                            item.style.display = "block";
+                        } else {
+                            item.style.display = "none";
+                        }
+                    });
+                });
+        });
+    });
+</script>
+
+<style>
+    /* Estilos para centrado perfecto y animación de apertura */
+    dialog.gallery-modal {
+        display: none;
+    }
+
+    dialog.gallery-modal[open] {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes zoomIn {
+        from {
+            opacity: 0;
+            transform: scale(0.92);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
