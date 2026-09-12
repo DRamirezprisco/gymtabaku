@@ -1,0 +1,187 @@
+---
+interface GalleryCoaches {
+  img?: string;
+  alt?: string;
+  title?: string;
+}
+
+interface Props {
+  isActive?: boolean;
+  gallery?: GalleryCoaches[];
+}
+
+const { isActive = true, gallery = [] } = Astro.props;
+---
+
+<div class={`w-full ${isActive ? "block" : "hidden"}`}>
+  <!-- Franja Diagonal Oscura -->
+  <div class="py-0 relative">
+      <div class="w-full max-w-350 mx-auto">
+      <div class="swiper coach-gallery-swiper">
+        <div class="swiper-wrapper">
+          {gallery?.map((item, index) => {
+            const patron = [0, 70, 35];
+            const translateY = patron[index % 3];
+            const imgW = index % 2 == 0 ? "w-100" : "w-60";
+
+            return (<div class="swiper-slide mx-8" style={`transform: translateY(${translateY}px);`}>
+              <!-- Tarjeta de la Galería -->
+              <div class="relative group cursor-pointer flex items-center justify-center">
+                
+                <!-- Imagen -->
+                <div class={`${imgW} h-80 overflow-hidden shadow-2xl rounded-sm`}>
+                  <img
+                    src={item.img}
+                    alt={item.alt || `Galería ${index + 1}`}
+                    class="w-full h-full object-cover object-center group-hover:scale-105 group-hover:rotate-5 transition-transform duration-500"
+                  />
+                </div>
+
+                <!-- Texto con título y barra amarilla -->
+                <div class="absolute bottom-8 -left-8 flex flex-col justify-center text-primary-50 [-webkit-text-stroke:1px_#000] py-2">
+                  <h3 class="font-serif text-3xl font-bold leading-tight mb-3 group-hover:text-yellow-400 transition-colors">
+                    {item.title || item.alt || "Fitness - Workout Exercises for Fat Loss"}
+                  </h3>
+                  <!-- Línea decorativa AMARILLA -->
+                  <div class="w-20 group-hover:w-40 transition-all h-1 bg-yellow-400"></div>
+                </div>
+
+              </div>
+            </div>)
+          }
+            
+            
+          )}
+        </div>
+
+        <!-- Controles Inferiores Centrados (Flechas en paralelogramo + Paginación 01 02 03) -->
+        <div class="flex items-center justify-center gap-6 mt-30 mb-12 ml-10 relative z-20 w-80">
+          
+          <!-- Botón Prev Inclinado en Amarillo -->
+           <button
+          class="gallery-prev text-center
+    duration-250
+    ease-in-out
+    disabled:hover:none
+    disabled:pointer-events-none relative
+      leading-5
+      text-2xl font-serif
+      tracking-0.125
+      px-2
+      pt-[0.6rem]
+      pb-[0.6rem]
+      bg-primary-500 hover:bg-primary-400
+      text-secondary-950
+      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      border-2 border-primary-500 hover:border-primary-400
+      before:content-['']
+      before:w-full before:h-full before:absolute before:top-0 before:left-0
+      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
+      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      hover:before:translate-x-0 hover:before:translate-y-0
+      active:before:translate-x-0 active:before:translate-y-0
+       inline-flex items-center justify-center w-full cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-8 rotate-180"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M9 6l6 6l-6 6"></path></svg
+          >
+        </button>
+
+          <!-- Paginación Números (01, 02, 03) -->
+          <div class="gallery-pagination flex items-center gap-8 text-white font-bold text-sm tracking-widest mr-5"></div>
+
+          <!-- Botón Next Inclinado en Amarillo -->
+          <button
+          class="gallery-next text-center
+    duration-250
+    ease-in-out
+    disabled:hover:none
+    disabled:pointer-events-none relative
+      leading-5
+      text-2xl font-serif
+      tracking-0.125
+      px-2
+      pt-[0.6rem]
+      pb-[0.6rem]
+      bg-primary-500 hover:bg-primary-400
+      text-secondary-950
+      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      border-2 border-primary-500 hover:border-primary-400
+      before:content-['']
+      before:w-full before:h-full before:absolute before:top-0 before:left-0
+      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
+      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
+      hover:before:translate-x-0 hover:before:translate-y-0
+      active:before:translate-x-0 active:before:translate-y-0
+       inline-flex items-center justify-center w-full cursor-pointer"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-8"
+            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+              d="M9 6l6 6l-6 6"></path></svg
+          >
+        </button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+  const initGalleries = () => {
+    document.querySelectorAll('.coach-gallery-swiper').forEach((container) => {
+      new Swiper(container as HTMLElement, {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 1,
+        spaceBetween: 28,
+        loop: true,
+        
+        navigation: {
+          nextEl: container.querySelector('.gallery-next') as HTMLElement,
+          prevEl: container.querySelector('.gallery-prev') as HTMLElement,
+        },
+        pagination: {
+          el: container.querySelector('.gallery-pagination') as HTMLElement,
+          clickable: true,
+          renderBullet: function (index, className) {
+            const formattedNumber = (index + 1).toString().padStart(2, '0');
+            return `<span class="${className} cursor-pointer [&.swiper-pagination-bullet-active]:bg-transparent! [&.swiper-pagination-bullet-active]:text-yellow-400 [&.swiper-pagination-bullet-active]:text-lg font-bold transition-all">${formattedNumber}</span>`;
+          },
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 24 },
+          1024: { slidesPerView: 3, spaceBetween: 5 },
+        },
+      });
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', initGalleries);
+  document.addEventListener('astro:page-load', initGalleries);
+</script>

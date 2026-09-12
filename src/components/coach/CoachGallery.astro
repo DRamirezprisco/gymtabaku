@@ -1,0 +1,77 @@
+---
+import CoachGalleryItem from "@/components/coach/CoachGalleryItem.astro";
+
+interface HeaderCoaches {
+    name?: string;
+    role?: string;
+    img?: string;
+    imgHover?: string;
+}
+
+interface DescriptionCoaches {
+    tittle?: string;
+    subTittle?: string;
+    description?: string;
+    description2?: string;
+    description3?: string;
+    img?: string;
+    wallpaperSrc?: string;
+}
+
+interface GalleryCoaches {
+    img?: string;
+    alt?: string;
+}
+
+interface Coach {
+    header: HeaderCoaches;
+    description: DescriptionCoaches;
+    gallery: GalleryCoaches[];
+}
+
+interface Props {
+    Coaches: Coach[];
+}
+
+const { Coaches } = Astro.props;
+---
+
+<style>
+    /* Triángulo diagonal superior izquierdo */
+    .wedge-top-left {
+        clip-path: polygon(0 0, 100% 100%, 0 100%);
+    }
+    /* Triángulo diagonal inferior derecho */
+    .wedge-bottom-right {
+        clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+</style>
+
+<section
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaroflip.webp')] bg-cover w-full py-10 overflow-hidden min-h-175 flex items-center justify-center"
+>
+    <div
+        class="absolute top-10 left-0 w-48 sm:w-72 lg:w-96 h-12 sm:h-16 lg:h-20 bg-yellow-400 z-10 wedge-top-left pointer-events-none"
+    >
+    </div>
+
+    <div
+        class="absolute bottom-18 -right-5 w-64 sm:w-96 lg:w-480px h-14 sm:h-20 lg:h-24 bg-yellow-400 z-10 wedge-bottom-right pointer-events-none rotate-10"
+    >
+    </div>
+    <div
+        class="absolute top-22 bg-gym-dark-bg-card w-[120%] h-135 -rotate-2 z-10"
+    >
+    </div>
+
+    <div class="relative z-20 w-full">
+        {
+            Coaches.map((coach, index) => (
+                <CoachGalleryItem
+                    gallery={coach.gallery}
+                    isActive={index === 0}
+                />
+            ))
+        }
+    </div>
+</section>

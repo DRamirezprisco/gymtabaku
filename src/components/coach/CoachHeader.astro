@@ -1,7 +1,124 @@
 ---
 import Menu from "@/components/Menu.astro";
-import CoachItems from "@/components/coach/CoachItems.astro";
+import Titulo from "@/components/global/Titulo.astro";
+import CoachItem from "@/components/coach/CoachItem.astro";
+
+interface HeaderCoaches {
+    name?: string;
+    role?: string;
+    img?: string;
+    imgHover?: string;
+}
+
+interface DescriptionCoaches {
+    tittle?: string;
+    subTittle?: string;
+    description?: string;
+    description2?: string;
+    description3?: string;
+    img?: string;
+    wallpaperSrc?: string;
+}
+
+interface GalleryCoaches {
+    img?: string;
+    alt?: string;
+}
+
+interface Coach {
+    header: HeaderCoaches;
+    description: DescriptionCoaches;
+    gallery: GalleryCoaches[];
+}
+
+interface Props {
+    Coaches: Coach[];
+}
+
+const { Coaches } = Astro.props;
 ---
 
-<Menu />
-<CoachItems />
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<section
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden"
+>
+    <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+        <img
+            src="/img/bg/fondoyellow.webp"
+            alt=""
+            class="w-full h-auto object-cover object-bottom rotate-y-180 opacity-90"
+        />
+    </div>
+    <div class="relative z-10">
+        <Menu />
+        <header
+            class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto w-full px-4 pt-4"
+        >
+            <div class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 pt-4">
+                <Titulo title="nuestros profesores" />
+                <h3
+                    class="mb-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-bg-card-hover text-center"
+                >
+                    Entrena acompañado por <br /> nuestro equipo de profesionales!
+                </h3>
+            </div>
+        </header>
+    </div>
+
+    <div class="w-4/6 mx-auto relative z-20">
+        <div class="max-w-6xl mx-auto pt-4 pb-10">
+            <div class="swiper coach-slider">
+                <div class="swiper-wrapper pb-10">
+                    {
+                        Coaches.map((coach) => (
+                            <CoachItem coachHeader={coach.header} />
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import Swiper from "swiper";
+    import { Autoplay } from "swiper/modules";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        new Swiper(".coach-slider", {
+            modules: [Autoplay],
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            centeredSlides: false,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                    spaceBetween: 20,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 5, // 4 profesores en pantallas grandes
+                    spaceBetween: 28,
+                },
+            },
+        });
+    });
+</script>
+
+<style>
+    .swiper-slide {
+        height: auto;
+    }
+</style>

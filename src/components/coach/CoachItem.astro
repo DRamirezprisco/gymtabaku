@@ -1,0 +1,62 @@
+---
+interface HeaderCoaches {
+    name?: string;
+    role?: string;
+    img?: string;
+    imgHover?: string;
+}
+
+interface Props {
+    coachHeader: HeaderCoaches;
+}
+const { coachHeader } = Astro.props;
+
+const { name, role, img, imgHover } = coachHeader;
+---
+
+<div class="swiper-slide flex justify-center items-center h-80! w-50!">
+    <!-- Tarjeta del profesor -->
+    <div class="group relative h-full w-full cursor-pointer p-1">
+        <!-- Fondo de Arco Oscuro Detrás de la Foto -->
+        <div
+            class="absolute w-40 h-50 top-11 bg-gym-bg-card-hover rounded-t-full z-0 left-1/2 -translate-x-1/2"
+        >
+        </div>
+
+        <!-- Contenedor de la Imagen con Cambio de Camisa -->
+        <div class="absolute z-10 w-full h-50 flex justify-center items-end">
+            <!-- Imagen Normal -->
+            <img
+                src={img}
+                alt={name}
+                class="w-2/3 h-full object-top object-cover group-hover:opacity-0"
+            />
+
+            <!-- Imagen Camisa Amarilla (Hover) -->
+            <img
+                src={imgHover}
+                alt={name}
+                class="absolute bottom-0 w-2/3 h-full object-top object-cover opacity-0 group-hover:opacity-100"
+            />
+        </div>
+
+        <!-- Bloque Inferior Diagonal con Información -->
+        <div
+            class="absolute bottom-0 z-20 w-full h-40 bg-[url('/img/coach/coach-bg4.webp')] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center"
+        >
+            <h4 class="text-gym-dark-bg-card-hover font-bold text-lg">
+                {name}
+            </h4>
+            <p class="text-primary-600 text-sm font-semibold text-center">
+                {role}
+            </p>
+
+            <!-- Botón flotante '+' -->
+            <button
+                class="absolute bottom-2 left-1/2 -translate-x-1/2 w-9 h-9 bg-yellow-400 hover:bg-gym-bg-card-hover text-black hover:text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg transition-colors duration-300 cursor-pointer"
+            >
+                +
+            </button>
+        </div>
+    </div>
+</div>
