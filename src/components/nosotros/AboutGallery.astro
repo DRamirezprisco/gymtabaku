@@ -52,11 +52,11 @@ const galleryItems =
     <!-- Flecha Anterior -->
     <button
       id="prev-btn"
-      class="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-30 bg-gym-dark-bg-card-hover hover:bg-primary-500 text-white hover:text-black p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all transform hover:scale-110 cursor-pointer shadow-lg"
+      class="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-30 size-9 sm:size-11 flex items-center justify-center bg-secondary-950/80 hover:bg-primary-500 text-white hover:text-black rounded-full backdrop-blur-md border border-white/15 transition-all transform hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
       aria-label="Anterior"
     >
       <svg
-        class="w-5 h-5 sm:w-6 sm:h-6"
+        class="size-4 sm:size-5"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -72,11 +72,11 @@ const galleryItems =
     <!-- Flecha Siguiente -->
     <button
       id="next-btn"
-      class="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-30 bg-gym-dark-bg-card-hover hover:bg-primary-500 text-white hover:text-black p-3 rounded-full backdrop-blur-sm border border-white/10 transition-all transform hover:scale-110 cursor-pointer shadow-lg"
+      class="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-30 size-9 sm:size-11 flex items-center justify-center bg-secondary-950/80 hover:bg-primary-500 text-white hover:text-black rounded-full backdrop-blur-md border border-white/15 transition-all transform hover:scale-110 active:scale-95 cursor-pointer shadow-xl"
       aria-label="Siguiente"
     >
       <svg
-        class="w-5 h-5 sm:w-6 sm:h-6"
+        class="size-4 sm:size-5"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -128,10 +128,10 @@ const galleryItems =
       class="absolute top-0 bottom-0 left-1/2 -ml-px w-0.5 bg-primary-500 z-10 pointer-events-none flex items-center justify-center"
     >
       <div
-        class="w-8 h-8 bg-primary-500 rounded-full text-black flex items-center justify-center shadow-lg border border-black/20 transform group-hover:scale-110 transition-transform"
+        class="size-7 sm:size-8 bg-primary-500 rounded-full text-black flex items-center justify-center shadow-xl border border-black/20 transform group-hover:scale-110 transition-transform"
       >
         <svg
-          class="w-4 h-4"
+          class="size-3.5 sm:size-4"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -147,11 +147,11 @@ const galleryItems =
 
     <!-- Título Flotante Inferior con degradado -->
     <div
-      class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/40 to-transparent p-5 sm:p-6 pt-12 z-20 pointer-events-none"
+      class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/40 to-transparent p-3 sm:p-5 pt-8 sm:pt-12 z-20 pointer-events-none"
     >
       <h3
         id="item-title"
-        class="text-lg sm:text-2xl font-bold uppercase tracking-wide text-primary-500 drop-shadow-md"
+        class="text-sm sm:text-lg md:text-xl lg:text-2xl font-black uppercase tracking-wider text-primary-400 drop-shadow-md"
       >
         {galleryItems[0].title}
       </h3>
@@ -173,7 +173,7 @@ const galleryItems =
 </div>
 
 <script is:inline define:vars={{ galleryItems }}>
-  document.addEventListener("DOMContentLoaded", () => {
+  function initAboutGallery() {
     let currentIndex = 0;
 
     const beforeWrapper = document.getElementById("before-wrapper");
@@ -182,18 +182,20 @@ const galleryItems =
     const afterImg = document.getElementById("after-img");
     const sliderRange = document.getElementById("slider-range");
     const itemTitle = document.getElementById("item-title");
-    const itemDesc = document.getElementById("item-desc");
     const prevBtn = document.getElementById("prev-btn");
     const nextBtn = document.getElementById("next-btn");
     const dots = document.querySelectorAll(".dot-btn");
     const container = sliderRange?.parentElement;
+
+    if (!sliderRange || !container) return;
 
     // Actualiza la posición de la línea divisora del comparador
     const updateSliderPosition = (val) => {
       if (!beforeWrapper || !dividerLine || !beforeImg || !container) return;
       beforeWrapper.style.width = `${val}%`;
       dividerLine.style.left = `${val}%`;
-      beforeImg.style.width = `${container.offsetWidth}px`;
+      const containerWidth = container.getBoundingClientRect().width || container.offsetWidth;
+      beforeImg.style.width = `${containerWidth}px`;
     };
 
     // Carga los datos del elemento actual
@@ -204,7 +206,6 @@ const galleryItems =
       if (afterImg) afterImg.src = item.afterImg;
       if (beforeImg) beforeImg.src = item.beforeImg;
       if (itemTitle) itemTitle.textContent = item.title;
-      if (itemDesc) itemDesc.textContent = item.description;
 
       // Reinicia el slider a la mitad al cambiar de imagen
       if (sliderRange) sliderRange.value = "50";
@@ -223,15 +224,13 @@ const galleryItems =
     };
 
     // Event listener del deslizador
-    if (sliderRange) {
-      sliderRange.addEventListener("input", (e) => {
-        updateSliderPosition(e.target.value);
-      });
+    sliderRange.addEventListener("input", (e) => {
+      updateSliderPosition(e.target.value);
+    });
 
-      window.addEventListener("resize", () => {
-        updateSliderPosition(sliderRange.value);
-      });
-    }
+    window.addEventListener("resize", () => {
+      updateSliderPosition(sliderRange.value);
+    });
 
     // Botón Anterior
     prevBtn?.addEventListener("click", () => {
@@ -259,7 +258,17 @@ const galleryItems =
 
     // Carga inicial
     loadItem(0);
-  });
+    requestAnimationFrame(() => {
+      updateSliderPosition("50");
+    });
+  }
+
+  document.addEventListener("astro:page-load", initAboutGallery);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAboutGallery);
+  } else {
+    initAboutGallery();
+  }
 </script>
 
 <style>

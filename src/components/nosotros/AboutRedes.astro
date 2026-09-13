@@ -32,43 +32,62 @@ const posts = [
   }]
 ---
 
-<section class="w-full bg-black py-8">
-  <!-- Grid adaptativa: 2 columnas en móviles, 4 en tablets y desktop -->
-  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 w-full overflow-hidden">
+<section class="w-full bg-black py-4 sm:py-6 lg:py-8">
+  <!-- Grid progresiva: 2 en móvil, 3 en tablet sm, 4 en tablet md y 6 en desktop lg sin huecos -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-0 w-full overflow-hidden">
     {
-      posts.map((post) => (
-        <a
-          href={post.postUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="group relative block w-full h-64 sm:h-72 md:h-80 overflow-hidden cursor-pointer"
-        >
-          <!-- Imagen de fondo -->
-          <img
-            src={post.imageUrl}
-            alt={post.alt}
-            class="w-full h-full object-contain object-center transition-transform duration-500 group-hover:scale-105"
-            loading="lazy"
-          />
+      posts.map((post, index) => {
+        // Visibilidad progresiva según espacio disponible:
+        // index 0, 1: siempre visibles (2 en móviles)
+        // index 2: visible a partir de sm (3 columnas)
+        // index 3: visible a partir de md (4 columnas)
+        // index 4, 5: visibles a partir de lg (6 columnas completas)
+        const visibilityClass =
+          index < 2
+            ? "block"
+            : index === 2
+              ? "hidden sm:block"
+              : index === 3
+                ? "hidden md:block"
+                : "hidden lg:block";
 
-          <!-- Overlay Amarillo Desplegable hacia abajo -->
-          <div class="absolute inset-0 bg-primary-400/90 flex justify-center items-center -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-10">
-            <!-- Icono de Instagram en SVG -->
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-12 h-12 text-white stroke-current fill-none"
-              viewBox="0 0 24 24"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-            </svg>
-          </div>
-        </a>
-      ))
+        return (
+          <a
+            href={post.postUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              "group relative w-full h-36 sm:h-48 md:h-56 lg:h-72 xl:h-80 overflow-hidden cursor-pointer bg-secondary-950",
+              visibilityClass,
+            ]}
+          >
+            <!-- Imagen de fondo -->
+            <img
+              src={post.imageUrl}
+              alt={post.alt}
+              class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+
+            <!-- Overlay Amarillo Desplegable hacia abajo -->
+            <div class="absolute inset-0 bg-primary-400/90 flex justify-center items-center -translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-10">
+              <!-- Icono de Instagram en SVG -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="size-8 sm:size-10 md:size-12 text-white stroke-current fill-none drop-shadow-md"
+                viewBox="0 0 24 24"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </div>
+          </a>
+        );
+      })
     }
   </div>
 </section>
