@@ -53,7 +53,7 @@ const testimonials = [
       class="md:col-span-5 lg:col-span-5 flex items-center justify-center md:justify-end w-full"
     >
       <div
-        class="relative w-full max-w-md sm:max-w-lg md:max-w-sm lg:max-w-md aspect-[4/5] rounded-2xl md:rounded-none overflow-hidden shadow-2xl border-4 sm:border-6 border-gym-bg mx-auto md:mr-0"
+        class="relative w-full max-w-md sm:max-w-lg md:max-w-sm lg:max-w-md h-112 md:h-full md:aspect-4/5 rounded-2xl md:rounded-none overflow-hidden shadow-2xl border-4 sm:border-6 border-gym-bg mx-auto md:mr-0"
       >
         {
           testimonials.map((t, index) => (
@@ -61,7 +61,7 @@ const testimonials = [
               src={t.image}
               alt={t.name}
               data-img-index={index}
-              class={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
+              class={`absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 ease-in-out ${
                 index === 0
                   ? "opacity-100 z-10 scale-100"
                   : "opacity-0 z-0 scale-105"

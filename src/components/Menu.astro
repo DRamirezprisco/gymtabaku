@@ -48,7 +48,11 @@ const menu = [
       class="shrink-0 transition delay-150 duration-300 ease-in-out hover:scale-110 size-12 sm:size-14 lg:size-16 flex items-center justify-center"
       aria-label="Gym Tabaku - Inicio"
     >
-      <img src="/img/logo.webp" alt="logo gym tabaku" class="w-full h-full object-contain" />
+      <img
+        src="/img/logo.webp"
+        alt="logo gym tabaku"
+        class="w-full h-full object-contain"
+      />
     </a>
   </div>
 
@@ -100,7 +104,7 @@ const menu = [
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <path d="M4 6h16M4 12h16M4 18h16" />
+        <path d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
       <!-- Icono Cerrar (Abierto) -->
       <svg
@@ -113,7 +117,7 @@ const menu = [
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <path d="M6 18L18 6M6 6l12 12" />
+        <path d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
@@ -124,24 +128,34 @@ const menu = [
   id="mobileMenuBackdrop"
   class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300 lg:hidden"
   aria-hidden="true"
-></div>
+>
+</div>
 
 <!-- Drawer Lateral del Menú Móvil -->
 <aside
   id="mobileNavMenu"
-  class="fixed top-0 right-0 z-50 h-full w-[85%] max-w-sm bg-secondary-950 bg-[url('/img/bg/bgmenu.webp')] bg-contain bg-repeat shadow-2xl border-l border-secondary-800 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+  class="fixed top-0 right-0 z-50 h-full w-[85%] max-w-sm bg-secondary-950 bg-[url('/img/bg/bgoscuro.webp')] bg-cover bg-repeat shadow-2xl border-l border-secondary-800 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Menú principal de navegación"
 >
   <!-- Encabezado del Drawer -->
-  <div class="flex items-center justify-between p-5 border-b border-secondary-800/80 bg-secondary-950/90">
-    <div class="flex items-center gap-3">
-      <img src="/img/logo.webp" alt="logo gym tabaku" class="size-10 object-contain" />
-      <span class="font-serif font-bold text-xl uppercase tracking-wider text-primary-500">
+  <div
+    class="flex items-center justify-between p-5 border-b border-secondary-800/80 bg-secondary-950/90"
+  >
+    <a class="flex items-center gap-3" href="/">
+      <img
+        src="/img/logo.webp"
+        alt="logo gym tabaku"
+        class="size-10 object-contain"
+      />
+      <span
+        class="font-serif font-bold text-xl uppercase tracking-wider text-primary-500"
+      >
         GYM TABAKU
       </span>
-    </div>
+    </a>
+
     <button
       id="mobileMenuCloseBut"
       type="button"
@@ -157,7 +171,7 @@ const menu = [
         stroke-linecap="round"
         stroke-linejoin="round"
       >
-        <path d="M6 18L18 6M6 6l12 12" />
+        <path d="M6 18L18 6M6 6l12 12"></path>
       </svg>
     </button>
   </div>
@@ -172,7 +186,7 @@ const menu = [
               href={item.url}
               class={`flex items-center px-4 py-3 text-lg font-bold rounded-xl transition-all duration-200 ${
                 item.isActive
-                  ? "text-primary-400 bg-secondary-900/90 border-l-4 border-primary-500 pl-5 shadow-inner"
+                  ? "text-secondary-950 bg-primary-500 border-l-4 pl-5 shadow-inner"
                   : "text-secondary-100 hover:text-primary-400 hover:bg-secondary-900/50"
               }`}
             >
@@ -185,7 +199,9 @@ const menu = [
   </div>
 
   <!-- Pie del Drawer con CTA Button y Slogan -->
-  <div class="p-5 border-t border-secondary-800/80 bg-secondary-950/95 space-y-4">
+  <div
+    class="p-5 border-t border-secondary-800/80 bg-secondary-950/95 space-y-4"
+  >
     <div class="w-full flex justify-center">
       <Button text="Inscribete" url="/" class="w-full" />
     </div>
@@ -269,13 +285,19 @@ const menu = [
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && toggleBtn.getAttribute("aria-expanded") === "true") {
+      if (
+        e.key === "Escape" &&
+        toggleBtn.getAttribute("aria-expanded") === "true"
+      ) {
         closeMenu();
       }
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 1024 && toggleBtn.getAttribute("aria-expanded") === "true") {
+      if (
+        window.innerWidth >= 1024 &&
+        toggleBtn.getAttribute("aria-expanded") === "true"
+      ) {
         closeMenu();
       }
     });
