@@ -47,6 +47,20 @@ import { SERVICES_DATA } from "@/components/constants/services";
                 galleriesTitles?.[index]?.classList.add("is-active");
 
                 galleries?.[index]?.classList.add("is-active");
+
+                // Si ya estamos viendo la galería o cerca de ella, revelar los elementos inmediatamente
+                const currentGallery = galleries?.[index];
+                if (currentGallery) {
+                    const rect = currentGallery.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        galleriesTitles?.[index]?.classList.add("is-revealed");
+                        currentGallery
+                            .querySelectorAll<HTMLElement>("[data-reveal]")
+                            .forEach((el) => {
+                                el.classList.add("is-revealed");
+                            });
+                    }
+                }
             });
         });
     }

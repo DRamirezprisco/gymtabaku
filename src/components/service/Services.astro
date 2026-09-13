@@ -14,16 +14,22 @@ const { items = [] } = Astro.props;
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
 >
-  <img
-    src="/img/bg/bgyellow.webp"
-    alt=""
-    class="absolute -right-10 -top-12 size-42 sm:size-50 md:size-54 lg:size-50 xl:size-52 2xl:size-90 pointer-events-none select-none"
-  />
-  <img
-    src="/img/bg/bgoscurotexture.webp"
-    alt=""
-    class="absolute -right-10 -top-12 size-40 sm:size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86 pointer-events-none select-none"
-  />
+  <div
+    class="absolute -right-10 -top-12 pointer-events-none select-none"
+    data-reveal="fade-left"
+    data-reveal-delay="200"
+  >
+    <img
+      src="/img/bg/bgyellow.webp"
+      alt=""
+      class="size-42 sm:size-50 md:size-54 lg:size-50 xl:size-52 2xl:size-90 pointer-events-none select-none"
+    />
+    <img
+      src="/img/bg/bgoscurotexture.webp"
+      alt=""
+      class="absolute top-0 right-0 size-40 sm:size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86 pointer-events-none select-none"
+    />
+  </div>
   <div
     id="galleryContainer"
     class="max-w-6xl 2xl:max-w-7xl mx-auto w-full pt-10"

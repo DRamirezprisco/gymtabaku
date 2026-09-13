@@ -24,11 +24,15 @@ const { Coaches, activeIndex = 0 } = Astro.props;
     src="/img/bg/bgcuerdas.webp"
     alt=""
     class="absolute object-cover h-280 2xl:h-300 -bottom-100 2xl:-bottom-115 left-0 w-auto pointer-events-none select-none opacity-40"
+    data-reveal="fade-up"
+    data-reveal-delay="300"
   />
   <div class="relative z-10">
     <Menu />
     <header
       class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6"
+      data-reveal="fade-up"
+      data-reveal-delay="0"
     >
       <div
         class="flex flex-col gap-2.5 sm:gap-3 text-center max-w-3xl mx-auto pt-2 sm:pt-4"
@@ -64,7 +68,11 @@ const { Coaches, activeIndex = 0 } = Astro.props;
       </div>
 
       <!-- Botones de Navegación del Carrusel -->
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3">
+      <div
+        class="flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3"
+        data-reveal="fade-up"
+        data-reveal-delay="1000"
+      >
         <button
           type="button"
           class="coach-prev size-9 sm:size-10 rounded-full bg-secondary-900/80 border border-white/15 hover:border-gym-yellow hover:bg-secondary-950 text-gym-yellow flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"

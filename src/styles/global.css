@@ -44,3 +44,297 @@
   --color-gym-yellow: var(--color-primary-500);
   --color-gym-yellow-hover: var(--color-primary-400);
 }
+
+/* ========================================================= */
+/* SISTEMA DE ANIMACIONES POR SCROLL (SCROLL REVEAL - GPU)    */
+/* ========================================================= */
+
+[data-reveal] {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: transform, opacity;
+  transition-duration: 1.2s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Variantes de Movimiento */
+[data-reveal="fade-up"] {
+  transform: translate3d(0, 50px, 0);
+}
+
+[data-reveal="fade-down"] {
+  transform: translate3d(0, -50px, 0);
+}
+
+[data-reveal="fade-left"] {
+  transform: translate3d(60px, 0, 0);
+}
+
+[data-reveal="fade-right"] {
+  transform: translate3d(-60px, 0, 0);
+}
+
+[data-reveal="zoom-in"] {
+  transform: scale3d(0.88, 0.88, 1);
+}
+
+[data-reveal="fade-in"] {
+  opacity: 0;
+  transform: none;
+}
+
+/* Líneas diagonales que crecen desde el centro hacia afuera */
+[data-reveal="expand-line"] {
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition-duration: 0.95s;
+}
+
+/* Estado Final Revelado (permanente - "una vez lleguen no usar más") */
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+}
+
+[data-reveal="expand-line"].is-revealed {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+[data-reveal="fade-in"].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Duraciones personalizadas opcionales */
+[data-reveal-duration="450ms"],
+[data-reveal-duration="0.45s"] {
+  transition-duration: 0.45s;
+}
+
+[data-reveal-duration="500ms"],
+[data-reveal-duration="0.5s"] {
+  transition-duration: 0.5s;
+}
+
+[data-reveal-duration="600ms"],
+[data-reveal-duration="0.6s"] {
+  transition-duration: 0.6s;
+}
+
+[data-reveal-duration="750ms"],
+[data-reveal-duration="0.75s"] {
+  transition-duration: 0.75s;
+}
+
+[data-reveal-duration="800ms"],
+[data-reveal-duration="0.8s"] {
+  transition-duration: 0.8s;
+}
+
+/* Retardos Escalonados (Stagger) */
+[data-reveal-delay="50"] {
+  transition-delay: 50ms;
+}
+
+[data-reveal-delay="100"] {
+  transition-delay: 100ms;
+}
+
+[data-reveal-delay="150"] {
+  transition-delay: 150ms;
+}
+
+[data-reveal-delay="200"] {
+  transition-delay: 200ms;
+}
+
+[data-reveal-delay="250"] {
+  transition-delay: 250ms;
+}
+
+[data-reveal-delay="300"] {
+  transition-delay: 300ms;
+}
+
+[data-reveal-delay="350"] {
+  transition-delay: 350ms;
+}
+
+[data-reveal-delay="400"] {
+  transition-delay: 400ms;
+}
+
+[data-reveal-delay="450"] {
+  transition-delay: 450ms;
+}
+
+[data-reveal-delay="480"] {
+  transition-delay: 480ms;
+}
+
+[data-reveal-delay="500"] {
+  transition-delay: 500ms;
+}
+
+[data-reveal-delay="550"] {
+  transition-delay: 550ms;
+}
+
+[data-reveal-delay="600"] {
+  transition-delay: 600ms;
+}
+
+[data-reveal-delay="650"] {
+  transition-delay: 650ms;
+}
+
+[data-reveal-delay="660"] {
+  transition-delay: 660ms;
+}
+
+[data-reveal-delay="700"] {
+  transition-delay: 700ms;
+}
+
+[data-reveal-delay="750"] {
+  transition-delay: 750ms;
+}
+
+[data-reveal-delay="800"] {
+  transition-delay: 800ms;
+}
+
+[data-reveal-delay="840"] {
+  transition-delay: 840ms;
+}
+
+[data-reveal-delay="850"] {
+  transition-delay: 850ms;
+}
+
+[data-reveal-delay="900"] {
+  transition-delay: 900ms;
+}
+
+[data-reveal-delay="950"] {
+  transition-delay: 950ms;
+}
+
+[data-reveal-delay="1000"] {
+  transition-delay: 1000ms;
+}
+
+[data-reveal-delay="1050"] {
+  transition-delay: 1050ms;
+}
+
+[data-reveal-delay="1100"] {
+  transition-delay: 1100ms;
+}
+
+[data-reveal-delay="1200"] {
+  transition-delay: 1200ms;
+}
+
+[data-reveal-delay="1250"] {
+  transition-delay: 1250ms;
+}
+
+[data-reveal-delay="1300"] {
+  transition-delay: 1300ms;
+}
+
+[data-reveal-delay="1350"] {
+  transition-delay: 1350ms;
+}
+
+[data-reveal-delay="1400"] {
+  transition-delay: 1400ms;
+}
+
+[data-reveal-delay="1450"] {
+  transition-delay: 1450ms;
+}
+
+[data-reveal-delay="1500"] {
+  transition-delay: 1500ms;
+}
+
+[data-reveal-delay="1550"] {
+  transition-delay: 1550ms;
+}
+
+[data-reveal-delay="1600"] {
+  transition-delay: 1600ms;
+}
+
+[data-reveal-delay="1650"] {
+  transition-delay: 1650ms;
+}
+
+[data-reveal-delay="1700"] {
+  transition-delay: 1700ms;
+}
+
+[data-reveal-delay="1750"] {
+  transition-delay: 1750ms;
+}
+
+[data-reveal-delay="1800"] {
+  transition-delay: 1800ms;
+}
+
+[data-reveal-delay="1850"] {
+  transition-delay: 1850ms;
+}
+
+[data-reveal-delay="1900"] {
+  transition-delay: 1900ms;
+}
+
+[data-reveal-delay="1950"] {
+  transition-delay: 1950ms;
+}
+
+[data-reveal-delay="2000"] {
+  transition-delay: 2000ms;
+}
+
+/* Animación continua de órbita y flotación suave para el logo del gym */
+@keyframes float-orbit {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(5px, -6px, 0) rotate(2.5deg);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(0deg);
+  }
+  75% {
+    transform: translate3d(-5px, -5px, 0) rotate(-2.5deg);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+.animate-orbit-gentle {
+  animation: float-orbit 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Accesibilidad: Respetar si el usuario desactivó animaciones */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-orbit-gentle {
+    animation: none !important;
+  }
+}
+

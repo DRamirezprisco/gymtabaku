@@ -10,7 +10,7 @@ import { HOME_SERVICES } from "@/components/constants/services";
   <div
     class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"
   >
-    <div class="flex flex-col gap-3 text-center py-4">
+    <div class="flex flex-col gap-3 text-center py-4" data-reveal="fade-up">
       <Titulo title="nuestros servicios" isdark />
       <h1
         class="font-serif font-bold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-gym-dark-text-primary my-2"
@@ -39,16 +39,27 @@ import { HOME_SERVICES } from "@/components/constants/services";
     class="group/grid max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2 lg:gap-3 xl:gap-4 items-center mt-6 sm:mt-8 md:mt-10 px-4 sm:px-6 lg:px-8 py-4 md:py-8"
   >
     {
-      HOME_SERVICES.map((service) => (
-        <ServiceItems
-          img={service.img}
-          title={service.title}
-          subtitle={service.subtitle}
-          icon={service.icon}
-          description={service.description}
-          url={service.url}
-          active={service.active}
-        />
+      HOME_SERVICES.map((service, index) => (
+        <div
+          data-reveal="fade-up"
+          data-reveal-delay={String(index * 200)}
+          class:list={[
+            "relative transition-all duration-500",
+            service.active
+              ? "z-0 md:z-10 md:group-hover/grid:z-0 hover:!z-20"
+              : "z-0 hover:!z-20",
+          ]}
+        >
+          <ServiceItems
+            img={service.img}
+            title={service.title}
+            subtitle={service.subtitle}
+            icon={service.icon}
+            description={service.description}
+            url={service.url}
+            active={service.active}
+          />
+        </div>
       ))
     }
   </div>

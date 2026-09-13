@@ -6,15 +6,25 @@ import AboutGallery from "@/components/nosotros/AboutGallery.astro";
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
 >
-  <img
-    src="/img/bg/bgcuerdas.webp"
-    alt=""
-    class="absolute object-cover scale-125 2xl:scale-100 2xl:-bottom-100 -bottom-10 left-0 w-full pointer-events-none select-none opacity-40"
-  />
+  <div
+    data-reveal="fade-up"
+    data-reveal-delay="650"
+    class="absolute -bottom-10 left-0 w-full pointer-events-none select-none z-0"
+  >
+    <img
+      src="/img/bg/bgcuerdas.webp"
+      alt=""
+      class="object-cover scale-125 2xl:scale-100 2xl:-bottom-100 w-full opacity-40"
+    />
+  </div>
 
   <div class="z-10 relative max-w-6xl 2xl:max-w-7xl mx-auto w-full">
-    <Titulo title="Conoce nuestra historia" />
+    <div data-reveal="fade-down">
+      <Titulo title="Conoce nuestra historia" />
+    </div>
     <h1
+      data-reveal="fade-up"
+      data-reveal-delay="250"
       class="my-6 sm:my-8 lg:my-10 text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gym-dark-bg-card-hover font-bold text-center tracking-tight max-w-4xl mx-auto leading-snug"
     >
       Un lugar donde entrenar se convierte en compartir y crecer{" "}
@@ -22,23 +32,29 @@ import AboutGallery from "@/components/nosotros/AboutGallery.astro";
         junto a una comunidad que te acompaña.
       </span>
     </h1>
-    <p
-      class="text-sm sm:text-base lg:text-lg text-gym-text-secondary my-3 text-center max-w-3xl mx-auto leading-relaxed"
-    >
-      Porque sabemos que la disciplina se construye día a día y que tener
-      personas que te apoyen hace la diferencia. Nacimos con una idea sencilla:
-      "Crear un lugar donde las personas pudieran entrenar, sentirse cómodas y
-      encontrar el acompañamiento que necesitan para mejorar cada día".
-    </p>
-    <p
-      class="text-sm sm:text-base lg:text-lg text-gym-text-secondary mt-4 text-center max-w-3xl mx-auto leading-relaxed"
-    >
-      Un gimnasio con equipos funcionales, espacios pensados para diferentes
-      objetivos y coaches preparados para orientarte, pero sobre todo, un lugar
-      donde el trato cercano y la confianza fueran parte de cada entrenamiento.
-    </p>
+    <div data-reveal="fade-up" data-reveal-delay="450">
+      <p
+        class="text-sm sm:text-base lg:text-lg text-gym-text-secondary my-3 text-center max-w-3xl mx-auto leading-relaxed"
+      >
+        Porque sabemos que la disciplina se construye día a día y que tener
+        personas que te apoyen hace la diferencia. Nacimos con una idea sencilla:
+        "Crear un lugar donde las personas pudieran entrenar, sentirse cómodas y
+        encontrar el acompañamiento que necesitan para mejorar cada día".
+      </p>
+      <p
+        class="text-sm sm:text-base lg:text-lg text-gym-text-secondary mt-4 text-center max-w-3xl mx-auto leading-relaxed"
+      >
+        Un gimnasio con equipos funcionales, espacios pensados para diferentes
+        objetivos y coaches preparados para orientarte, pero sobre todo, un lugar
+        donde el trato cercano y la confianza fueran parte de cada entrenamiento.
+      </p>
+    </div>
 
-    <div class="max-w-5xl mx-auto mt-10 sm:mt-14 lg:mt-16">
+    <div
+      data-reveal="fade-up"
+      data-reveal-delay="850"
+      class="max-w-5xl mx-auto mt-10 sm:mt-14 lg:mt-16"
+    >
       <AboutGallery />
     </div>
   </div>

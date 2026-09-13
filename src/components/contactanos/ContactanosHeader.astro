@@ -10,6 +10,9 @@ import ContactanosForm from "@/components/contactanos/ContactanosForm.astro";
     src="/img/bg/intento4.jpg"
     alt=""
     class="absolute -right-80 sm:-right-85 lg:-right-70 top-0 w-auto object-cover opacity-70 sm:opacity-80 h-full pointer-events-none select-none max-w-none"
+    data-reveal="fade-in"
+    data-reveal-delay="0"
+    data-reveal-duration="800ms"
   />
 
   <div class="relative z-10">
@@ -18,7 +21,12 @@ import ContactanosForm from "@/components/contactanos/ContactanosForm.astro";
     <main
       class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16"
     >
-      <header class="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+      <header
+        class="max-w-3xl mx-auto text-center mb-8 sm:mb-12"
+        data-reveal="fade-up"
+        data-reveal-delay="100"
+        data-reveal-duration="500ms"
+      >
         <div class="mb-1">
           <Titulo title="Estamos para ti" isdark />
         </div>

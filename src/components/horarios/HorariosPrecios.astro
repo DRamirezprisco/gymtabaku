@@ -3,11 +3,17 @@ import Titulo from "@/components/global/Titulo.astro";
 import PreciosItems from "@/components/home/PreciosItems.astro";
 ---
 
-<section class="grid grid-cols-1 lg:grid-cols-2 h-full w-full">
+<section
+  class="grid grid-cols-1 lg:grid-cols-2 h-full w-full overflow-hidden bg-gym-dark-bg"
+>
   <div
-    class="bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover flex flex-col justify-center items-center py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-10"
+    class="bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover flex flex-col justify-center items-center py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-10"
   >
-    <div class="mx-auto text-center mb-6 sm:mb-8 lg:mb-10 max-w-xl">
+    <div
+      class="mx-auto text-center mb-6 sm:mb-8 lg:mb-10 max-w-xl"
+      data-reveal="fade-up"
+      data-reveal-delay="100"
+    >
       <Titulo title="Nuestros Planes" isdark />
       <p
         class="text-gym-dark-text-secondary font-medium text-sm sm:text-base lg:text-lg leading-relaxed mt-3 sm:mt-4 text-center"
@@ -18,11 +24,13 @@ import PreciosItems from "@/components/home/PreciosItems.astro";
     </div>
 
     <!-- Tablero de Precios adaptado a media anchura -->
-    <PreciosItems isHalfwidth={true} />
+    <PreciosItems isHalfwidth={true} baseDelay={300} />
   </div>
 
   <div
     class="relative w-full min-h-[300px] sm:min-h-[380px] lg:min-h-full h-full overflow-hidden bg-black"
+    data-reveal="fade-in"
+    data-reveal-delay="200"
   >
     <img
       src="/img/precios.webp"

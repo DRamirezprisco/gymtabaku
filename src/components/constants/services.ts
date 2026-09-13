@@ -77,17 +77,6 @@ export const SERVICE_DEFAULT_IMAGES: ServiceImage[] = [
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
-    title: "Entrenamientos personalizados",
-    icon: "coach",
-    subtitle: "Tu meta, nuestro acompañamiento",
-    videoUrl: "/img/services/video1.mp4",
-    posterUrl: "/img/services/coach.webp",
-    description:
-      "Sabemos que cada cuerpo y cada objetivo son diferentes. Nuestros coaches estarán contigo para orientarte, corregirte y motivarte en el camino, por eso trabajamos contigo para que cada entrenamiento tenga un propósito avanzando con mayor seguridad, constancia y motivación.",
-    serviceItemId: "coach",
-    images: SERVICE_DEFAULT_IMAGES,
-  },
-  {
     title: "Zonas de entrenamiento",
     icon: "zonas",
     subtitle: "Un espacio para cada parte de tu progreso",
@@ -98,6 +87,18 @@ export const SERVICES_DATA: ServiceItem[] = [
     serviceItemId: "zonas",
     images: SERVICE_DEFAULT_IMAGES,
   },
+  {
+    title: "Entrenamientos personalizados",
+    icon: "coach",
+    subtitle: "Tu meta, nuestro acompañamiento",
+    videoUrl: "/img/services/video1.mp4",
+    posterUrl: "/img/services/coach.webp",
+    description:
+      "Sabemos que cada cuerpo y cada objetivo son diferentes. Nuestros coaches estarán contigo para orientarte, corregirte y motivarte en el camino, por eso trabajamos contigo para que cada entrenamiento tenga un propósito avanzando con mayor seguridad, constancia y motivación.",
+    serviceItemId: "coach",
+    images: SERVICE_DEFAULT_IMAGES,
+  },
+
   {
     title: "Clases grupales",
     icon: "zumba",

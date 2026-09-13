@@ -19,12 +19,23 @@ import CardFestivos from "./horarios/CardFestivos.astro";
   </div>
 
   {/* Insignia superior con atleta y mensaje */}
-  <BadgeHorarios />
+  <div
+    data-reveal="zoom-in"
+    data-reveal-delay="500"
+    data-reveal-duration="450ms"
+  >
+    <BadgeHorarios />
+  </div>
 
   {/* ========================================================= */}
   {/* VERSIÓN MÓVIL Y TABLET (< lg): Slider Infinito con 5 cards */}
   {/* ========================================================= */}
-  <div class="block lg:hidden mt-24 sm:mt-32 md:mt-40 mb-8">
+  <div
+    class="block lg:hidden mt-24 sm:mt-32 md:mt-40 mb-8"
+    data-reveal="fade-up"
+    data-reveal-delay="500"
+    data-reveal-duration="500ms"
+  >
     {/* Carrusel táctil y arrastrable */}
     <div
       id="horariosSlider"
@@ -154,16 +165,46 @@ import CardFestivos from "./horarios/CardFestivos.astro";
       /* Fila 1: Tarjetas a los extremos para dejar ver el centro de la imagen (la cara del atleta) */
     }
     <div class="grid grid-cols-3 gap-6 xl:gap-8">
-      <CardLunesViernes />
+      <div
+        data-reveal="fade-right"
+        data-reveal-delay="500"
+        data-reveal-duration="500ms"
+      >
+        <CardLunesViernes />
+      </div>
       <div></div>
-      <CardClasesGrupales />
+      <div
+        data-reveal="fade-left"
+        data-reveal-delay="700"
+        data-reveal-duration="500ms"
+      >
+        <CardClasesGrupales />
+      </div>
     </div>
 
     {/* Fila 2: 3 tarjetas distribuidas abajo */}
     <div class="grid grid-cols-3 gap-6 xl:gap-8">
-      <CardSabados />
-      <CardDomingo />
-      <CardFestivos />
+      <div
+        data-reveal="fade-up"
+        data-reveal-delay="700"
+        data-reveal-duration="500ms"
+      >
+        <CardSabados />
+      </div>
+      <div
+        data-reveal="fade-up"
+        data-reveal-delay="800"
+        data-reveal-duration="500ms"
+      >
+        <CardDomingo />
+      </div>
+      <div
+        data-reveal="fade-up"
+        data-reveal-delay="900"
+        data-reveal-duration="500ms"
+      >
+        <CardFestivos />
+      </div>
     </div>
   </div>
 </div>

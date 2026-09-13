@@ -44,6 +44,13 @@ import { COACHES_DATA } from "@/components/constants/coaches";
             if (isMatch) {
               desc.classList.remove("hidden");
               desc.classList.add("block");
+
+              const rect = desc.getBoundingClientRect();
+              if (rect.top < window.innerHeight) {
+                desc
+                  .querySelectorAll<HTMLElement>("[data-reveal]")
+                  .forEach((el) => el.classList.add("is-revealed"));
+              }
             } else {
               desc.classList.add("hidden");
               desc.classList.remove("block");
@@ -56,6 +63,13 @@ import { COACHES_DATA } from "@/components/constants/coaches";
             if (isMatch) {
               gal.classList.remove("hidden");
               gal.classList.add("block");
+
+              const rect = gal.getBoundingClientRect();
+              if (rect.top < window.innerHeight) {
+                gal
+                  .querySelectorAll<HTMLElement>("[data-reveal]")
+                  .forEach((el) => el.classList.add("is-revealed"));
+              }
             } else {
               gal.classList.add("hidden");
               gal.classList.remove("block");

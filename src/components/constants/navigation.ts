@@ -6,24 +6,25 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    name: "Servicios",
-    url: "/servicios",
-    key: "servicios",
-  },
-  {
     name: "Nosotros",
     url: "/nosotros",
     key: "nosotros",
   },
   {
-    name: "Horarios",
-    url: "/horarios",
-    key: "horarios",
+    name: "Servicios",
+    url: "/servicios",
+    key: "servicios",
   },
+
   {
     name: "Profesores",
     url: "/profesores",
     key: "profesores",
+  },
+  {
+    name: "Horarios",
+    url: "/horarios",
+    key: "horarios",
   },
   {
     name: "Testimonios",

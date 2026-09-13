@@ -22,7 +22,11 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
   ]}
 >
   <div class="py-4 sm:py-6 relative">
-    <div class="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="w-full max-w-6xl 2xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      data-reveal="fade-up"
+      data-reveal-delay="200"
+    >
       <div class="swiper coach-gallery-swiper overflow-hidden">
         <div class="swiper-wrapper pt-4 sm:pt-6 pb-6 sm:pb-24 lg:pb-28">
           {
@@ -172,3 +176,21 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
     initGalleries();
   }
 </script>
+
+<style is:global>
+  .coach-gallery-swiper .swiper-pagination-bullet {
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    opacity: 0.6 !important;
+    font-size: 0.95rem;
+    padding: 0 4px;
+    margin: 0 !important;
+    color: #ffffff;
+  }
+  .coach-gallery-swiper .swiper-pagination-bullet-active {
+    opacity: 1 !important;
+    color: #eab308 !important;
+    font-size: 1.15rem !important;
+  }
+</style>

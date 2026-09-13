@@ -32,7 +32,7 @@ export const SITE_CONFIG: SiteConfig = {
   contact: {
     phone: "3158361031",
     phoneTel: "tel:3158361031",
-    whatsappNumber: "573158361031",
+    whatsappNumber: "573223139467",
     whatsappUrl: "https://wa.me/573158361031",
     email: "Gymtabaku@gmail.com",
     emailMailto: "mailto:Gymtabaku@gmail.com",

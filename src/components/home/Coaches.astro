@@ -9,11 +9,17 @@ const benefits = COACH_BENEFITS;
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-contain bg-repeat bg-bottom-right w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
 >
-  <img
-    src="/img/bg/bgcuerdas.webp"
-    alt=""
-    class="absolute object-cover scale-125 2xl:scale-100 -bottom-10 left-0 w-full pointer-events-none select-none opacity-40"
-  />
+  <div
+    data-reveal="fade-up"
+    data-reveal-delay="400"
+    class="absolute -bottom-10 left-0 w-full pointer-events-none select-none z-0"
+  >
+    <img
+      src="/img/bg/bgcuerdas.webp"
+      alt=""
+      class="object-cover scale-125 2xl:scale-100 w-full opacity-40"
+    />
+  </div>
   <img
     src="/img/bg/bgyellow.webp"
     alt=""
@@ -30,6 +36,7 @@ const benefits = COACH_BENEFITS;
   >
     <div
       class="bg-secondary-800/10 flex flex-col items-center gap-3 mx-auto rounded-2xl w-full max-w-4xl p-6 sm:p-8 md:p-10 shadow-sm border border-secondary-800/10 z-20"
+      data-reveal="fade-up"
     >
       <Titulo title="profesores" />
 
@@ -71,6 +78,8 @@ const benefits = COACH_BENEFITS;
       </ul>
     </div>
 
-    <CoachCarrusel />
+    <div data-reveal="fade-up" data-reveal-delay="750">
+      <CoachCarrusel />
+    </div>
   </div>
 </section>
