@@ -20,13 +20,11 @@ const { Coaches, activeIndex = 0 } = Astro.props;
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden pb-4 sm:pb-8"
 >
-  <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-    <img
-      src="/img/bg/fondoyellow.webp"
-      alt=""
-      class="w-full max-h-56 sm:max-h-72 object-cover object-bottom rotate-y-180 opacity-70 sm:opacity-90"
-    />
-  </div>
+  <img
+    src="/img/bg/bgcuerdas.webp"
+    alt=""
+    class="absolute object-cover h-280 2xl:h-300 -bottom-100 2xl:-bottom-115 left-0 w-auto pointer-events-none select-none opacity-40"
+  />
   <div class="relative z-10">
     <Menu />
     <header

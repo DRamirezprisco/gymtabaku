@@ -6,13 +6,11 @@ import PreciosItems from "@/components/home/PreciosItems.astro";
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaroflip.webp')] bg-cover w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
 >
-  <div class="absolute bottom-0 left-0 w-full pointer-events-none overflow-hidden z-0">
-    <img
-      src="/img/bg/fondoyellow.webp"
-      alt=""
-      class="w-full rotate-y-180 object-cover opacity-50 sm:opacity-70 lg:opacity-100 max-h-40 sm:max-h-56 md:max-h-72"
-    />
-  </div>
+  <img
+    src="/img/bg/bgcuerdas.webp"
+    alt=""
+    class="absolute -rotate-y-180 object-cover scale-125 2xl:scale-100 2xl:-bottom-100 -bottom-10 right-0 w-full pointer-events-none select-none opacity-40"
+  />
 
   <div
     class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10"
@@ -22,7 +20,9 @@ import PreciosItems from "@/components/home/PreciosItems.astro";
     >
       <Titulo title="Precios" />
 
-      <h1 class="my-2 text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-black text-center text-gym-text-primary tracking-tight">
+      <h1
+        class="my-2 text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-black text-center text-gym-text-primary tracking-tight"
+      >
         Elige el precio que mejor se adapte a ti
       </h1>
 
@@ -38,4 +38,3 @@ import PreciosItems from "@/components/home/PreciosItems.astro";
     <PreciosItems />
   </div>
 </section>
-
