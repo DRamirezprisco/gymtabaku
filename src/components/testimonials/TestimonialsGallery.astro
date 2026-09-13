@@ -1,5 +1,9 @@
 ---
 import Titulo from "@/components/global/Titulo.astro";
+import {
+    COMMUNITY_EVENTS,
+    type EventItem,
+} from "@/components/constants/testimonials";
 
 interface Props {
     title?: string;
@@ -7,135 +11,7 @@ interface Props {
 
 const { title = "Nuestros Eventos" } = Astro.props;
 
-interface EventItem {
-    id: string;
-    name: string;
-    featured: { src: string; alt: string };
-    thumbnails: Array<{ src: string; alt: string }>;
-}
-
-const events: EventItem[] = [
-    {
-        id: "DiaDelAmor",
-        name: "Día del Amor y la Amistad",
-        featured: {
-            src: "https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg",
-            alt: "Celebración Día del Amor y la Amistad",
-        },
-        thumbnails: [
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg",
-                alt: "Entrenamiento en pareja",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg",
-                alt: "Actividad grupal",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg",
-                alt: "Integración",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg",
-                alt: "Competencia amistosa",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg",
-                alt: "Premiación y sonrisas",
-            },
-        ],
-    },
-    {
-        id: "DiaDelaMadre",
-        name: "Día de la Madre",
-        featured: {
-            src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-            alt: "Especial Día de la Madre",
-        },
-        thumbnails: [
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-                alt: "Clase funcional mamás",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
-                alt: "Sesión cardio especial",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
-                alt: "Momentos en familia",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-                alt: "Entrenamiento compartido",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
-                alt: "Celebración y detalles",
-            },
-        ],
-    },
-    {
-        id: "Halloween",
-        name: "Halloween Fitness",
-        featured: {
-            src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg",
-            alt: "Fiesta de Disfraces y Entrenamiento",
-        },
-        thumbnails: [
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg",
-                alt: "Disfraces y pesas",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg",
-                alt: "Clase temática de miedo",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg",
-                alt: "Reto fitness extremo",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg",
-                alt: "Compañerismo deportivo",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
-                alt: "Foto oficial de disfraces",
-            },
-        ],
-    },
-    {
-        id: "navidad",
-        name: "Cierre de Año y Navidad",
-        featured: {
-            src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-            alt: "Celebración Navideña y Logros Anuales",
-        },
-        thumbnails: [
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg",
-                alt: "Brindis fitness",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
-                alt: "Último entreno del año",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
-                alt: "Reconocimientos a atletas",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-                alt: "Desafío de fin de año",
-            },
-            {
-                src: "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-                alt: "Familia Tabaku unida",
-            },
-        ],
-    },
-];
+const events: EventItem[] = COMMUNITY_EVENTS;
 ---
 
 <section

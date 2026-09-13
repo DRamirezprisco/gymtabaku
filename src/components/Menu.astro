@@ -1,41 +1,14 @@
 ---
 import Button from "@/components/global/Button.astro";
 import { isMenuActive } from "@/utils/menu";
+import { NAV_ITEMS } from "@/components/constants/navigation";
 
 const pathname = Astro.url.pathname;
 
-const menu = [
-  {
-    name: "Servicios",
-    url: "/servicios",
-    isActive: isMenuActive(pathname, "servicios"),
-  },
-  {
-    name: "Nosotros",
-    url: "/nosotros",
-    isActive: isMenuActive(pathname, "nosotros"),
-  },
-  {
-    name: "Horarios",
-    url: "/horarios",
-    isActive: isMenuActive(pathname, "horarios"),
-  },
-  {
-    name: "Profesores",
-    url: "/profesores",
-    isActive: isMenuActive(pathname, "profesores"),
-  },
-  {
-    name: "Testimonios",
-    url: "/testimonios",
-    isActive: isMenuActive(pathname, "testimonios"),
-  },
-  {
-    name: "Contactanos",
-    url: "/contactanos",
-    isActive: isMenuActive(pathname, "contactanos"),
-  },
-];
+const menu = NAV_ITEMS.map((item) => ({
+  ...item,
+  isActive: isMenuActive(pathname, item.key),
+}));
 ---
 
 <nav

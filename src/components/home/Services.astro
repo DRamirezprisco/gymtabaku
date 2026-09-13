@@ -1,6 +1,7 @@
 ---
 import Titulo from "@/components/global/Titulo.astro";
 import ServiceItems from "@/components/home/ServiceItems.astro";
+import { HOME_SERVICES } from "@/components/constants/services";
 ---
 
 <section
@@ -37,30 +38,18 @@ import ServiceItems from "@/components/home/ServiceItems.astro";
   <div
     class="group/grid max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-2 lg:gap-3 xl:gap-4 items-center mt-6 sm:mt-8 md:mt-10 px-4 sm:px-6 lg:px-8 py-4 md:py-8"
   >
-    <ServiceItems
-      img="/img/services/pesas.webp"
-      title="Zonas de Entrenamiento"
-      subtitle="Espacios diseñados para cada objetivo"
-      icon="zonas"
-      description="Contamos con áreas independientes para pesas, cardio y glúteo, brindando mayor comodidad y una mejor experiencia."
-      url="#"
-    />
-    <ServiceItems
-      img="/img/services/coach.webp"
-      title="Entrenadores Personalizados"
-      subtitle="Entrena con apoyo profesional"
-      icon="coach"
-      description="Nuestros entrenadores te acompañan durante todo el proceso, guiándote en cada ejercicio para que alcances tus metas de forma segura y efectiva."
-      url="#"
-      active
-    />
-    <ServiceItems
-      img="/img/services/zumba.webp"
-      title="Clases Grupales"
-      subtitle="Energía, diversión y comunidad"
-      icon="zumba"
-      description="Disfruta de nuestras clases grupales de baile, una forma divertida de ejercitarte, liberar estrés y compartir con buena energía."
-      url="#"
-    />
+    {
+      HOME_SERVICES.map((service) => (
+        <ServiceItems
+          img={service.img}
+          title={service.title}
+          subtitle={service.subtitle}
+          icon={service.icon}
+          description={service.description}
+          url={service.url}
+          active={service.active}
+        />
+      ))
+    }
   </div>
 </section>

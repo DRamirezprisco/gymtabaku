@@ -1,14 +1,9 @@
 ---
 import CoachCarrusel from "@/components/home/CoachCarrusel.astro";
 import Titulo from "@/components/global/Titulo.astro";
+import { COACH_BENEFITS } from "@/components/constants/coaches";
 
-const benefits = [
-  "Seguimiento constante.",
-  "Corrección de técnica y postura.",
-  "Rutinas adaptadas a tus objetivos.",
-  "Motivación y apoyo durante todo el proceso.",
-  "Atención cercana y personalizada.",
-];
+const benefits = COACH_BENEFITS;
 ---
 
 <section

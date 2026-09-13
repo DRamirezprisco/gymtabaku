@@ -1,5 +1,8 @@
 ---
 // ContactanosForm.astro
+import { SITE_CONFIG } from "@/components/constants/site";
+
+const whatsappNumber = SITE_CONFIG.contact.whatsappNumber;
 ---
 
 <div
@@ -157,7 +160,7 @@
   </div>
 </div>
 
-<script>
+<script define:vars={{ whatsappNumber }}>
   function initContactForm() {
     const form = document.getElementById(
       "contactForm",
@@ -207,7 +210,7 @@
         .filter(Boolean)
         .join("\n");
 
-      const waUrl = `https://wa.me/573158361031?text=${encodeURIComponent(textLines)}`;
+      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textLines)}`;
 
       // Resetear formulario
       form.reset();

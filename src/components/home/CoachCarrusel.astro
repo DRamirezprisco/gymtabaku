@@ -1,23 +1,7 @@
 ---
-const Coaches = [
-  { img: "/img/coach/coach6.webp", name: "Jorge Perez", experiencia: "2 años" },
-  {
-    img: "/img/coach/coach3.webp",
-    name: "Andres Cardona",
-    experiencia: "5 años",
-  },
-  { img: "/img/coach/coach7.webp", name: "Indio Fit", experiencia: "2 años" },
-  {
-    img: "/img/coach/coach5.webp",
-    name: "Ewduar Rondon",
-    experiencia: "8 años",
-  },
-  {
-    img: "/img/coach/coach8.webp",
-    name: "Pedro Jimenez",
-    experiencia: "4 años",
-  },
-];
+import { HOME_COACHES } from "@/components/constants/coaches";
+
+const Coaches = HOME_COACHES;
 
 // Triplicamos la lista para generar el slider infinito sin fin en móvil/tablet
 const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];

@@ -1,33 +1,6 @@
 ---
 import CoachDescriptionItems from "@/components/coach/CoachDescriptionItems.astro";
-
-interface HeaderCoaches {
-  name?: string;
-  role?: string;
-  img?: string;
-  imgHover?: string;
-}
-
-interface DescriptionCoaches {
-  tittle?: string;
-  subTittle?: string;
-  description?: string;
-  description2?: string;
-  description3?: string;
-  img?: string;
-  wallpaperSrc?: string;
-}
-
-interface GalleryCoaches {
-  img?: string;
-  alt?: string;
-}
-
-interface Coach {
-  header: HeaderCoaches;
-  description: DescriptionCoaches;
-  gallery: GalleryCoaches[];
-}
+import type { Coach } from "@/components/constants/coaches";
 
 interface Props {
   Coaches: Coach[];

@@ -1,10 +1,10 @@
 ---
-export interface ComparisonItem {
-  id: string;
-  title: string;
-  beforeImg: string;
-  afterImg: string;
-}
+import {
+  DEFAULT_COMPARISONS,
+  type ComparisonItem,
+} from "@/components/constants/social";
+
+export type { ComparisonItem };
 
 export interface Props {
   items?: ComparisonItem[];
@@ -12,36 +12,8 @@ export interface Props {
 
 const { items } = Astro.props;
 
-// 3 elementos para el carrusel
-const defaultComparisons: ComparisonItem[] = [
-  {
-    id: "instalacionesPp",
-    title: "Zona de máquinas",
-    beforeImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg",
-    afterImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg",
-  },
-  {
-    id: "zonaBaile",
-    title: "Área de clases grupales",
-    beforeImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg",
-    afterImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg",
-  },
-  {
-    id: "instalaciones",
-    title: "Instalaciones",
-    beforeImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg",
-    afterImg:
-      "https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg",
-  },
-];
-
 const galleryItems =
-  items && items.length > 0 ? items.slice(0, 3) : defaultComparisons;
+  items && items.length > 0 ? items.slice(0, 3) : DEFAULT_COMPARISONS;
 ---
 
 <div class="relative w-full max-w-4xl mx-auto flex flex-col gap-4">

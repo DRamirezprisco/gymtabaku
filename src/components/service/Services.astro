@@ -1,16 +1,8 @@
 ---
 import ServiceGallery from "@/components/service/ServiceGallery.astro";
+import type { ServiceItem } from "@/components/constants/services";
 
-export interface ServiceItem {
-  title: string;
-  icon: string;
-  subtitle: string;
-  videoUrl: string;
-  posterUrl: string;
-  description: string;
-  serviceItemId: string;
-  images: { src: string; alt: string }[];
-}
+export type { ServiceItem };
 
 export interface Props {
   items?: ServiceItem[];

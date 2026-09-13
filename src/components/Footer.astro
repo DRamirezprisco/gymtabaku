@@ -1,5 +1,6 @@
 ---
 import Icon from "@/components/global/Icon.astro";
+import { SITE_CONFIG } from "@/components/constants/site";
 ---
 
 <footer
@@ -16,19 +17,19 @@ import Icon from "@/components/global/Icon.astro";
       <h2
         class="my-3 sm:my-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black uppercase font-serif text-primary-500 tracking-wider"
       >
-        GYM TABAKU
+        {SITE_CONFIG.name}
       </h2>
       <p
         class="text-center text-secondary-300 text-sm sm:text-base lg:text-lg font-medium tracking-wide max-w-md mx-auto"
       >
-        ¡Juntos somos más fuertes!
+        {SITE_CONFIG.sloganSecondary}
       </p>
 
       {/* Botones Sociales Redondos */}
       <div class="flex justify-center gap-3 sm:gap-4 items-center pt-4 sm:pt-5">
         <a
           target="_blank"
-          href="mailto:Gymtabaku@gmail.com"
+          href={SITE_CONFIG.contact.emailMailto}
           aria-label="Enviar correo a Gym Tabaku"
           class="rounded-full bg-gym-dark-bg-card-hover p-3 sm:p-3.5 hover:bg-primary-500 group transition-all duration-200 hover:scale-105"
         >
@@ -52,7 +53,7 @@ import Icon from "@/components/global/Icon.astro";
 
         <a
           target="_blank"
-          href="https://wa.me/573158361031"
+          href={SITE_CONFIG.contact.whatsappUrl}
           aria-label="Contactar por WhatsApp a Gym Tabaku"
           class="rounded-full bg-gym-dark-bg-card-hover p-3 sm:p-3.5 hover:bg-primary-500 group transition-all duration-200 hover:scale-105"
         >
@@ -121,7 +122,7 @@ import Icon from "@/components/global/Icon.astro";
                   Dirección
                 </h3>
                 <p class="text-secondary-300 text-sm sm:text-base truncate">
-                  Dg. 3 #83-02, Kennedy
+                  {SITE_CONFIG.contact.address}
                 </p>
               </div>
             </div>
@@ -152,10 +153,10 @@ import Icon from "@/components/global/Icon.astro";
                   Teléfono
                 </h3>
                 <a
-                  href="tel:3158361031"
+                  href={SITE_CONFIG.contact.phoneTel}
                   class="text-secondary-300 hover:text-primary-400 text-sm sm:text-base transition-colors"
                 >
-                  3158361031
+                  {SITE_CONFIG.contact.phone}
                 </a>
               </div>
             </div>
@@ -187,10 +188,10 @@ import Icon from "@/components/global/Icon.astro";
                   Email
                 </h3>
                 <a
-                  href="mailto:Gymtabaku@gmail.com"
+                  href={SITE_CONFIG.contact.emailMailto}
                   class="text-secondary-300 hover:text-primary-400 text-sm sm:text-base truncate transition-colors"
                 >
-                  Gymtabaku@gmail.com
+                  {SITE_CONFIG.contact.email}
                 </a>
               </div>
             </div>
@@ -204,7 +205,7 @@ import Icon from "@/components/global/Icon.astro";
       >
         <a
           target="_blank"
-          href="https://maps.google.com/?q=Dg.+3+%2383-02,+Kennedy"
+          href={SITE_CONFIG.contact.googleMapsUrl}
           aria-label="Ver ubicación en Google Maps"
           class="block w-full h-full relative group overflow-hidden"
         >
@@ -227,12 +228,12 @@ import Icon from "@/components/global/Icon.astro";
     class="bg-gym-yellow py-2.5 px-4 flex items-center justify-center gap-2 text-center select-none"
   >
     <p class="text-secondary-950 font-bold text-xs sm:text-sm">
-      Diseñado por Daniela Ramirez. Contáctame
+      Diseñado por {SITE_CONFIG.developer.name}. Contáctame
     </p>
     <a
       target="_blank"
-      href="https://wa.me/573223139467"
-      aria-label="Contactar a Daniela Ramirez por WhatsApp"
+      href={SITE_CONFIG.developer.whatsappUrl}
+      aria-label={`Contactar a ${SITE_CONFIG.developer.name} por WhatsApp`}
       class="inline-flex items-center text-secondary-950 hover:scale-110 transition-transform duration-200"
     >
       <svg
