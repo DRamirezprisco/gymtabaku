@@ -28,38 +28,50 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
       data-reveal-delay="200"
     >
       <div class="swiper coach-gallery-swiper overflow-hidden">
-        <div class="swiper-wrapper pt-4 sm:pt-6 pb-6 sm:pb-24 lg:pb-28">
+        <div class="swiper-wrapper pt-6 sm:pt-8 pb-8 sm:pb-24 lg:pb-28">
           {
             gallery?.map((item, i) => {
+              const isWide = i % 2 === 0;
               const step = i % 3;
               return (
-                <div class="swiper-slide flex justify-center py-2">
+                <div class="swiper-slide !w-auto shrink-0 py-2">
                   <!-- Tarjeta de la Galería con traslación escalonada arriba/abajo (Efecto de onda) -->
                   <div
                     data-offset-step={step}
                     class:list={[
-                      "relative group cursor-pointer w-full sm:max-w-md overflow-hidden rounded-xl sm:rounded-2xl shadow-xl border border-white/10 bg-secondary-900 select-none transition-all duration-300",
-                      "data-[offset-step='0']:-translate-y-5",
-                      "data-[offset-step='1']:translate-y-7 sm:data-[offset-step='1']:translate-y-12 lg:data-[offset-step='1']:translate-y-[70px]",
-                      "data-[offset-step='2']:translate-y-3.5 sm:data-[offset-step='2']:translate-y-6 lg:data-[offset-step='2']:translate-y-[35px]",
+                      "relative group cursor-pointer select-none transition-transform duration-300",
+                      "data-[offset-step='0']:-translate-y-3 sm:data-[offset-step='0']:-translate-y-5 lg:data-[offset-step='0']:-translate-y-7",
+                      "data-[offset-step='1']:translate-y-6 sm:data-[offset-step='1']:translate-y-10 lg:data-[offset-step='1']:translate-y-[65px]",
+                      "data-[offset-step='2']:translate-y-2 sm:data-[offset-step='2']:translate-y-4 lg:data-[offset-step='2']:translate-y-[28px]",
                     ]}
                   >
-                    <img
-                      src={item.img}
-                      alt={item.alt || `Galería ${i + 1}`}
-                      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                    <!-- Gradiente de Contraste para el Texto -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent pointer-events-none" />
+                    <!-- Contenedor de la Imagen con overflow-hidden para zoom suave sin recortar texto exterior -->
+                    <div
+                      class:list={[
+                        "overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl border border-white/10 bg-secondary-900 transition-all duration-300",
+                        isWide
+                          ? "w-[72vw] max-w-[320px] sm:max-w-none sm:w-[320px] md:w-[360px] lg:w-[400px] xl:w-[430px]"
+                          : "w-[54vw] max-w-[240px] sm:max-w-none sm:w-[210px] md:w-[240px] lg:w-[260px] xl:w-[280px]",
+                        "h-68 sm:h-76 md:h-84 lg:h-92",
+                      ]}
+                    >
+                      <img
+                        src={item.img}
+                        alt={item.alt || `Galería ${i + 1}`}
+                        class="w-full h-full object-cover object-center group-hover:scale-105 group-hover:rotate-1 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <!-- Gradiente de Contraste para el Texto -->
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                    </div>
 
-                    <!-- Texto con título y barra amarilla -->
-                    <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 right-3 sm:right-4 flex flex-col justify-end py-1 z-10 pointer-events-none">
-                      <h3 class="font-serif text-base sm:text-lg md:text-xl font-bold leading-snug mb-1 text-white drop-shadow-md group-hover:text-gym-yellow transition-colors line-clamp-2">
+                    <!-- Texto con título y barra amarilla SOBRESALIENDO a la izquierda -->
+                    <div class="absolute bottom-4 sm:bottom-6 lg:bottom-8 -left-3 sm:-left-5 lg:-left-7 flex flex-col justify-end py-1 z-20 pointer-events-none max-w-[120%] sm:max-w-[125%]">
+                      <h3 class="font-serif text-lg sm:text-2xl lg:text-3xl font-bold leading-tight mb-2 text-white drop-shadow-[0_4px_8px_rgba(0,0,0,0.95)] [-webkit-text-stroke:1px_rgba(0,0,0,0.7)] group-hover:text-gym-yellow transition-colors">
                         {item.title || item.alt || "Fitness & Entrenamiento"}
                       </h3>
-                      <!-- Línea decorativa AMARILLA -->
-                      <div class="w-12 sm:w-16 group-hover:w-24 sm:group-hover:w-32 transition-all duration-300 h-1 bg-gym-yellow rounded-full" />
+                      <!-- Línea decorativa AMARILLA que también sobresale y se expande en hover -->
+                      <div class="w-14 sm:w-20 group-hover:w-24 sm:group-hover:w-36 transition-all duration-300 h-1 sm:h-1.5 bg-gym-yellow shadow-[0_2px_10px_rgba(255,222,77,0.5)] rounded-full" />
                     </div>
                   </div>
                 </div>
@@ -137,9 +149,11 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
       .forEach((container) => {
         const swiper = new Swiper(container, {
           modules: [Navigation, Pagination, Autoplay],
-          slidesPerView: 1,
-          spaceBetween: 18,
-          loop: true,
+          slidesPerView: "auto",
+          spaceBetween: 24,
+          slidesOffsetBefore: 20,
+          slidesOffsetAfter: 20,
+          rewind: true,
           grabCursor: true,
           observer: true,
           observeParents: true,
@@ -161,8 +175,16 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
             pauseOnMouseEnter: true,
           },
           breakpoints: {
-            640: { slidesPerView: 2, spaceBetween: 20 },
-            1024: { slidesPerView: 3, spaceBetween: 24 },
+            640: {
+              spaceBetween: 36,
+              slidesOffsetBefore: 32,
+              slidesOffsetAfter: 32,
+            },
+            1024: {
+              spaceBetween: 48,
+              slidesOffsetBefore: 40,
+              slidesOffsetAfter: 40,
+            },
           },
         });
         swiperInstances.push(swiper);

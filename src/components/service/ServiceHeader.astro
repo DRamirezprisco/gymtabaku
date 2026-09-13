@@ -2,6 +2,7 @@
 import Menu from "@/components/Menu.astro";
 import ButtonSkew from "@/components/global/ButtonSkew.astro";
 import ServiceItems from "@/components/service/ServiceItems.astro";
+import ServiceVideoModal from "@/components/service/ServiceVideoModal.astro";
 import type { ServiceItem } from "@/components/constants/services";
 
 export type { ServiceItem };
@@ -90,6 +91,7 @@ const { items = [] } = Astro.props;
                 description={item.description}
                 serviceItemId={item.serviceItemId}
                 isActive={index === 0}
+                index={index}
               />
             ))
           }
@@ -97,4 +99,6 @@ const { items = [] } = Astro.props;
       </div>
     </main>
   </div>
+
+  <ServiceVideoModal items={items} />
 </section>
