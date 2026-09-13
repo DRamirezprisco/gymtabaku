@@ -80,41 +80,156 @@ export const SERVICES_DATA: ServiceItem[] = [
     title: "Zonas de entrenamiento",
     icon: "zonas",
     subtitle: "Un espacio para cada parte de tu progreso",
-    videoUrl: "/img/services/video2.mp4",
-    posterUrl: "/img/services/pesas.webp",
+    videoUrl: "/img/services/zonasEntrenamiento.mp4",
+    posterUrl: "/img/services/zonasEntrenamiento.webp",
     description:
       "Contamos con zonas de entrenamiento organizadas para facilitar una rutina completa y funcional. Encontrarás espacios destinados a cardio, pesas, abdomen y glúteos, equipados con máquinas funcionales que te permitirán trabajar cada objetivo de manera efectiva.",
     serviceItemId: "zonas",
-    images: SERVICE_DEFAULT_IMAGES,
+    images: [{
+      src: "/img/services/galleryZonasEntrenamiento/zona1.webp",
+      alt: "Área de cardio",
+    },
+    {
+      src: "/img/services/galleryZonasEntrenamiento/zona2.webp",
+      alt: "Entrenamiento funcional",
+    },
+    {
+      src: "/img/services/galleryZonasEntrenamiento/zona3.webp",
+      alt: "Área de Spinning",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona4.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona2.webp",
+      alt: "Entrenamiento funcional",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona4.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona1.webp",
+      alt: "Área de cardio",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona3.webp",
+      alt: "Área de Spinning",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona1.webp",
+      alt: "Área de cardio",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona4.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona2.webp",
+      alt: "Entrenamiento funcional",
+    }, {
+      src: "/img/services/galleryZonasEntrenamiento/zona3.webp",
+      alt: "Área de Spinning",
+    }],
   },
+
   {
     title: "Entrenamientos personalizados",
     icon: "coach",
     subtitle: "Tu meta, nuestro acompañamiento",
-    videoUrl: "/img/services/video1.mp4",
-    posterUrl: "/img/services/coach.webp",
+    videoUrl: "/img/services/entrenamientosPersonalizados.mp4",
+    posterUrl: "/img/services/entrenamientosPersonalizados.webp",
     description:
       "Sabemos que cada cuerpo y cada objetivo son diferentes. Nuestros coaches estarán contigo para orientarte, corregirte y motivarte en el camino, por eso trabajamos contigo para que cada entrenamiento tenga un propósito avanzando con mayor seguridad, constancia y motivación.",
     serviceItemId: "coach",
-    images: SERVICE_DEFAULT_IMAGES,
+    images: [{
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos1.webp",
+      alt: "Área de cardio",
+    },
+    {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos2.webp",
+      alt: "Entrenadores de planta",
+    },
+    {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos3.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos4.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos5.jpg",
+      alt: "Entrenador Ándres",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos6.jpg",
+      alt: "Entrenador Jeferson",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos7.jpg",
+      alt: "Entrenador Jorge",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos1.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos2.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos3.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos4.webp",
+      alt: "Entrenadores de planta",
+    }, {
+      src: "/img/services/galleryEntrenamientosPersonalizados/entrenamientos1.webp",
+      alt: "Entrenadores de planta",
+    }],
   },
 
   {
     title: "Clases grupales",
     icon: "zumba",
     subtitle: "Muévete, disfruta y comparte la energía",
-    videoUrl: "/img/services/video3.mp4",
-    posterUrl: "/img/services/zumba.webp",
+    videoUrl: "/img/services/clasesGrupales.mp4",
+    posterUrl: "/img/services/clasesGrupales.webp",
     description:
       "Nuestras clases grupales de baile son una excelente alternativa para mantenerte activo mientras disfrutas de una experiencia dinámica y motivadora. Todos los lunes y miércoles podrás entrenar al ritmo de la música, mejorar tu condición física y compartir la energía de un grupo que disfruta avanzar junto.",
     serviceItemId: "zumba",
-    images: SERVICE_DEFAULT_IMAGES,
+    images: [{
+      src: "/img/services/galleryClasesGrupales/grupal1.webp",
+      alt: "Área de cardio",
+    },
+    {
+      src: "/img/services/galleryClasesGrupales/grupal3.webp",
+      alt: "Entrenamiento funcional",
+    },
+    {
+      src: "/img/services/galleryClasesGrupales/grupal1.webp",
+      alt: "Área de Spinning",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal3.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal2.webp",
+      alt: "Entrenamiento funcional",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal1.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal2.webp",
+      alt: "Área de cardio",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal3.webp",
+      alt: "Área de Spinning",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal1.webp",
+      alt: "Área de cardio",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal3.webp",
+      alt: "Área de pesas",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal2.webp",
+      alt: "Entrenamiento funcional",
+    }, {
+      src: "/img/services/galleryClasesGrupales/grupal3.webp",
+      alt: "Área de Spinning",
+    }],
   },
 ];
 
 export const HOME_SERVICES: HomeServiceSummary[] = [
   {
-    img: "/img/services/pesas.webp",
+    img: "/img/services/zonasEntrenamiento.webp",
     title: "Zonas de Entrenamiento",
     subtitle: "Espacios diseñados para cada objetivo",
     icon: "zonas",
@@ -123,7 +238,7 @@ export const HOME_SERVICES: HomeServiceSummary[] = [
     url: "/servicios#zonas",
   },
   {
-    img: "/img/services/coach.webp",
+    img: "/img/services/entrenamientosPersonalizados.webp",
     title: "Entrenadores Personalizados",
     subtitle: "Entrena con apoyo profesional",
     icon: "coach",
@@ -133,7 +248,7 @@ export const HOME_SERVICES: HomeServiceSummary[] = [
     active: true,
   },
   {
-    img: "/img/services/zumba.webp",
+    img: "/img/services/clasesGrupales.webp",
     title: "Clases Grupales",
     subtitle: "Energía, diversión y comunidad",
     icon: "zumba",
