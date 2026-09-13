@@ -32,8 +32,8 @@ const { name, role, img, imgHover } = coachHeader;
         data-coach-index={index}
         data-active={isActive ? "true" : "false"}
         class:list={[
-            "group relative w-52 sm:w-56 h-[340px] cursor-pointer select-none transition-all duration-300 rounded-2xl",
-            "hover:-translate-y-1.5 focus-visible:outline-none",
+            "group relative w-52 sm:w-56 h-85 cursor-pointer select-none transition-all duration-300 rounded-2xl",
+            "hover:-translate-y-1.5 focus-visible:outline-none hover:drop-shadow-[0_10px_20px_rgba(255,204,0,0.25)]",
             "data-[active=true]:scale-105 data-[active=true]:drop-shadow-[0_10px_20px_rgba(255,204,0,0.25)]",
         ]}
     >
@@ -47,7 +47,9 @@ const { name, role, img, imgHover } = coachHeader;
         </div>
 
         <!-- Contenedor de la Imagen con Cambio de Camisa -->
-        <div class="absolute z-10 w-full h-50 top-7 flex justify-center items-end">
+        <div
+            class="absolute z-10 w-full h-50 top-7 flex justify-center items-end"
+        >
             <!-- Imagen Normal -->
             <img
                 src={img}
@@ -69,10 +71,14 @@ const { name, role, img, imgHover } = coachHeader;
         <div
             class="absolute bottom-0 z-20 w-full h-40 bg-[url('/img/coach/coach-bg4.webp')] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center px-4"
         >
-            <h4 class="text-gym-dark-bg-card-hover font-bold text-base sm:text-lg text-center tracking-tight leading-tight">
+            <h4
+                class="text-gym-dark-bg-card-hover font-bold text-base sm:text-lg text-center tracking-tight leading-tight"
+            >
                 {name}
             </h4>
-            <p class="text-primary-600 text-xs sm:text-sm font-bold text-center mt-1">
+            <p
+                class="text-primary-600 text-xs sm:text-sm font-bold text-center mt-1"
+            >
                 {role}
             </p>
 
