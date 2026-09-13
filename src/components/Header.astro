@@ -1,6 +1,7 @@
 ---
 import Menu from "@/components/Menu.astro";
 import Button from "@/components/global/Button.astro";
+import { COURTESY_CLASS_WA_URL } from "@/components/constants/site";
 ---
 
 <header
@@ -44,8 +45,13 @@ import Button from "@/components/global/Button.astro";
       <div
         data-reveal="fade-up"
         data-reveal-delay="400"
-        class="pt-4 sm:pt-6 flex justify-center lg:justify-start"
+        class="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-4"
       >
+        <Button
+          text="reserva tu clase de cortesia"
+          white
+          url={COURTESY_CLASS_WA_URL}
+        />
         <Button text="Contactanos" url="/contactanos" />
       </div>
     </div>

@@ -44,3 +44,12 @@ export const SITE_CONFIG: SiteConfig = {
     whatsappUrl: "https://wa.me/573223139467",
   },
 };
+
+export const getWhatsAppMessageUrl = (message: string) => {
+  const cleanNumber = SITE_CONFIG.contact.whatsappNumber.replace(/[^0-9]/g, "");
+  return `https://api.whatsapp.com/send?phone=${cleanNumber}&text=${encodeURIComponent(message)}`;
+};
+
+export const COURTESY_CLASS_WA_URL = getWhatsAppMessageUrl(
+  "¡Hola Gym Tabaku! 👋 Quiero mi clase de cortesía"
+);

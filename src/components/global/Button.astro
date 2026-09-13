@@ -1,19 +1,29 @@
 ---
 interface Props {
   text: string;
-  url: string;
+  url?: string;
   white?: boolean;
   black?: boolean;
   class?: string;
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
 }
 
 const {
   text,
-  url,
+  url = "#",
   white,
   black,
   class: className = "",
+  target,
+  rel,
+  ariaLabel,
 } = Astro.props;
+
+const isExternal = url.startsWith("http://") || url.startsWith("https://") || url.startsWith("//");
+const finalTarget = target || (isExternal ? "_blank" : undefined);
+const finalRel = rel || (isExternal ? "noopener noreferrer" : undefined);
 
 const buttoncolor = white
   ? "bg-white hover:bg-white border-white hover:border-white before:border-white hover:before:border-white text-secondary-950"
@@ -49,5 +59,8 @@ const buttoncolor = white
     hover:before:translate-x-0 hover:before:translate-y-0
     active:before:translate-x-0 active:before:translate-y-0
     inline-flex items-center justify-center cursor-pointer ${className}`}
-  href={url}>{text}</a
->
+  href={url}
+  target={finalTarget}
+  rel={finalRel}
+  aria-label={ariaLabel}
+>{text}</a>
