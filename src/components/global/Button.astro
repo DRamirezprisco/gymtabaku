@@ -1,9 +1,18 @@
 ---
-const { text, url, white } = Astro.props;
+interface Props {
+  text: string;
+  url: string;
+  white?: boolean;
+  black?: boolean;
+}
+
+const { text, url, white, black } = Astro.props;
 
 const buttoncolor = white
-  ? "bg-white hover:bg-white border-white hover:border-white before:border-white hover:before:border-white"
-  : "bg-primary-500 hover:bg-primary-400 border-primary-500 hover:border-primary-400 before:border-primary-500 hover:before:border-primary-400";
+  ? "bg-white hover:bg-white border-white hover:border-white before:border-white hover:before:border-white text-secondary-950"
+  : black
+    ? "bg-secondary-500 hover:bg-secondary-500 border-secondary-500 hover:border-secondary-500 before:border-secondary-500 hover:before:border-secondary-500 text-white"
+    : "bg-primary-500 hover:bg-primary-400 border-primary-500 hover:border-primary-400 before:border-primary-500 hover:before:border-primary-400 text-secondary-950";
 ---
 
 <a
@@ -19,7 +28,7 @@ const buttoncolor = white
       pt-[1.063rem]
       pb-[0.938rem]
       ${buttoncolor}
-      text-secondary-950
+      
       ease-[cubic-bezier(0.33, 1, 0.68, 1)]
       border-2 
       before:content-['']
