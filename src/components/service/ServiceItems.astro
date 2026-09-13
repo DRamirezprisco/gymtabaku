@@ -25,7 +25,9 @@ const {
         {title}
     </h2>
 
-    <div class="flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 my-2">
+    <div
+        class="flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 my-2"
+    >
         {/* Iconos SVG (Se mantienen exactamente igual) */}
         {
             icon == "coach" && (
@@ -346,7 +348,9 @@ const {
         </h3>
     </div>
 
-    {/* Contenedor del video MP4 con aspect-ratio responsive y poster de carga */}
+    {
+        /* Contenedor del video MP4 con aspect-ratio responsive y poster de carga */
+    }
     <div
         class="video-container group relative w-full aspect-video md:h-80 lg:h-96 overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl my-3 sm:my-4 bg-secondary-950 border border-white/10 cursor-pointer select-none ring-0 hover:ring-2 hover:ring-primary-500/50 transition-all duration-300"
         data-open-service-video={index}
@@ -360,15 +364,20 @@ const {
                 <img
                     src={posterUrl}
                     alt={title}
-                    class="video-poster absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700 ease-out pointer-events-none select-none"
+                    class="video-poster absolute inset-0 w-full h-full object-cover object-top z-10 transition-opacity duration-700 ease-out pointer-events-none select-none"
                     loading={isActive ? "eager" : "lazy"}
                 />
             )
         }
 
         {/* Indicador de carga sutil sobre la imagen mientras bufferiza */}
-        <div class="video-loader absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-500 bg-black/25 backdrop-blur-[1px]">
-            <div class="size-10 sm:size-12 rounded-full border-3 border-white/20 border-t-primary-500 animate-spin shadow-xl" />
+        <div
+            class="video-loader absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-500 bg-black/25 backdrop-blur-[1px]"
+        >
+            <div
+                class="size-10 sm:size-12 rounded-full border-3 border-white/20 border-t-primary-500 animate-spin shadow-xl"
+            >
+            </div>
         </div>
 
         {/* Video con transición suave al reproducir */}
@@ -388,15 +397,34 @@ const {
         }
 
         {/* Overlay interactivo: solo visible en hover */}
-        <div class="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none backdrop-blur-[1px]">
-            <div class="size-14 sm:size-16 rounded-full bg-primary-500 text-black flex items-center justify-center shadow-2xl transition-all duration-300 transform scale-90 group-hover:scale-100 border-2 border-white/20">
-                <svg class="size-6 sm:size-7 translate-x-0.5 fill-black" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
+        <div
+            class="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none backdrop-blur-[1px]"
+        >
+            <div
+                class="size-14 sm:size-16 rounded-full bg-primary-500 text-black flex items-center justify-center shadow-2xl transition-all duration-300 transform scale-90 group-hover:scale-100 border-2 border-white/20"
+            >
+                <svg
+                    class="size-6 sm:size-7 translate-x-0.5 fill-black"
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M8 5v14l11-7z"></path>
                 </svg>
             </div>
-            <div class="mt-2.5 sm:mt-3 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-semibold text-white tracking-wide shadow-lg flex items-center gap-2 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                <svg class="size-3.5 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+            <div
+                class="mt-2.5 sm:mt-3 px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/15 text-xs sm:text-sm font-semibold text-white tracking-wide shadow-lg flex items-center gap-2 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300"
+            >
+                <svg
+                    class="size-3.5 text-primary-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                    ></path>
                 </svg>
                 <span>Clic para ver en pantalla completa</span>
                 <span class="text-primary-400 font-bold text-sm">⤢</span>
@@ -416,9 +444,15 @@ const {
         const articles = document.querySelectorAll("article[id]");
 
         articles.forEach((article) => {
-            const video = article.querySelector(".video-player") as HTMLVideoElement;
-            const poster = article.querySelector(".video-poster") as HTMLImageElement;
-            const loader = article.querySelector(".video-loader") as HTMLElement;
+            const video = article.querySelector(
+                ".video-player",
+            ) as HTMLVideoElement;
+            const poster = article.querySelector(
+                ".video-poster",
+            ) as HTMLImageElement;
+            const loader = article.querySelector(
+                ".video-loader",
+            ) as HTMLElement;
 
             if (!video) return;
 
