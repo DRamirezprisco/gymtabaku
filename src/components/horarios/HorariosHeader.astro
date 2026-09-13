@@ -4,43 +4,42 @@ import HorariosItems from "@/components/home/HorariosItems.astro";
 ---
 
 <section
-    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] z-0 bg-cover w-full overflow-hidden min-h-screen"
+    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] z-0 bg-cover w-full overflow-hidden min-h-screen pb-8 sm:pb-12"
 >
     <div class="relative z-10">
         <Menu />
 
         <main
-            class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+            class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6 sm:py-10 md:py-14"
         >
             <div
-                class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-4 mt-14"
+                class="flex flex-col gap-2.5 sm:gap-3 text-center max-w-4xl mx-auto mt-6 sm:mt-10 md:mt-12 mb-6 sm:mb-10"
             >
                 <h1
-                    class={`font-serif sm:text-2xl lg:text-3xl xl:text-4xl text-gym-text-secondary/70 font-bold uppercase`}
+                    class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gym-text-primary font-black uppercase tracking-tight leading-tight"
                 >
-                    Más tiempo para alcanzar <span
-                        class="md:block sm:text-2xl lg:text-3xl xl:text-4xl text-gym-text-secondary mt-3"
-                        >tus objetivos</span
-                    >
+                    Más tiempo para alcanzar{" "}
+                    <span class="text-primary-500 block sm:inline mt-1 sm:mt-0">
+                        tus objetivos
+                    </span>
                 </h1>
                 <h2
-                    class="mt-4 sm:text-xl md:text-2xl xl:text-xl text-gym-text-primary/80 font-black tracking-tight"
+                    class="text-xs sm:text-sm md:text-base lg:text-lg text-primary-500 font-bold uppercase tracking-widest mt-1 sm:mt-2"
                 >
-                    Ampliamos nuestros horarios para ofrecerte mayor
-                    flexibilidad y un mejor servicio.
+                    Ampliamos nuestros horarios para ofrecerte mayor flexibilidad y un mejor servicio
                 </h2>
                 <p
-                    class="w-10/12 mx-auto mt-5 text-center md:text-base xl:text-lg text-gym-text-secondary"
+                    class="text-sm sm:text-base lg:text-lg text-gym-text-secondary leading-relaxed max-w-3xl mx-auto mt-3 sm:mt-4 text-center"
                 >
-                    Entendemos que cada persona tiene diferentes
-                    responsabilidades y rutinas. Por eso, ahora contamos con un
-                    horario más amplio que te permite organizar tus
-                    entrenamientos de acuerdo con tu disponibilidad y mantener
-                    la constancia que necesitas para alcanzar tus objetivos.
+                    Entendemos que cada persona tiene diferentes responsabilidades
+                    y rutinas. Por eso, ahora contamos con un horario más amplio
+                    que te permite organizar tus entrenamientos de acuerdo con tu
+                    disponibilidad y mantener la constancia que necesitas para
+                    alcanzar tus objetivos.
                 </p>
             </div>
 
-            <div class="relative container mx-auto px-4 py-8 mb-10">
+            <div class="relative w-full">
                 <HorariosItems />
             </div>
         </main>
