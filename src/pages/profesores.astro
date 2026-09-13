@@ -4,7 +4,6 @@ import CoachHeader from "@/components/coach/CoachHeader.astro";
 import CoachDescription from "@/components/coach/CoachDescription.astro";
 import CoachGallery from "@/components/coach/CoachGallery.astro";
 import Footer from "@/components/Footer.astro";
-import Responsive from "@/components/global/Responsive.astro";
 
 const Coaches = [
   {
@@ -73,10 +72,6 @@ const Coaches = [
       },
       {
         img: "/img/coach/coach1.webp",
-        alt: "Jorge Rodriguez",
-      },
-      {
-        img: "/img/coach/coach4.webp",
         alt: "Jorge Rodriguez",
       },
     ],
@@ -198,7 +193,6 @@ const Coaches = [
 <Layout>
   <CoachHeader Coaches={Coaches} activeIndex={0} />
   <CoachDescription Coaches={Coaches} activeIndex={0} />
-  <Responsive />
   <CoachGallery Coaches={Coaches} activeIndex={0} />
   <Footer />
 
