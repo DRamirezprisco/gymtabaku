@@ -30,7 +30,13 @@ const whatsappNumber = SITE_CONFIG.contact.whatsappNumber;
         </p>
       </div>
 
-      <form id="contactForm" class="flex flex-col gap-3.5 sm:gap-4">
+      <form
+        id="contactForm"
+        data-whatsapp={whatsappNumber}
+        method="POST"
+        action="javascript:void(0);"
+        class="flex flex-col gap-3.5 sm:gap-4"
+      >
         <!-- Campo Nombre -->
         <div class="relative flex items-center" data-reveal="fade-up" data-reveal-delay="300" data-reveal-duration="400ms">
           <input
@@ -169,72 +175,78 @@ const whatsappNumber = SITE_CONFIG.contact.whatsappNumber;
   </div>
 </div>
 
-<script define:vars={{ whatsappNumber }}>
-  function initContactForm() {
-    const form = document.getElementById(
-      "contactForm",
-    ) as HTMLFormElement | null;
-    const statusMessage = document.getElementById("formStatusMessage");
+<script is:inline>
+  (function () {
+    function initContactForm() {
+      const form = document.getElementById("contactForm");
+      if (!form || form.dataset.listenerAttached === "true") return;
+      form.dataset.listenerAttached = "true";
 
-    if (!form) return;
+      const statusMessage = document.getElementById("formStatusMessage");
+      const whatsappNumber =
+        form.getAttribute("data-whatsapp") || "573223139467";
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-      const nombreInput = document.getElementById(
-        "contactNombre",
-      ) as HTMLInputElement | null;
-      const emailInput = document.getElementById(
-        "contactEmail",
-      ) as HTMLInputElement | null;
-      const telefonoInput = document.getElementById(
-        "contactTelefono",
-      ) as HTMLInputElement | null;
-      const mensajeInput = document.getElementById(
-        "contactMensaje",
-      ) as HTMLTextAreaElement | null;
+        const nombreInput = document.getElementById("contactNombre");
+        const emailInput = document.getElementById("contactEmail");
+        const telefonoInput = document.getElementById("contactTelefono");
+        const mensajeInput = document.getElementById("contactMensaje");
 
-      const nombre = nombreInput?.value.trim() || "";
-      const email = emailInput?.value.trim() || "";
-      const telefono = telefonoInput?.value.trim() || "";
-      const mensaje = mensajeInput?.value.trim() || "";
+        const nombre = (nombreInput ? nombreInput.value : "").trim();
+        const email = (emailInput ? emailInput.value : "").trim();
+        const telefono = (telefonoInput ? telefonoInput.value : "").trim();
+        const mensaje = (mensajeInput ? mensajeInput.value : "").trim();
 
-      if (!nombre || !email || !mensaje) return;
+        if (!nombre || !email || !mensaje) return;
 
-      // Mostrar notificación de éxito
-      if (statusMessage) {
-        statusMessage.textContent =
-          "¡Gracias por escribirnos! Abriendo WhatsApp con tus datos...";
-        statusMessage.classList.remove("hidden");
-      }
+        const textLines = [
+          "*¡Hola Gym Tabaku!* 👋",
+          "Quiero solicitar información:",
+          "• *Nombre:* " + nombre,
+          "• *Correo:* " + email,
+          telefono ? "• *Teléfono:* " + telefono : null,
+          "• *Consulta:* " + mensaje,
+        ]
+          .filter(Boolean)
+          .join("\n");
 
-      // Construir mensaje amigable para WhatsApp
-      const textLines = [
-        `¡Hola Gym Tabaku!`,
-        `Mi nombre es: ${nombre}`,
-        `Correo: ${email}`,
-        telefono ? `Teléfono: ${telefono}` : null,
-        `Consulta: ${mensaje}`,
-      ]
-        .filter(Boolean)
-        .join("\n");
+        const cleanNumber = whatsappNumber.replace(/[^0-9]/g, "");
+        const waUrl =
+          "https://api.whatsapp.com/send?phone=" +
+          cleanNumber +
+          "&text=" +
+          encodeURIComponent(textLines);
 
-      const waUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(textLines)}`;
+        if (statusMessage) {
+          statusMessage.innerHTML =
+            '<div class="flex flex-col items-center gap-1.5 py-1">' +
+            '<p class="font-bold text-gym-yellow text-sm">¡Mensaje preparado! Conectando con WhatsApp...</p>' +
+            '<a href="' +
+            waUrl +
+            '" target="_blank" rel="noopener noreferrer" class="underline text-xs text-white/90 hover:text-white transition-colors cursor-pointer">' +
+            "¿No se abrió WhatsApp automáticamente? Haz clic aquí para enviar" +
+            "</a>" +
+            "</div>";
+          statusMessage.classList.remove("hidden");
+        }
 
-      // Resetear formulario
-      form.reset();
+        form.reset();
 
-      // Abrir WhatsApp tras un breve instante
-      setTimeout(() => {
-        window.open(waUrl, "_blank");
-      }, 600);
-    });
-  }
+        const newWin = window.open(waUrl, "_blank");
+        if (!newWin || newWin.closed || typeof newWin.closed === "undefined") {
+          window.location.href = waUrl;
+        }
+      });
+    }
 
-  document.addEventListener("astro:page-load", initContactForm);
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initContactForm);
-  } else {
-    initContactForm();
-  }
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initContactForm);
+    } else {
+      initContactForm();
+    }
+    document.addEventListener("astro:page-load", initContactForm);
+  })();
 </script>
