@@ -345,20 +345,37 @@ const {
         </h3>
     </div>
 
-    {/* Contenedor del video MP4 con aspect-ratio responsive */}
+    {/* Contenedor del video MP4 con aspect-ratio responsive y poster de carga */}
     <div
-        class="relative w-full aspect-video md:h-80 lg:h-96 overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl my-3 sm:my-4 bg-black border border-white/10"
+        class="video-container relative w-full aspect-video md:h-80 lg:h-96 overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl my-3 sm:my-4 bg-secondary-950 border border-white/10"
     >
+        {/* Imagen poster mostrada de inmediato mientras carga el video */}
+        {
+            posterUrl && (
+                <img
+                    src={posterUrl}
+                    alt={title}
+                    class="video-poster absolute inset-0 w-full h-full object-cover z-10 transition-opacity duration-700 ease-out pointer-events-none select-none"
+                    loading={isActive ? "eager" : "lazy"}
+                />
+            )
+        }
+
+        {/* Indicador de carga sutil sobre la imagen mientras bufferiza */}
+        <div class="video-loader absolute inset-0 flex items-center justify-center z-20 pointer-events-none transition-opacity duration-500 bg-black/25 backdrop-blur-[1px]">
+            <div class="size-10 sm:size-12 rounded-full border-3 border-white/20 border-t-primary-500 animate-spin shadow-xl" />
+        </div>
+
+        {/* Video con transición suave al reproducir */}
         {
             videoUrl && (
                 <video
                     data-src={videoUrl}
-                    poster={posterUrl}
-                    preload="none"
+                    preload={isActive ? "auto" : "none"}
                     loop
                     muted
                     playsinline
-                    class="w-full h-full object-cover pointer-events-none"
+                    class="video-player w-full h-full object-cover pointer-events-none opacity-0 transition-opacity duration-700 ease-in"
                 >
                     Tu navegador no soporta el formato de video.
                 </video>
@@ -375,46 +392,73 @@ const {
 
 <script>
     function initServiceVideos() {
-        const playVideo = (video: HTMLVideoElement) => {
-            if (!video.src && video.dataset.src) {
-                video.src = video.dataset.src;
-            }
-            video.currentTime = 0;
-            video.play().catch(() => {});
-        };
+        const articles = document.querySelectorAll("article[id]");
 
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (
-                    mutation.type === "attributes" &&
-                    mutation.attributeName === "class"
-                ) {
-                    const article = mutation.target as HTMLElement;
-                    const video = article.querySelector(
-                        "video",
-                    ) as HTMLVideoElement;
+        articles.forEach((article) => {
+            const video = article.querySelector(".video-player") as HTMLVideoElement;
+            const poster = article.querySelector(".video-poster") as HTMLImageElement;
+            const loader = article.querySelector(".video-loader") as HTMLElement;
 
-                    if (!video) return;
+            if (!video) return;
 
-                    if (article.classList.contains("is-active")) {
-                        playVideo(video);
-                    } else {
-                        video.pause();
-                    }
+            const revealVideo = () => {
+                video.classList.remove("opacity-0");
+                video.classList.add("opacity-100");
+                if (poster) {
+                    poster.classList.add("opacity-0");
                 }
-            });
-        });
+                if (loader) {
+                    loader.classList.add("opacity-0");
+                }
+            };
 
-        document.querySelectorAll("article").forEach((article) => {
-            observer.observe(article, { attributes: true });
+            const playVideo = () => {
+                if (!video.src && video.dataset.src) {
+                    video.src = video.dataset.src;
+                }
+                video.currentTime = 0;
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise
+                        .then(() => {
+                            if (video.currentTime > 0) {
+                                revealVideo();
+                            }
+                        })
+                        .catch(() => {});
+                }
+            };
+
+            if (!video.dataset.initialized) {
+                video.dataset.initialized = "true";
+
+                video.addEventListener("playing", revealVideo);
+                video.addEventListener("timeupdate", () => {
+                    if (video.currentTime > 0.05) {
+                        revealVideo();
+                    }
+                });
+
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (
+                            mutation.type === "attributes" &&
+                            mutation.attributeName === "class"
+                        ) {
+                            if (article.classList.contains("is-active")) {
+                                playVideo();
+                            } else {
+                                video.pause();
+                            }
+                        }
+                    });
+                });
+
+                observer.observe(article, { attributes: true });
+            }
 
             if (article.classList.contains("is-active")) {
-                const video = article.querySelector(
-                    "video",
-                ) as HTMLVideoElement;
-                if (video) {
-                    playVideo(video);
-                }
+                playVideo();
             }
         });
     }
