@@ -120,7 +120,7 @@ export const HOME_SERVICES: HomeServiceSummary[] = [
     icon: "zonas",
     description:
       "Contamos con áreas independientes para pesas, cardio y glúteo, brindando mayor comodidad y una mejor experiencia.",
-    url: "/servicios",
+    url: "/servicios#zonas",
   },
   {
     img: "/img/services/coach.webp",
@@ -129,7 +129,7 @@ export const HOME_SERVICES: HomeServiceSummary[] = [
     icon: "coach",
     description:
       "Nuestros entrenadores te acompañan durante todo el proceso, guiándote en cada ejercicio para que alcances tus metas de forma segura y efectiva.",
-    url: "/servicios",
+    url: "/servicios#coach",
     active: true,
   },
   {
@@ -139,6 +139,6 @@ export const HOME_SERVICES: HomeServiceSummary[] = [
     icon: "zumba",
     description:
       "Muévete al ritmo de la música y disfruta de clases dinámicas que combinan ejercicio, diversión y motivación en grupo.",
-    url: "/servicios",
+    url: "/servicios#zumba",
   },
 ];
