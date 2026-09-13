@@ -4,121 +4,205 @@ import Titulo from "@/components/global/Titulo.astro";
 import CoachItem from "@/components/coach/CoachItem.astro";
 
 interface HeaderCoaches {
-    name?: string;
-    role?: string;
-    img?: string;
-    imgHover?: string;
+  name?: string;
+  role?: string;
+  img?: string;
+  imgHover?: string;
 }
 
 interface DescriptionCoaches {
-    tittle?: string;
-    subTittle?: string;
-    description?: string;
-    description2?: string;
-    description3?: string;
-    img?: string;
-    wallpaperSrc?: string;
+  tittle?: string;
+  subTittle?: string;
+  description?: string;
+  description2?: string;
+  description3?: string;
+  img?: string;
+  wallpaperSrc?: string;
 }
 
 interface GalleryCoaches {
-    img?: string;
-    alt?: string;
+  img?: string;
+  alt?: string;
 }
 
 interface Coach {
-    header: HeaderCoaches;
-    description: DescriptionCoaches;
-    gallery: GalleryCoaches[];
+  header: HeaderCoaches;
+  description: DescriptionCoaches;
+  gallery: GalleryCoaches[];
 }
 
 interface Props {
-    Coaches: Coach[];
+  Coaches: Coach[];
+  activeIndex?: number;
 }
 
-const { Coaches } = Astro.props;
+const { Coaches, activeIndex = 0 } = Astro.props;
 ---
 
 <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
 />
 
 <section
-    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden"
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden pb-4 sm:pb-8"
 >
-    <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-        <img
-            src="/img/bg/fondoyellow.webp"
-            alt=""
-            class="w-full h-auto object-cover object-bottom rotate-y-180 opacity-90"
-        />
-    </div>
-    <div class="relative z-10">
-        <Menu />
-        <header
-            class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto w-full px-4 pt-4"
+  <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden">
+    <img
+      src="/img/bg/fondoyellow.webp"
+      alt=""
+      class="w-full max-h-56 sm:max-h-72 object-cover object-bottom rotate-y-180 opacity-70 sm:opacity-90"
+    />
+  </div>
+  <div class="relative z-10">
+    <Menu />
+    <header
+      class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6"
+    >
+      <div
+        class="flex flex-col gap-2.5 sm:gap-3 text-center max-w-3xl mx-auto pt-2 sm:pt-4"
+      >
+        <Titulo title="nuestros profesores" />
+        <h1
+          class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gym-dark-bg-card-hover font-bold tracking-tight leading-tight"
         >
-            <div class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 pt-4">
-                <Titulo title="nuestros profesores" />
-                <h3
-                    class="mb-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-bg-card-hover text-center"
-                >
-                    Entrena acompañado por <br /> nuestro equipo de profesionales!
-                </h3>
-            </div>
-        </header>
-    </div>
+          Entrena acompañado por <br class="hidden sm:inline" /> nuestro equipo de
+          profesionales!
+        </h1>
+      </div>
+    </header>
+  </div>
 
-    <div class="w-4/6 mx-auto relative z-20">
-        <div class="max-w-6xl mx-auto pt-4 pb-10">
-            <div class="swiper coach-slider">
-                <div class="swiper-wrapper pb-10">
-                    {
-                        Coaches.map((coach) => (
-                            <CoachItem coachHeader={coach.header} />
-                        ))
-                    }
-                </div>
-            </div>
+  <!-- Carrusel de Profesores con Ancho Fluido Completo -->
+  <div
+    class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-20 mt-4 sm:mt-6"
+  >
+    <div class="relative pt-2 pb-4">
+      <div class="swiper coach-slider px-1">
+        <div class="swiper-wrapper py-3">
+          {
+            Coaches.map((coach, index) => (
+              <CoachItem
+                coachHeader={coach.header}
+                index={index}
+                isActive={index === activeIndex}
+              />
+            ))
+          }
         </div>
+      </div>
+
+      <!-- Botones de Navegación del Carrusel -->
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3">
+        <button
+          type="button"
+          class="coach-prev size-9 sm:size-10 rounded-full bg-secondary-900/80 border border-white/15 hover:border-gym-yellow hover:bg-secondary-950 text-gym-yellow flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+          aria-label="Profesor anterior"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+        </button>
+        <span
+          class="text-xs sm:text-sm font-bold uppercase tracking-wider text-gym-text-secondary select-none text-center"
+        >
+          Selecciona un profesor
+        </span>
+        <button
+          type="button"
+          class="coach-next size-9 sm:size-10 rounded-full bg-secondary-900/80 border border-white/15 hover:border-gym-yellow hover:bg-secondary-950 text-gym-yellow flex items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:scale-105 active:scale-95"
+          aria-label="Siguiente profesor"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+  </div>
 </section>
 
 <script>
-    import Swiper from "swiper";
-    import { Autoplay } from "swiper/modules";
+  import Swiper from "swiper";
+  import { Navigation, Autoplay } from "swiper/modules";
 
-    document.addEventListener("DOMContentLoaded", () => {
-        new Swiper(".coach-slider", {
-            modules: [Autoplay],
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            centeredSlides: false,
-            autoplay: {
-                delay: 3500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 24,
-                },
-                1024: {
-                    slidesPerView: 5, // 4 profesores en pantallas grandes
-                    spaceBetween: 28,
-                },
-            },
-        });
+  let coachSwiper: Swiper | null = null;
+
+  function initCoachSwiper() {
+    const sliderEl = document.querySelector<HTMLElement>(".coach-slider");
+    if (!sliderEl) return;
+
+    if (coachSwiper) {
+      coachSwiper.destroy(true, true);
+      coachSwiper = null;
+    }
+
+    coachSwiper = new Swiper(sliderEl, {
+      modules: [Navigation, Autoplay],
+      slidesPerView: 1,
+      spaceBetween: 16,
+      centeredSlides: false,
+      grabCursor: true,
+      observer: true,
+      observeParents: true,
+      navigation: {
+        nextEl: ".coach-next",
+        prevEl: ".coach-prev",
+      },
+      autoplay: {
+        delay: 4500,
+        disableOnInteraction: true,
+        pauseOnMouseEnter: true,
+      },
+      breakpoints: {
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 16,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 22,
+        },
+        1280: {
+          slidesPerView: 5,
+          spaceBetween: 24,
+        },
+      },
     });
+  }
+
+  document.addEventListener("astro:page-load", initCoachSwiper);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCoachSwiper);
+  } else {
+    initCoachSwiper();
+  }
 </script>
 
 <style>
-    .swiper-slide {
-        height: auto;
-    }
+  .swiper-slide {
+    height: auto;
+  }
 </style>

@@ -8,52 +8,73 @@ interface HeaderCoaches {
 
 interface Props {
     coachHeader: HeaderCoaches;
+    index?: number;
+    isActive?: boolean;
 }
-const { coachHeader } = Astro.props;
 
+const { coachHeader, index = 0, isActive = false } = Astro.props;
 const { name, role, img, imgHover } = coachHeader;
 ---
 
-<div class="swiper-slide flex justify-center items-center h-80! w-50!">
-    <!-- Tarjeta del profesor -->
-    <div class="group relative h-full w-full cursor-pointer p-1">
+<div
+    class="swiper-slide flex justify-center items-center py-2"
+    data-coach-slide
+>
+    <!-- Tarjeta interactiva del profesor -->
+    <div
+        data-coach-card
+        data-coach-index={index}
+        data-active={isActive ? "true" : "false"}
+        class:list={[
+            "group relative w-52 sm:w-56 h-[340px] cursor-pointer select-none transition-all duration-300 rounded-2xl",
+            "hover:-translate-y-1.5 focus-visible:outline-none",
+            "data-[active=true]:scale-105 data-[active=true]:drop-shadow-[0_10px_20px_rgba(255,204,0,0.25)]",
+        ]}
+    >
         <!-- Fondo de Arco Oscuro Detrás de la Foto -->
         <div
-            class="absolute w-40 h-50 top-11 bg-gym-bg-card-hover rounded-t-full z-0 left-1/2 -translate-x-1/2"
+            class:list={[
+                "absolute w-40 sm:w-44 h-48 sm:h-50 top-8 bg-gym-bg-card-hover rounded-t-full z-0 left-1/2 -translate-x-1/2 transition-colors duration-300",
+                "group-hover:bg-secondary-800 group-data-[active=true]:bg-secondary-800 group-data-[active=true]:ring-2 group-data-[active=true]:ring-primary-500",
+            ]}
         >
         </div>
 
         <!-- Contenedor de la Imagen con Cambio de Camisa -->
-        <div class="absolute z-10 w-full h-50 flex justify-center items-end">
+        <div class="absolute z-10 w-full h-50 top-7 flex justify-center items-end">
             <!-- Imagen Normal -->
             <img
                 src={img}
                 alt={name}
-                class="w-2/3 h-full object-top object-cover group-hover:opacity-0"
+                class="w-2/3 h-full object-top object-cover transition-opacity duration-300 group-hover:opacity-0 group-data-[active=true]:opacity-0"
+                loading="lazy"
             />
 
-            <!-- Imagen Camisa Amarilla (Hover) -->
+            <!-- Imagen Camisa Amarilla (Hover y Activo) -->
             <img
                 src={imgHover}
                 alt={name}
-                class="absolute bottom-0 w-2/3 h-full object-top object-cover opacity-0 group-hover:opacity-100"
+                class="absolute bottom-0 w-2/3 h-full object-top object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-data-[active=true]:opacity-100"
+                loading="lazy"
             />
         </div>
 
         <!-- Bloque Inferior Diagonal con Información -->
         <div
-            class="absolute bottom-0 z-20 w-full h-40 bg-[url('/img/coach/coach-bg4.webp')] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center"
+            class="absolute bottom-0 z-20 w-full h-40 bg-[url('/img/coach/coach-bg4.webp')] bg-contain bg-center bg-no-repeat flex flex-col items-center justify-center px-4"
         >
-            <h4 class="text-gym-dark-bg-card-hover font-bold text-lg">
+            <h4 class="text-gym-dark-bg-card-hover font-bold text-base sm:text-lg text-center tracking-tight leading-tight">
                 {name}
             </h4>
-            <p class="text-primary-600 text-sm font-semibold text-center">
+            <p class="text-primary-600 text-xs sm:text-sm font-bold text-center mt-1">
                 {role}
             </p>
 
             <!-- Botón flotante '+' -->
             <button
-                class="absolute bottom-2 left-1/2 -translate-x-1/2 w-9 h-9 bg-yellow-400 hover:bg-gym-bg-card-hover text-black hover:text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg transition-colors duration-300 cursor-pointer"
+                type="button"
+                aria-label={`Seleccionar a ${name}`}
+                class="absolute bottom-2 left-1/2 -translate-x-1/2 size-9 bg-yellow-400 group-hover:bg-gym-bg-card-hover group-data-[active=true]:bg-secondary-950 text-black group-hover:text-white group-data-[active=true]:text-gym-yellow rounded-full flex items-center justify-center font-bold text-xl shadow-lg transition-all duration-300 cursor-pointer group-data-[active=true]:ring-2 group-data-[active=true]:ring-gym-yellow"
             >
                 +
             </button>

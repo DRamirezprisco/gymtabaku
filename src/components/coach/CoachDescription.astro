@@ -2,59 +2,65 @@
 import CoachDescriptionItems from "@/components/coach/CoachDescriptionItems.astro";
 
 interface HeaderCoaches {
-    name?: string;
-    role?: string;
-    img?: string;
-    imgHover?: string;
+  name?: string;
+  role?: string;
+  img?: string;
+  imgHover?: string;
 }
 
 interface DescriptionCoaches {
-    tittle?: string;
-    subTittle?: string;
-    description?: string;
-    description2?: string;
-    description3?: string;
-    img?: string;
-    wallpaperSrc?: string;
+  tittle?: string;
+  subTittle?: string;
+  description?: string;
+  description2?: string;
+  description3?: string;
+  img?: string;
+  wallpaperSrc?: string;
 }
 
 interface GalleryCoaches {
-    img?: string;
-    alt?: string;
+  img?: string;
+  alt?: string;
 }
 
 interface Coach {
-    header: HeaderCoaches;
-    description: DescriptionCoaches;
-    gallery: GalleryCoaches[];
+  header: HeaderCoaches;
+  description: DescriptionCoaches;
+  gallery: GalleryCoaches[];
 }
 
 interface Props {
-    Coaches: Coach[];
+  Coaches: Coach[];
+  activeIndex?: number;
 }
 
-const { Coaches } = Astro.props;
+const { Coaches, activeIndex = 0 } = Astro.props;
 ---
 
-<section class="relative bg-black bg-cover w-full overflow-hidden min-h-screen">
-    <img
-        src="/img/bg/intento4.jpg"
-        alt="fondo de pagina"
-        class="absolute -right-65 top-0 w-auto object-cover opacity-80 mix-blend-screen h-full"
-    />
+<section
+  class="relative bg-black bg-cover w-full overflow-hidden min-h-[500px]"
+>
+  <img
+    src="/img/bg/intento4.jpg"
+    alt=""
+    class="absolute -right-90 sm:-right-75 lg:-right-65 top-0 w-auto object-cover opacity-80 mix-blend-screen h-full pointer-events-none select-none max-w-none"
+  />
 
+  <div id="coachDescriptionsContainer" class="relative z-10 w-full">
     {
-        Coaches.map((coach, index) => (
-            <CoachDescriptionItems
-                tittle={coach.description.tittle}
-                subTittle={coach.description.subTittle}
-                description={coach.description.description}
-                description2={coach.description.description2}
-                description3={coach.description.description3}
-                img={coach.description.img}
-                wallpaperSrc={coach.description.wallpaperSrc}
-                isActive={index === 0}
-            />
-        ))
+      Coaches.map((coach, index) => (
+        <CoachDescriptionItems
+          tittle={coach.description.tittle}
+          subTittle={coach.description.subTittle}
+          description={coach.description.description}
+          description2={coach.description.description2}
+          description3={coach.description.description3}
+          img={coach.description.img}
+          wallpaperSrc={coach.description.wallpaperSrc}
+          isActive={index === activeIndex}
+          index={index}
+        />
+      ))
     }
+  </div>
 </section>
