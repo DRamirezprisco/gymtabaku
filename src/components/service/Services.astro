@@ -2,45 +2,48 @@
 import ServiceGallery from "@/components/service/ServiceGallery.astro";
 
 export interface ServiceItem {
-    title: string;
-    icon: string;
-    subtitle: string;
-    videoUrl: string;
-    posterUrl: string;
-    description: string;
-    serviceItemId: string;
-    images: { src: string; alt: string }[];
+  title: string;
+  icon: string;
+  subtitle: string;
+  videoUrl: string;
+  posterUrl: string;
+  description: string;
+  serviceItemId: string;
+  images: { src: string; alt: string }[];
 }
 
 export interface Props {
-    items?: ServiceItem[];
+  items?: ServiceItem[];
 }
 
 const { items = [] } = Astro.props;
 ---
 
 <section
-    class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden min-h-screen p-10"
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
 >
-    <img
-        src="/img/bg/bgyellow.webp"
-        alt=""
-        class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-90"
-    />
-    <img
-        src="/img/bg/bgoscurotexture.webp"
-        alt=""
-        class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86"
-    />
-    <div id="galleryContainer" class="max-w-7xl mx-auto px-4">
-        {
-            items.map((item, index) => (
-                <ServiceGallery
-                    images={item.images}
-                    title={item.title}
-                    isActive={index === 0}
-                />
-            ))
-        }
-    </div>
+  <img
+    src="/img/bg/bgyellow.webp"
+    alt=""
+    class="absolute -right-10 -top-10 size-42 sm:size-50 md:size-54 lg:size-50 xl:size-52 2xl:size-90 pointer-events-none select-none"
+  />
+  <img
+    src="/img/bg/bgoscurotexture.webp"
+    alt=""
+    class="absolute -right-10 -top-10 size-40 sm:size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-86 pointer-events-none select-none"
+  />
+  <div
+    id="galleryContainer"
+    class="max-w-6xl 2xl:max-w-7xl mx-auto w-full pt-10"
+  >
+    {
+      items.map((item, index) => (
+        <ServiceGallery
+          images={item.images}
+          title={item.title}
+          isActive={index === 0}
+        />
+      ))
+    }
+  </div>
 </section>

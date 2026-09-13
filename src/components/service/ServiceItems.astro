@@ -14,17 +14,17 @@ const {
 <article
     id={serviceItemId}
     class:list={[
-        "lg:col-span-8 hidden flex-col items-center lg:items-start text-center lg:text-left px-6 sm:px-8 [.is-active&]:flex",
+        "w-full hidden flex-col items-center lg:items-start text-center lg:text-left px-2 sm:px-4 lg:px-6 [.is-active&]:flex",
         { "is-active": isActive },
     ]}
 >
     <h2
-        class={`mt-5 sm:text-4xl md:text-2xl xl:text-3xl uppercase font-serif text-primary-500 tracking-wide`}
+        class="mt-2 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-black font-serif uppercase text-primary-500 tracking-wide"
     >
         {title}
     </h2>
 
-    <div class="flex items-center justify-start gap-2 mb-2">
+    <div class="flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 my-2">
         {/* Iconos SVG (Se mantienen exactamente igual) */}
         {
             icon == "coach" && (
@@ -339,15 +339,15 @@ const {
         }
 
         <h3
-            class="`font-bold text-base sm:text-lg md:text-2xl text-secondary-50 mt-3"
+            class="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-100"
         >
             {subtitle}
         </h3>
     </div>
 
-    <!-- Contenedor del video MP4 local -->
+    {/* Contenedor del video MP4 con aspect-ratio responsive */}
     <div
-        class="relative w-full h-80 overflow-hidden rounded-xl shadow-2xl my-3 bg-black"
+        class="relative w-full aspect-video md:h-80 lg:h-96 overflow-hidden rounded-xl sm:rounded-2xl shadow-2xl my-3 sm:my-4 bg-black border border-white/10"
     >
         {
             videoUrl && (
@@ -367,15 +367,14 @@ const {
     </div>
 
     <p
-        class={`text-letter text-base sm:text-lg xl:text-xl font-medium text-secondary-200 leading-relaxed`}
+        class="text-sm sm:text-base lg:text-lg font-medium text-secondary-200 leading-relaxed max-w-3xl"
     >
         {description}
     </p>
 </article>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        // Función auxiliar para activar la carga y reproducción del video
+    function initServiceVideos() {
         const playVideo = (video: HTMLVideoElement) => {
             if (!video.src && video.dataset.src) {
                 video.src = video.dataset.src;
@@ -384,7 +383,6 @@ const {
             video.play().catch(() => {});
         };
 
-        // Observador para detectar cambios de clase (.is-active)
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (
@@ -398,7 +396,6 @@ const {
 
                     if (!video) return;
 
-                    // Si la tarjeta obtiene la clase .is-active
                     if (article.classList.contains("is-active")) {
                         playVideo(video);
                     } else {
@@ -408,11 +405,9 @@ const {
             });
         });
 
-        // Aplicar el observador a todos los artículos
         document.querySelectorAll("article").forEach((article) => {
             observer.observe(article, { attributes: true });
 
-            // Verificar cuál viene activo por defecto al cargar la página
             if (article.classList.contains("is-active")) {
                 const video = article.querySelector(
                     "video",
@@ -422,5 +417,12 @@ const {
                 }
             }
         });
-    });
+    }
+
+    document.addEventListener("astro:page-load", initServiceVideos);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initServiceVideos);
+    } else {
+        initServiceVideos();
+    }
 </script>

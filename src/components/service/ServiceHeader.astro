@@ -4,87 +4,87 @@ import ButtonSkew from "@/components/global/ButtonSkew.astro";
 import ServiceItems from "@/components/service/ServiceItems.astro";
 
 export interface ServiceItem {
-    title: string;
-    icon: string;
-    subtitle: string;
-    videoUrl: string;
-    posterUrl: string;
-    description: string;
-    serviceItemId: string;
-    images: { src: string; alt: string }[];
+  title: string;
+  icon: string;
+  subtitle: string;
+  videoUrl: string;
+  posterUrl: string;
+  description: string;
+  serviceItemId: string;
+  images: { src: string; alt: string }[];
 }
 
 export interface Props {
-    items?: ServiceItem[];
+  items?: ServiceItem[];
 }
 
 const { items = [] } = Astro.props;
 ---
 
-<section class="relative bg-black bg-cover w-full overflow-hidden min-h-screen">
-    <img
-        src="/img/bg/intento4.jpg"
-        alt="fondo de pagina"
-        class="absolute -left-35 rotate-180 top-0 w-auto object-cover opacity-80 mix-blend-screen h-full"
-    />
+<section
+  class="relative bg-black bg-cover w-full overflow-hidden min-h-screen pb-12 sm:pb-16"
+>
+  <img
+    src="/img/bg/intento4.jpg"
+    alt=""
+    class="absolute -left-20 sm:-left-35 rotate-180 top-0 w-auto object-cover opacity-60 sm:opacity-80 mix-blend-screen h-full pointer-events-none select-none"
+  />
 
-    <div class="relative z-10">
-        <Menu />
+  <div class="relative z-10">
+    <Menu />
 
-        <main
-            class="max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto w-full px-4 py-12"
+    <main
+      class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16"
+    >
+      <header class="max-w-4xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
+        <h3
+          class="font-serif text-base sm:text-lg md:text-xl lg:text-2xl text-gym-dark-text-primary"
         >
-            <header
-                class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto text-center mb-12 sm:mb-16"
-            >
-                <h3
-                    class={`font-serif text-base sm:text-lg md:text-xl lg:text-3xl text-gym-dark-text-primary`}
-                >
-                    Entrena, crece y pertenece!
-                </h3>
-                <h1
-                    class="mt-4 sm:text-4xl md:text-3xl xl:text-2xl text-secondary-400 font-black tracking-tight"
-                >
-                    Un espacio para entrenar, crecer y sentirte como en casa
-                </h1>
-            </header>
+          Entrena, crece y pertenece!
+        </h3>
+        <h1
+          class="mt-2.5 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-secondary-400 font-bold tracking-tight"
+        >
+          Un espacio para entrenar, crecer y sentirte como en casa
+        </h1>
+      </header>
 
-            <div
-                class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start"
-            >
-                <nav
-                    class="lg:col-span-4 p-6 pt-12 rounded-2xl bg-gym-bg-card/30 backdrop-blur-md shadow-xl"
-                >
-                    <ul class="flex flex-col gap-4" id="service-menu">
-                        {
-                            items.map((item, index) => (
-                                <li>
-                                    <ButtonSkew
-                                        text={item.title}
-                                        isActive={index === 0}
-                                    />
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </nav>
+      <div
+        class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start"
+      >
+        <nav
+          class="w-full max-w-80 sm:max-w-none lg:max-w-78 mx-auto lg:ml-6 p-4 sm:p-6 lg:p-6 lg:pt-12 rounded-2xl bg-gym-bg-card/30 backdrop-blur-md shadow-xl border border-white/5 lg:col-span-4"
+        >
+          <ul
+            class="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-col gap-4 sm:gap-8 md:gap-10 lg:gap-5 justify-items-center"
+            id="service-menu"
+          >
+            {
+              items.map((item, index) => (
+                <li class="w-full flex justify-center">
+                  <ButtonSkew text={item.title} isActive={index === 0} />
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
 
-                <div id="servicesItemContainer" class="w-full lg:col-span-8">
-                    {
-                        items.map((item, index) => (
-                            <ServiceItems
-                                title={item.title}
-                                icon={item.icon}
-                                subtitle={item.subtitle}
-                                videoUrl={item.videoUrl}
-                                description={item.description}
-                                serviceItemId={item.serviceItemId}
-                                isActive={index === 0}
-                            />
-                        ))
-                    }
-                </div>
-            </div>
-        </main>
-    </div>
+        <div id="servicesItemContainer" class="w-full lg:col-span-8">
+          {
+            items.map((item, index) => (
+              <ServiceItems
+                title={item.title}
+                icon={item.icon}
+                subtitle={item.subtitle}
+                videoUrl={item.videoUrl}
+                description={item.description}
+                serviceItemId={item.serviceItemId}
+                isActive={index === 0}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </main>
+  </div>
 </section>

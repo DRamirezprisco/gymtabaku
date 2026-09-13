@@ -4,9 +4,18 @@ interface Props {
     price?: string;
     isActive?: boolean;
     variant?: "dark" | "primary";
+    layout?: "vertical" | "horizontal" | "responsive";
+    class?: string;
 }
 
-const { text, price, isActive = false, variant = "dark" } = Astro.props;
+const {
+    text,
+    price,
+    isActive = false,
+    variant = "dark",
+    layout = "responsive",
+    class: className = "",
+} = Astro.props;
 
 // Estilos dinámicos según el variant
 const isPrimary = variant === "primary";
@@ -14,10 +23,31 @@ const isPrimary = variant === "primary";
 
 <button
     class:list={[
-        // Flexbox en columna para forzar 2 líneas y centrar vertical/horizontalmente
-        "group flex flex-col justify-center items-center text-center leading-tight font-serif tracking-0.125 mb-2.5 py-2 px-4 relative transition-all duration-500 z-10 cursor-pointer w-70 min-h-18",
-        "before:content-[''] before:absolute before:top-0 before:h-full before:transition-all before:duration-500 before:-z-10 before:right-[-15px] before:w-[7px] before:translate-x-0 before:skew-x-[-10deg]",
-        "after:content-[''] after:absolute after:top-0 after:h-full after:transition-all after:duration-500 after:-z-10 after:right-0 after:w-[calc(100%+70px)] after:skew-x-[-10deg] after:translate-x-0",
+        // Flexbox en columna para centrar vertical/horizontalmente
+        "group flex flex-col justify-center items-center text-center leading-tight font-serif tracking-0.125 relative transition-all duration-300 z-10 cursor-pointer",
+
+        // Dimensiones según layout
+        layout === "responsive"
+            ? "w-64 sm:w-full sm:max-w-[210px] md:max-w-[230px] lg:w-70 min-h-16 sm:min-h-14 lg:min-h-18 py-2 sm:py-2.5 lg:py-2 px-3 sm:px-4 lg:px-4"
+            : layout === "horizontal"
+              ? "w-full max-w-[220px] min-h-14 py-2.5 px-4"
+              : "w-64 sm:w-70 min-h-16 sm:min-h-18 py-2 px-4 mb-2.5",
+
+        // Pseudo-elemento before (barra decorativa derecha)
+        "before:content-[''] before:absolute before:top-0 before:h-full before:transition-all before:duration-300 before:-z-10 before:skew-x-[-10deg] before:translate-x-0",
+        layout === "responsive"
+            ? "before:right-[-12px] before:w-[6px] sm:before:right-[-8px] sm:before:w-[5px] lg:before:right-[-15px] lg:before:w-[7px]"
+            : layout === "horizontal"
+              ? "before:right-[-8px] before:w-[5px]"
+              : "before:right-[-15px] before:w-[7px]",
+
+        // Pseudo-elemento after (cuerpo inclinado principal hacia la izquierda)
+        "after:content-[''] after:absolute after:top-0 after:h-full after:transition-all after:duration-300 after:-z-10 after:right-0 after:skew-x-[-10deg] after:translate-x-0",
+        layout === "responsive"
+            ? "after:w-[calc(100%+45px)] sm:after:w-[calc(100%+12px)] lg:after:w-[calc(100%+70px)]"
+            : layout === "horizontal"
+              ? "after:w-[calc(100%+12px)]"
+              : "after:w-[calc(100%+50px)] sm:after:w-[calc(100%+70px)]",
 
         // Configuración de Colores según Variant
         isPrimary
@@ -27,12 +57,13 @@ const isPrimary = variant === "primary";
         // Fondos por defecto (transparentes si no está activo/hover)
         "before:bg-transparent after:bg-transparent",
         { "is-active": isActive },
+        className,
     ]}
 >
     <!-- Línea 1: Nombre -->
     <span
         class:list={[
-            "block text-lg sm:text-xl  leading-none font-serif tracking-normal",
+            "block text-base sm:text-lg lg:text-xl leading-none font-serif tracking-normal",
             "text-secondary-50/80",
             isPrimary
                 ? "group-hover:text-black"
