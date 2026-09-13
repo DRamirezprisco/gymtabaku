@@ -18,42 +18,303 @@ const Coaches = [
     experiencia: "4 años",
   },
 ];
+
+// Triplicamos la lista para generar el slider infinito sin fin en móvil/tablet
+const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
 ---
 
-<div class="rounded-2xl overflow-hidden h-150 flex my-20">
+{/* Versión Móvil y Tablet (< lg): Slider táctil y con mouse infinito */}
+<div class="lg:hidden w-full mt-8 sm:mt-12 select-none">
+  <div
+    id="coachSlider"
+    class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-1 scroll-smooth cursor-grab active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+  >
+    {
+      infiniteCoaches.map((coach) => (
+        <div class="snap-center shrink-0 w-64 sm:w-72 h-96 sm:h-105 rounded-2xl overflow-hidden relative shadow-xl group/card">
+          <img
+            src={coach.img}
+            alt={coach.name}
+            draggable="false"
+            class="object-cover object-top w-full h-full pointer-events-none select-none transition-transform duration-500 group-hover/card:scale-105"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
+          <div class="absolute bottom-0 left-0 w-full p-4 text-white pointer-events-none">
+            <div class="bg-gym-bg-card-hover/90 backdrop-blur-md p-3.5 rounded-xl border border-white/10 text-center shadow-lg">
+              <h3 class="text-lg sm:text-xl font-bold font-serif">
+                {coach.name}
+              </h3>
+              <p class="text-xs sm:text-sm text-gym-yellow font-medium mt-0.5">
+                {coach.experiencia} de experiencia
+              </p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Controles y sugerencia visual para móvil y mouse */}
+  <div class="flex items-center justify-between mt-3 px-2">
+    <button
+      id="coachPrevBtn"
+      type="button"
+      aria-label="Ver profesor anterior"
+      class="size-9 rounded-full bg-secondary-800/20 hover:bg-secondary-800/40 text-gym-text-secondary flex items-center justify-center transition-colors cursor-pointer"
+    >
+      <svg
+        class="size-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <div
+      class="flex items-center justify-center gap-2 text-gym-text-secondary text-xs sm:text-sm font-medium opacity-80"
+    >
+      <svg
+        class="size-4 animate-pulse hidden sm:block"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      <span>Arrastra con el mouse o desliza</span>
+      <svg
+        class="size-4 animate-pulse hidden sm:block"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </div>
+
+    <button
+      id="coachNextBtn"
+      type="button"
+      aria-label="Ver profesor siguiente"
+      class="size-9 rounded-full bg-secondary-800/20 hover:bg-secondary-800/40 text-gym-text-secondary flex items-center justify-center transition-colors cursor-pointer"
+    >
+      <svg
+        class="size-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+{/* Versión Desktop (>= lg): Acordeón expansivo con esquinas exteriores redondeadas y sin borde gris */}
+<div
+  class="hidden lg:flex rounded-2xl overflow-hidden h-120 xl:h-140 2xl:h-150 my-12 xl:my-16 w-full"
+>
   <div class="group flex w-full h-full gap-1">
     {
       Coaches.map((coach, index) => {
-        if (index == 0) {
-          return (
-            <div class="group/coach w-200 group-hover:w-60 hover:w-200! transition-all duration-500 ease-in-out h-full overflow-hidden cursor-pointer grayscale-0 brightness-100 group-hover:grayscale group-hover:brightness-80 hover:grayscale-0! hover:brightness-100! relative">
-              <img
-                src={coach.img}
-                alt=""
-                class="object-cover object-top w-full h-full"
-              />
-              <div class="absolute bottom-0 left-0 w-full p-6 bg-gym-bg-card-hover/80 text-white opacity-100 group-hover:opacity-0 group-hover/coach:opacity-100! transition-opacity duration-500 ease-in-out pointer-events-none text-center">
-                <h3 class="text-xl font-bold">{coach.name}</h3>
-                <p class="text-sm text-gray-300">{coach.experiencia}</p>
-              </div>
+        const isInitial = index === 0;
+        return (
+          <div
+            class={`group/coach relative overflow-hidden cursor-pointer transition-all duration-700 ease-out h-full first:rounded-l-2xl last:rounded-r-2xl rounded-none
+              ${
+                isInitial
+                  ? "flex-[3] group-hover:flex-1 hover:!flex-[3] grayscale-0 brightness-100 group-hover:grayscale group-hover:brightness-75 hover:!grayscale-0 hover:!brightness-100"
+                  : "flex-1 hover:!flex-[3] grayscale brightness-75 hover:!grayscale-0 hover:!brightness-100"
+              }`}
+          >
+            <img
+              src={coach.img}
+              alt={coach.name}
+              draggable="false"
+              class="object-cover object-top w-full h-full transition-transform duration-700 group-hover/coach:scale-105 select-none"
+            />
+            <div
+              class={`absolute bottom-0 left-0 w-full p-6 bg-gym-bg-card-hover/80 text-white transition-opacity duration-500 ease-in-out pointer-events-none text-center
+                ${
+                  isInitial
+                    ? "opacity-100 group-hover:opacity-0 group-hover/coach:!opacity-100"
+                    : "opacity-0 group-hover/coach:!opacity-100"
+                }`}
+            >
+              <h3 class="text-xl xl:text-2xl font-bold font-serif">
+                {coach.name}
+              </h3>
+              <p class="text-sm xl:text-base text-gray-300 font-medium mt-1">
+                {coach.experiencia}
+              </p>
             </div>
-          );
-        } else {
-          return (
-            <div class="group/coach relative w-60 group-hover:w-60 hover:w-200! transition-all duration-500 ease-in-out h-full overflow-hidden cursor-pointer grayscale brightness-80 hover:grayscale-0! hover:brightness-100!">
-              <img
-                src={coach.img}
-                alt=""
-                class="object-cover object-top w-full h-full"
-              />
-              <div class="absolute bottom-0 left-0 w-full p-6 bg-gym-bg-card-hover/80 text-white opacity-0 group-hover/coach:opacity-100! transition-opacity duration-500 ease-in-out pointer-events-none text-center">
-                <h3 class="text-xl font-bold">{coach.name}</h3>
-                <p class="text-sm text-gray-300">{coach.experiencia}</p>
-              </div>
-            </div>
-          );
-        }
+          </div>
+        );
       })
     }
   </div>
 </div>
+
+<script>
+  function initCoachSlider() {
+    const slider = document.getElementById("coachSlider");
+    const prevBtn = document.getElementById("coachPrevBtn");
+    const nextBtn = document.getElementById("coachNextBtn");
+
+    if (!slider) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+    let isResetting = false;
+
+    const getSetWidth = () => {
+      const card0 = slider.children[0] as HTMLElement | undefined;
+      const card5 = slider.children[5] as HTMLElement | undefined;
+      if (!card0 || !card5) return 0;
+      return card5.offsetLeft - card0.offsetLeft;
+    };
+
+    const setInitialPosition = () => {
+      const singleSetWidth = getSetWidth();
+      if (singleSetWidth > 0 && slider.scrollLeft === 0) {
+        slider.classList.remove("scroll-smooth");
+        slider.style.scrollBehavior = "auto";
+        slider.scrollLeft = singleSetWidth;
+        requestAnimationFrame(() => {
+          slider.style.scrollBehavior = "";
+          slider.classList.add("scroll-smooth");
+        });
+      }
+    };
+
+    // Teletransporte imperceptible cuando cruza los extremos
+    const teleport = (offset: number) => {
+      isResetting = true;
+      const originalSnap = slider.style.scrollSnapType;
+      slider.classList.remove("scroll-smooth");
+      slider.style.scrollBehavior = "auto";
+      slider.style.scrollSnapType = "none";
+
+      slider.scrollLeft += offset;
+
+      requestAnimationFrame(() => {
+        slider.style.scrollBehavior = "";
+        slider.style.scrollSnapType = originalSnap;
+        slider.classList.add("scroll-smooth");
+        isResetting = false;
+      });
+    };
+
+    // Verificación de límites en scroll libre (touch / momentum)
+    slider.addEventListener("scroll", () => {
+      if (isDown || isResetting) return;
+
+      const singleSetWidth = getSetWidth();
+      if (singleSetWidth <= 0) return;
+
+      if (slider.scrollLeft >= singleSetWidth * 1.8) {
+        teleport(-singleSetWidth);
+      } else if (slider.scrollLeft <= singleSetWidth * 0.2) {
+        teleport(singleSetWidth);
+      }
+    });
+
+    // Eventos de arrastre con mouse
+    slider.addEventListener("mousedown", (e) => {
+      isDown = true;
+      slider.classList.add("cursor-grabbing");
+      slider.classList.remove("cursor-grab");
+      slider.classList.remove("scroll-smooth");
+      slider.style.scrollSnapType = "none";
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    const stopDragging = () => {
+      if (!isDown) return;
+      isDown = false;
+      slider.classList.remove("cursor-grabbing");
+      slider.classList.add("cursor-grab");
+      slider.classList.add("scroll-smooth");
+      slider.style.scrollSnapType = "";
+    };
+
+    slider.addEventListener("mouseleave", stopDragging);
+    slider.addEventListener("mouseup", stopDragging);
+
+    slider.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      slider.scrollLeft = scrollLeft - walk;
+
+      const singleSetWidth = getSetWidth();
+      if (singleSetWidth > 0) {
+        if (slider.scrollLeft >= singleSetWidth * 1.8) {
+          slider.scrollLeft -= singleSetWidth;
+          scrollLeft -= singleSetWidth;
+        } else if (slider.scrollLeft <= singleSetWidth * 0.2) {
+          slider.scrollLeft += singleSetWidth;
+          scrollLeft += singleSetWidth;
+        }
+      }
+    });
+
+    // Botones de navegación
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        const card0 = slider.children[0] as HTMLElement | undefined;
+        const card1 = slider.children[1] as HTMLElement | undefined;
+        const step = card0 && card1 ? card1.offsetLeft - card0.offsetLeft : 280;
+        slider.scrollBy({ left: -step, behavior: "smooth" });
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        const card0 = slider.children[0] as HTMLElement | undefined;
+        const card1 = slider.children[1] as HTMLElement | undefined;
+        const step = card0 && card1 ? card1.offsetLeft - card0.offsetLeft : 280;
+        slider.scrollBy({ left: step, behavior: "smooth" });
+      });
+    }
+
+    // Inicializar posición en el set central
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setInitialPosition();
+          }
+        });
+      });
+      observer.observe(slider);
+    } else {
+      setInitialPosition();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", initCoachSlider);
+  document.addEventListener("astro:page-load", initCoachSlider);
+</script>

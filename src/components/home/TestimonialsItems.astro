@@ -31,27 +31,29 @@ const testimonials = [
     stars: 4,
   },
 ];
-
-const backgroundImage = "/img/testimonios/bg.webp";
 ---
 
 <section
-  class="bg-gym-dark-bg bg-[url('/img/bg/bgoscuroflip.webp')] bg-cover py-20 px-4 flex justify-center items-center select-none relative"
+  id="testimonialsCarousel"
+  class="bg-gym-dark-bg bg-[url('/img/bg/bgoscuroflip.webp')] bg-cover py-10 sm:py-14 md:py-18 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 lg:px-8 flex justify-center items-center select-none relative overflow-hidden"
 >
   <img
     src="/img/bg/testimonios.webp"
     alt=""
-    class="absolute inset-0 w-7/12 h-full object-cover"
+    class="absolute inset-0 w-full sm:w-8/12 md:w-7/12 h-full object-cover opacity-30 sm:opacity-45 md:opacity-60 pointer-events-none -z-0"
   />
 
   <div
-    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 min-h-125 overflow-hidden rounded-lg shadow-2xl"
+    class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center relative z-10"
   >
+    {
+      /* Columna Izquierda: Retrato del Testimonio ampliado en vertical para ocupar casi toda el área */
+    }
     <div
-      class="md:col-span-6 relative min-h-87.5 md:min-h-full flex items-center justify-end p-4 md:p-8"
+      class="md:col-span-5 lg:col-span-5 flex items-center justify-center md:justify-end w-full"
     >
       <div
-        class="relative z-10 w-100 h-120 shadow-xl overflow-hidden transition-all duration-500"
+        class="relative w-full max-w-md sm:max-w-lg md:max-w-sm lg:max-w-md aspect-[4/5] rounded-2xl md:rounded-none overflow-hidden shadow-2xl border-4 sm:border-6 border-gym-bg mx-auto md:mr-0"
       >
         {
           testimonials.map((t, index) => (
@@ -59,39 +61,63 @@ const backgroundImage = "/img/testimonios/bg.webp";
               src={t.image}
               alt={t.name}
               data-img-index={index}
-              class={`absolute inset-0 w-full h-full object-cover border-6 border-gym-bg transition-opacity duration-700 ease-in-out ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0"}`}
+              class={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
+                index === 0
+                  ? "opacity-100 z-10 scale-100"
+                  : "opacity-0 z-0 scale-105"
+              }`}
             />
           ))
         }
       </div>
     </div>
 
-    <div class="md:col-span-6 p-4 md:p-6 flex flex-col justify-center relative">
-      <div class="relative min-h-70 mb-6">
+    {/* Columna Derecha: Tarjeta de Contenido, Cita y Navegación */}
+    <div
+      class="md:col-span-7 lg:col-span-7 flex flex-col justify-center relative w-full max-w-md sm:max-w-lg md:max-w-none mx-auto"
+    >
+      <div
+        class="relative min-h-[215px] sm:min-h-[225px] md:min-h-[260px] lg:min-h-[260px] w-full"
+      >
         {
           testimonials.map((t, index) => (
             <div
               data-text-index={index}
-              class={`absolute inset-0 transition-all duration-500 flex flex-col justify-between ${index === 0 ? "opacity-100 pointer-events-auto scale-100" : "opacity-0 pointer-events-none scale-95"}`}
+              class={`absolute inset-0 transition-all duration-500 flex flex-col justify-between ${
+                index === 0
+                  ? "opacity-100 pointer-events-auto scale-100"
+                  : "opacity-0 pointer-events-none scale-95"
+              }`}
             >
-              <div class="flex items-center justify-start gap-3">
-                <div class="bg-gym-yellow h-1 w-50" />
-                <h3 class="font-serif text-base sm:text-lg md:text-xl lg:text-3xl text-gym-yellow">
+              {/* Encabezado con Nombre y barra de acento amarilla */}
+              <div class="flex items-center justify-start gap-3 sm:gap-4">
+                <div class="bg-gym-yellow h-1 w-10 sm:w-16 md:w-24 rounded-full shrink-0" />
+                <h3 class="font-sans font-black italic text-lg sm:text-2xl md:text-3xl text-gym-yellow tracking-wide uppercase">
                   {t.name}
                 </h3>
               </div>
 
-              <div class="bg-gym-bg-card/30 rounded-lg py-8 px-4 mt-8">
-                <p class="text-gray-400 italic text-sm md:text-base leading-relaxed ">
-                  {t.text}
+              {/* Tarjeta de Testimonio y Calificación con padding compacto y ergonómico */}
+              <div class="bg-gym-bg-card/40 backdrop-blur-xs border border-white/10 rounded-xl p-4 sm:p-6 md:p-7 mt-2.5 sm:mt-4 shadow-xl flex flex-col justify-between flex-1">
+                <p class="text-secondary-200 italic text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  "{t.text}"
                 </p>
 
-                <div>
-                  <div class="flex gap-1 my-4 text-gym-yellow text-4xl">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span>{i < t.stars ? "★" : "☆"}</span>
-                    ))}
-                  </div>
+                {/* Estrellas SVG Nítidas */}
+                <div class="flex items-center gap-1.5 pt-1 sm:pt-2">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      class={`size-5 sm:size-6 transition-all duration-200 ${
+                        i < t.stars
+                          ? "fill-gym-yellow text-gym-yellow drop-shadow-[0_0_8px_rgba(255,204,0,0.35)]"
+                          : "fill-transparent stroke-gym-yellow/30 stroke-2 text-gym-yellow/30"
+                      }`}
+                    >
+                      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                    </svg>
+                  ))}
                 </div>
               </div>
             </div>
@@ -99,88 +125,52 @@ const backgroundImage = "/img/testimonios/bg.webp";
         }
       </div>
 
+      {/* Botones de Navegación Brutalistas */}
       <div
-        class="flex justify-end gap-5 mt-auto md:absolute md:bottom-28 md:right-12"
+        class="flex justify-center md:justify-end gap-4 sm:gap-5 mt-4 sm:mt-6"
       >
         <button
           id="prevBtn"
-          class="text-center
-    duration-250
-    ease-in-out
-    disabled:hover:none
-    disabled:pointer-events-none relative
-      leading-5
-      text-2xl font-serif
-      tracking-0.125
-      px-2
-      pt-[1.063rem]
-      pb-[0.938rem]
-      bg-primary-500 hover:bg-primary-400
-      text-secondary-950
-      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
-      border-2 border-primary-500 hover:border-primary-400
-      before:content-['']
-      before:w-full before:h-full before:absolute before:top-0 before:left-0
-      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
-      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
-      hover:before:translate-x-0 hover:before:translate-y-0
-      active:before:translate-x-0 active:before:translate-y-0
-       inline-flex items-center justify-center w-full cursor-pointer"
+          type="button"
+          aria-label="Testimonio anterior"
+          class="relative inline-flex items-center justify-center size-12 sm:size-14 shrink-0 bg-primary-500 hover:bg-primary-400 text-secondary-950 border-2 border-primary-500 hover:border-primary-400 cursor-pointer transition-all duration-200
+            before:content-[''] before:w-full before:h-full before:absolute before:top-0 before:left-0 before:border-2 before:border-primary-500 hover:before:border-primary-400 before:translate-y-2 before:-translate-x-2
+            before:transition-transform before:duration-200 hover:before:translate-x-0 hover:before:translate-y-0 active:scale-95"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="size-8 rotate-180"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M9 6l6 6l-6 6"></path></svg
+            class="size-6 rotate-180"
           >
+            <path d="M9 6l6 6l-6 6"></path>
+          </svg>
         </button>
+
         <button
           id="nextBtn"
-          class="text-center
-    duration-250
-    ease-in-out
-    disabled:hover:none
-    disabled:pointer-events-none relative
-      leading-5
-      text-2xl font-serif
-      tracking-0.125
-      px-2
-      pt-[1.063rem]
-      pb-[0.938rem]
-      bg-primary-500 hover:bg-primary-400
-      text-secondary-950
-      ease-[cubic-bezier(0.33, 1, 0.68, 1)]
-      border-2 border-primary-500 hover:border-primary-400
-      before:content-['']
-      before:w-full before:h-full before:absolute before:top-0 before:left-0
-      before:border-primary-500 hover:before:border-primary-400 before:border-3 before:translate-y-3 before:-translate-x-3
-      before:transition-transform before:duration-200 before:ease-[cubic-bezier(0.33, 1, 0.68, 1)]
-      hover:before:translate-x-0 hover:before:translate-y-0
-      active:before:translate-x-0 active:before:translate-y-0
-       inline-flex items-center justify-center w-full cursor-pointer"
+          type="button"
+          aria-label="Testimonio siguiente"
+          class="relative inline-flex items-center justify-center size-12 sm:size-14 shrink-0 bg-primary-500 hover:bg-primary-400 text-secondary-950 border-2 border-primary-500 hover:border-primary-400 cursor-pointer transition-all duration-200
+            before:content-[''] before:w-full before:h-full before:absolute before:top-0 before:left-0 before:border-2 before:border-primary-500 hover:before:border-primary-400 before:translate-y-2 before:-translate-x-2
+            before:transition-transform before:duration-200 hover:before:translate-x-0 hover:before:translate-y-0 active:scale-95"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
+            stroke-width="2.5"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="size-8"
-            ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-              d="M9 6l6 6l-6 6"></path></svg
+            class="size-6"
           >
+            <path d="M9 6l6 6l-6 6"></path>
+          </svg>
         </button>
       </div>
     </div>
@@ -189,17 +179,19 @@ const backgroundImage = "/img/testimonios/bg.webp";
 
 <script>
   function initSlider() {
+    const container = document.getElementById("testimonialsCarousel");
     const images = document.querySelectorAll("[data-img-index]");
     const texts = document.querySelectorAll("[data-text-index]");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
+    if (!images.length || !texts.length) return;
+
     let currentIndex = 0;
     const totalSlides = images.length;
-    let autoPlayInterval: number;
+    let autoPlayInterval: number | undefined;
 
     function showSlide(index: number) {
-      // Manejo del ciclo (cíclico)
       if (index >= totalSlides) currentIndex = 0;
       else if (index < 0) currentIndex = totalSlides - 1;
       else currentIndex = index;
@@ -207,11 +199,11 @@ const backgroundImage = "/img/testimonios/bg.webp";
       // Actualizar Imágenes
       images.forEach((img, i) => {
         if (i === currentIndex) {
-          img.classList.remove("opacity-0", "z-0");
-          img.classList.add("opacity-100", "z-10");
+          img.classList.remove("opacity-0", "z-0", "scale-105");
+          img.classList.add("opacity-100", "z-10", "scale-100");
         } else {
-          img.classList.remove("opacity-100", "z-10");
-          img.classList.add("opacity-0", "z-0");
+          img.classList.remove("opacity-100", "z-10", "scale-100");
+          img.classList.add("opacity-0", "z-0", "scale-105");
         }
       });
 
@@ -235,17 +227,19 @@ const backgroundImage = "/img/testimonios/bg.webp";
       stopAutoPlay();
       autoPlayInterval = window.setInterval(() => {
         showSlide(currentIndex + 1);
-      }, 5000); // Cambia cada 5 segundos automáticamente
+      }, 5000);
     }
 
     function stopAutoPlay() {
-      if (autoPlayInterval) clearInterval(autoPlayInterval);
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+        autoPlayInterval = undefined;
+      }
     }
 
-    // Eventos Click
     nextBtn?.addEventListener("click", () => {
       showSlide(currentIndex + 1);
-      startAutoPlay(); // Reinicia el contador para que no salte de golpe
+      startAutoPlay();
     });
 
     prevBtn?.addEventListener("click", () => {
@@ -253,13 +247,55 @@ const backgroundImage = "/img/testimonios/bg.webp";
       startAutoPlay();
     });
 
-    // Iniciar
+    // Soporte táctil (Touch Swipe) en móvil y tablet
+    if (container) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      container.addEventListener(
+        "touchstart",
+        (e: TouchEvent) => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          stopAutoPlay();
+        },
+        { passive: true },
+      );
+
+      container.addEventListener(
+        "touchend",
+        (e: TouchEvent) => {
+          const touchEndX = e.changedTouches[0].clientX;
+          const touchEndY = e.changedTouches[0].clientY;
+          const diffX = touchEndX - touchStartX;
+          const diffY = touchEndY - touchStartY;
+
+          // Si el deslizamiento horizontal es mayor al vertical y supera los 40px
+          if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+            if (diffX < 0) {
+              // Swipe izquierda -> siguiente
+              showSlide(currentIndex + 1);
+            } else {
+              // Swipe derecha -> anterior
+              showSlide(currentIndex - 1);
+            }
+          }
+          startAutoPlay();
+        },
+        { passive: true },
+      );
+
+      // Pausar autoplay al hacer hover con el ratón
+      container.addEventListener("mouseenter", stopAutoPlay);
+      container.addEventListener("mouseleave", startAutoPlay);
+    }
+
+    // Iniciar autoplay
     startAutoPlay();
   }
 
-  // Ejecutar tanto en carga inicial como si usas ViewTransitions de Astro
+  // Ejecutar tanto en carga tradicional como con Astro View Transitions
   document.addEventListener("astro:page-load", initSlider);
-  // Fallback si no usas ViewTransitions
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initSlider);
   } else {

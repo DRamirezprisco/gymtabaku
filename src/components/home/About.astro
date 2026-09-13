@@ -4,87 +4,103 @@ import Titulo from "@/components/global/Titulo.astro";
 ---
 
 <section
-  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover h-200 w-full overflow-hidden"
+  class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24"
 >
   <img
     src="/img/bg/bgyellow.webp"
     alt=""
-    class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-52 2xl:size-100"
+    class="absolute -right-10 -top-10 size-42 sm:size-50 md:size-54 lg:size-50 xl:size-52 2xl:size-84 pointer-events-none"
   />
   <img
     src="/img/bg/bgclarotexture.webp"
     alt=""
-    class="absolute -right-10 -top-10 size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-96"
+    class="absolute -right-10 -top-10 size-40 sm:size-48 md:size-52 lg:size-48 xl:size-49 2xl:size-80 pointer-events-none"
   />
 
   <div
-    class="flex justify-between gap-5 max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full mt-10"
+    class="max-w-6xl 2xl:max-w-7xl w-[calc(100%-1.5rem)] sm:w-[calc(100%-2.5rem)] lg:w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 relative z-10"
   >
-    <div class="w-1/2">
-      <div
-        class="flex flex-col gap-3 lg:mx-3 z-20 text-center md:text-left px-5 py-7 mt-14"
-      >
-        <Titulo title="sobre nosotros" />
+    <!-- Columna Izquierda: Información y Foto Mancuerna -->
+    <div class="w-full lg:w-7/12 xl:w-1/2">
+      <div class="flex flex-col gap-3 text-center lg:text-left">
+        <div class="flex justify-center lg:justify-start">
+          <Titulo title="sobre nosotros" />
+        </div>
         <h1
-          class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-bg-card-hover text-center"
+          class="my-2 text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-bold text-gym-dark-bg-card-hover tracking-tight text-center"
         >
-          ¡Más que un gimnasio. <br /> Tu hogar para entrenar!
+          ¡Más que un gimnasio. <br class="hidden sm:inline" /> Tu hogar para entrenar!
         </h1>
 
-        <div class="flex gap-2">
+        <div
+          class="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 mt-4 sm:mt-6"
+        >
           <img
             src="/img/aboutdos.webp"
-            alt=""
-            class="w-70 h-100 object-cover rounded-md"
+            alt="Mancuerna en el suelo del gimnasio"
+            class="w-full max-w-xs sm:w-44 md:w-80 lg:w-40 xl:w-56 h-48 sm:h-72 md:h-80 object-cover rounded-xl shadow-md shrink-0"
           />
-          <div>
+          <div
+            class="flex flex-col justify-between h-full text-center sm:text-left"
+          >
             <p
-              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-2 mx-1"
+              class="text-sm sm:text-base lg:text-lg text-gym-text-secondary leading-relaxed mt-2"
             >
               Aquí no eres un número más. Somos una comunidad que comparte el
               esfuerzo, la disciplina y el deseo de mejorar cada día. <strong
-                class="from-neutral-950"
+                class="text-secondary-950 font-bold"
                 >¡Entrenamos juntos, crecemos juntos!.</strong
               >
             </p>
             <p
-              class="text-letter md:text-base xl:text-lg text-gym-text-secondary mt-4 mx-1"
+              class="text-sm sm:text-base lg:text-lg text-gym-text-secondary leading-relaxed mt-3 sm:mt-4"
             >
               Entrena en un espacio cómodo, con el acompañamiento de
               profesionales que realmente se preocupan por tu progreso.
             </p>
-            <div class="w-full pt-8 px-4">
-              <Button text="horarios" url="/" />
+            <div class="pt-6 sm:pt-8 flex justify-center sm:justify-start">
+              <Button text="horarios" url="/horarios" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="relative w-1/2 flex items-center justify-center z-20">
-      <div class="w-[110%] absolute inset-0 flex justify-center items-center">
+
+    <!-- Columna Derecha: Composición Gráfica con Atletas -->
+    <div
+      class="hidden lg:flex relative w-full lg:w-5/12 xl:w-1/2 items-center justify-center pt-8 sm:pt-10 lg:pt-0"
+    >
+      <!-- Franjas diagonales amarillas de fondo -->
+      <div
+        class="flex w-[110%] absolute inset-0 justify-center items-center pointer-events-none"
+      >
         <div
-          class="bg-gym-yellow h-2 w-full -rotate-45 -translate-x-20 -translate-y-4"
-        >
-        </div>
-      </div>
-      <div class="w-[110%] absolute inset-0 flex justify-center items-center">
-        <div
-          class="bg-gym-yellow h-1 w-full -rotate-45 -translate-x-15 translate-y-1"
+          class="bg-gym-yellow h-1.5 sm:h-2 w-full -rotate-45 -translate-x-12 sm:-translate-x-20 -translate-y-4"
         >
         </div>
       </div>
       <div
-        class="relative after:content-[''] after:absolute after:bg-gym-bg-card-hover/95 after:rounded-sm after:mt-16 after:mr-36 after:-ml-7 after:h-9/12 after:w-full after:-z-10 after:-top-1"
+        class="flex w-[110%] absolute inset-0 justify-center items-center pointer-events-none"
+      >
+        <div
+          class="bg-gym-yellow h-0.5 sm:h-1 w-full -rotate-45 -translate-x-8 sm:-translate-x-15 translate-y-2"
+        >
+        </div>
+      </div>
+
+      <!-- Contenedor con silueta de fondo oscuro, logo flotante y foto de los atletas -->
+      <div
+        class="relative after:content-[''] after:absolute after:bg-gym-bg-card-hover/95 after:rounded-xl after:mt-10 sm:after:mt-16 after:mr-12 sm:after:mr-24 lg:after:mr-32 after:-ml-4 sm:after:-ml-6 after:h-4/5 sm:after:h-5/6 after:w-full after:-z-10 after:top-2 sm:after:-top-1"
       >
         <img
           src="/img/logo.webp"
-          alt=""
-          class="absolute size-22 2xl:size-26 top-40 -left-18"
+          alt="logo gym tabaku"
+          class="absolute size-14 sm:size-18 md:size-20 lg:size-22 xl:size-26 top-20 sm:top-28 md:top-36 lg:top-40 -left-6 sm:-left-10 md:-left-14 lg:-left-16 drop-shadow-lg z-10"
         />
         <img
           src="/img/about.webp"
-          alt=""
-          class="w-auto h-full xl:h-150 2xl:h-138"
+          alt="Entrenadores Gym Tabaku"
+          class="w-auto max-h-72 sm:max-h-96 md:max-h-[28rem] lg:max-h-[32rem] xl:max-h-[36rem] 2xl:max-h-[40rem] object-contain"
         />
       </div>
     </div>

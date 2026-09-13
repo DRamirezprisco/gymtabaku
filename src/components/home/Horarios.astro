@@ -4,33 +4,33 @@ import HorariosItems from "@/components/home/HorariosItems.astro";
 ---
 
 <section
-  class="relative bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover min-h-screen w-full overflow-hidden"
+  class="relative bg-gym-dark-bg bg-[url('/img/bg/bgoscuro.webp')] z-0 bg-cover w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden"
 >
   <div
-    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+    class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"
   >
-    <div class="flex flex-col gap-3 lg:mx-3 z-20 text-center px-5 py-7 mt-14">
+    <div class="flex flex-col gap-3 text-center py-4 mb-4">
       <Titulo title="nuestros horarios" isdark />
       <h1
-        class="my-2 sm:text-4xl md:text-2xl xl:text-3xl text-gym-dark-text-primary"
+        class="font-serif font-bold text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl text-gym-dark-text-primary my-2 sm:my-3"
       >
         Siempre hay tiempo para tu mejor versión
       </h1>
       <p
-        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+        class="text-center text-sm sm:text-base lg:text-lg text-gym-dark-text-secondary max-w-3xl mx-auto leading-relaxed"
       >
         Tu ritmo de vida no se detiene, y nosotros tampoco. Abrimos todos los
         días del año para que puedas entrenar cuando mejor te convenga.
       </p>
       <p
-        class="text-center md:text-base xl:text-lg text-gym-dark-text-secondary"
+        class="text-center text-sm sm:text-base lg:text-lg text-gym-dark-text-secondary max-w-3xl mx-auto leading-relaxed"
       >
         No importa si es lunes, domingo o un día festivo. Nuestro compromiso con
         tu bienestar está presente todos los días del año.
       </p>
     </div>
 
-    <div class="w-full pb-5 px-4">
+    <div class="w-full">
       <HorariosItems />
     </div>
   </div>

@@ -1,46 +1,151 @@
 ---
+// PreciosItems.astro
 const prices = [
-    {
-        price: 70,
-        duration: "1 Mes",
-    },
-    {
-        price: 170,
-        duration: "3 Meses",
-    },
-    {
-        price: 270,
-        duration: "5 Meses",
-    },
-    {
-        price: 400,
-        duration: "8 Meses",
-    },
-    {
-        price: 520,
-        duration: "1 Año",
-    },
+  {
+    price: "70.000",
+    duration: "1 MES",
+    isVip: false,
+    isActive: false,
+  },
+  {
+    price: "170.000",
+    duration: "3 MESES",
+    isVip: false,
+    isActive: false,
+  },
+  {
+    price: "270.000",
+    duration: "5 MESES",
+    isVip: false,
+    isActive: true,
+  },
+  {
+    price: "400.000",
+    duration: "8 MESES",
+    isVip: false,
+    isActive: false,
+  },
+  {
+    price: "520.000",
+    duration: "1 AÑO",
+    isVip: true,
+    isActive: false,
+  },
 ];
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mt-30 z-10">
-    {
-        prices.map((price) => {
-            return (
-                <div class="bg-gym-dark-bg-card-hover rounded-md p-6 w-60 h-40 flex flex-col items-center justify-center gap-4 overflow-hidden relative z-0 transition-all duration-500 hover:-translate-y-3 hover:border-gym-yellow border-2 hover:shadow-[0_0_40px_rgba(239,68,68,.25)] cursor-pointer ">
-                    <img
-                        src="/img/bg/bgclaro.webp"
-                        alt=""
-                        class="absolute top-0 right-0 h-30 -z-10"
-                    />
-                    <h2 class="bg-gym-yellow p-4 rounded-md text-2xl font-bold absolute top-4 left-4">
-                        ${price.price} <span class="text-xs -ml-0.5">.000</span>
-                    </h2>
-                    <p class="text-gym-dark-text-primary text-bold text-2xl absolute bottom-6">
-                        {price.duration}
-                    </p>
-                </div>
-            );
-        })
-    }
+<div
+  id="pricesContainer"
+  class="max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto w-full mt-8 sm:mt-12 px-4 sm:px-6 flex flex-col space-y-1"
+>
+  {
+    prices.map((item) => (
+      /* Cada tarjeta tiene su propio skew individual (-skew-x-6 en móvil, -skew-x-12 en sm+).
+         Por defecto la tarjeta con isActive: true se muestra más grande (scale) y con color bg-primary-500.
+         Al hacer hover sobre otra tarjeta, la anterior se desactiva y la nueva toma el protagonismo.
+         Al retirar el cursor, la tarjeta por defecto vuelve a activarse. */
+      <div
+        data-price-card
+        data-default-active={item.isActive ? "true" : undefined}
+        data-active={item.isActive ? "true" : "false"}
+        class="group relative flex items-stretch rounded-lg sm:rounded-xl overflow-hidden -skew-x-6 sm:-skew-x-12 cursor-pointer select-none transition-all duration-300 ease-out
+          data-[active=true]:border-gym-yellow data-[active=true]:shadow-[0_0_30px_rgba(255,204,0,0.28)] data-[active=true]:scale-115 sm:data-[active=true]:scale-115 data-[active=true]:z-20
+          data-[active=false]:border-transparent data-[active=false]:shadow-md data-[active=false]:scale-100 data-[active=false]:z-10"
+      >
+        {/* Lado Izquierdo (Oscuro con textura bgmenu.webp) */}
+        <div class="flex-1 flex items-center gap-3 sm:gap-5 pl-4 sm:pl-7 md:pl-8 py-3 sm:py-4 md:py-4.5 min-w-0 bg-gym-dark-bg bg-[url('/img/bg/bgmenu.webp')] bg-cover bg-center relative">
+          <div class="absolute inset-0" />
+
+          {/* Contenido con des-skew para mantenerse recto y legible */}
+          <div class="relative z-10 flex items-center gap-3 sm:gap-5 min-w-0 skew-x-6 sm:skew-x-12">
+            {item.isVip ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="size-6 sm:size-8 md:size-9 shrink-0 text-gym-yellow fill-gym-yellow drop-shadow-sm transition-transform duration-300 group-data-[active=true]:scale-120"
+              >
+                <path d="M2 19h20v2H2v-2zM2 6l5 4 5-7 5 7 5-4v11H2V6z" />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="size-6 sm:size-8 md:size-9 shrink-0 text-gym-yellow fill-gym-yellow drop-shadow-sm transition-transform duration-300 group-data-[active=true]:scale-120"
+              >
+                <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2zm-8 4h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z" />
+              </svg>
+            )}
+
+            <span class="font-sans font-black italic text-lg sm:text-2xl md:text-3xl text-white tracking-wider truncate uppercase">
+              {item.duration}
+            </span>
+          </div>
+        </div>
+
+        {/* Lado Derecho: Insignia de Precio en Amarillo Gym Tabaku */}
+        <div
+          class="w-[32%] sm:w-[38%] md:w-[36%] flex items-center justify-center sm:justify-start pl-4 sm:pl-7 md:pl-9 pr-3 sm:pr-6 py-3 sm:py-4 md:py-4.5 shrink-0 transition-colors duration-200
+            group-data-[active=true]:bg-primary-500 group-data-[active=false]:bg-primary-400"
+        >
+          {/* Precio con des-skew para mantenerse recto y legible */}
+          <span class="font-sans font-black italic text-lg sm:text-2xl md:text-3xl text-secondary-950 tracking-tight whitespace-nowrap skew-x-6 sm:skew-x-12">
+            $ {item.price}
+          </span>
+        </div>
+      </div>
+    ))
+  }
 </div>
+
+<script>
+  function initPriceCards() {
+    const container = document.getElementById("pricesContainer");
+    if (!container) return;
+
+    const cards = Array.from(
+      container.querySelectorAll<HTMLElement>("[data-price-card]"),
+    );
+    const defaultCard = container.querySelector<HTMLElement>(
+      "[data-default-active='true']",
+    );
+
+    function setActive(targetCard: HTMLElement | null) {
+      cards.forEach((card) => {
+        const isTarget = card === targetCard;
+        card.setAttribute("data-active", isTarget ? "true" : "false");
+      });
+    }
+
+    // Inicializar con la tarjeta por defecto activa
+    setActive(defaultCard);
+
+    // Eventos hover y touch en cada tarjeta
+    cards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        setActive(card);
+      });
+
+      // Soporte táctil para móvil / tablet
+      card.addEventListener(
+        "touchstart",
+        () => {
+          setActive(card);
+        },
+        { passive: true },
+      );
+    });
+
+    // Al salir el cursor del contenedor completo, volver a activar la tarjeta por defecto
+    container.addEventListener("mouseleave", () => {
+      setActive(defaultCard);
+    });
+  }
+
+  // Ejecutar en carga inicial y tras transiciones de Astro
+  document.addEventListener("astro:page-load", initPriceCards);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPriceCards);
+  } else {
+    initPriceCards();
+  }
+</script>

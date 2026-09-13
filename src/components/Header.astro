@@ -4,41 +4,42 @@ import Button from "@/components/global/Button.astro";
 ---
 
 <header
-  class="relative bg-secondary-950 bg-[url('/img/bg/heeder.webp')] bg-cover h-175 md:h-235 w-full overflow-hidden"
+  class="relative bg-secondary-950 bg-[url('/img/bg/heeder.webp')] bg-cover bg-center md:bg-right-bottom min-h-[42rem] sm:min-h-[46rem] md:min-h-[48rem] lg:min-h-[52rem] xl:min-h-screen w-full flex flex-col justify-between overflow-hidden pb-10 sm:pb-16"
 >
   <Menu />
 
   <div
-    class="max-w-md sm:max-w-lg md:max-w-4xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full"
+    class="relative z-10 max-w-6xl 2xl:max-w-7xl w-[calc(100%-1.5rem)] sm:w-[calc(100%-2.5rem)] lg:w-full mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 my-auto pt-6 sm:pt-8 md:pt-10"
   >
     <div
-      class="bg-secondary-800/50 rounded-xl animate-fade-in-up lg:mx-3 w-lg z-20 text-center px-5 py-7 mt-14"
+      class="bg-secondary-950/50 backdrop-blur-md rounded-2xl sm:rounded-3xl border border-white/10 shadow-2xl p-6 sm:p-8 md:p-10 w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl mx-auto lg:mx-0 xl:-translate-x-7 text-center lg:text-left transition-all duration-300"
     >
       <h3
-        class="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-secondary-50"
+        class="font-bold text-sm sm:text-base md:text-lg lg:text-xl text-secondary-100 tracking-wide"
       >
         ¡Entrena con fuerza. Crece en familia!
       </h3>
       <h1
-        class="my-5 text-4xl sm:text-5xl md:text-3xl xl:text-6xl font-bold uppercase font-serif text-primary-500"
+        class="my-3 sm:my-4 text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif font-bold uppercase text-primary-500 tracking-wider"
       >
         GYM TABAKU
       </h1>
       <p
-        class="my-5 text-letter text-base sm:text-lg xl:text-xl font-medium text-secondary-200"
+        class="my-3 sm:my-4 text-sm sm:text-base lg:text-lg font-normal text-secondary-200 leading-relaxed"
       >
         Creamos un espacio donde cada persona importa, con un ambiente acogedor.
-        Aqui el ejercicio se vive con confianza y acompañamiento, no solo es
+        Aquí el ejercicio se vive con confianza y acompañamiento, no solo es
         motivación sino contar con un equipo comprometido con tu bienestar.
       </p>
 
       <p
-        class="my-5 text-letter text-base sm:text-lg xl:text-xl font-medium text-secondary-200"
+        class="my-3 sm:my-4 text-sm sm:text-base lg:text-lg font-medium text-secondary-300 leading-relaxed"
       >
         Porque alcanzar tus objetivos es más fácil cuando no lo haces solo.
       </p>
-      <div class="w-full pb-5 px-4">
-        <Button text="Contactanos" url="/" />
+
+      <div class="pt-4 sm:pt-6 flex justify-center lg:justify-start">
+        <Button text="Contactanos" url="/contactanos" />
       </div>
     </div>
   </div>
