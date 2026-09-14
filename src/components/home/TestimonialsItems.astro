@@ -18,12 +18,13 @@ const testimonials = TESTIMONIALS_DATA;
 
   <div
     class="max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center relative z-10"
+    data-reveal-group
   >
     {
       /* Columna Izquierda: Retrato del Testimonio ampliado en vertical para ocupar casi toda el área */
     }
     <div
-      class="md:col-span-5 lg:col-span-5 flex items-center justify-center md:justify-end w-full"
+      class="testimonial-col-img md:col-span-5 lg:col-span-5 flex items-center justify-center md:justify-end w-full"
       data-reveal="fade-right"
       data-reveal-delay="200"
     >
@@ -49,7 +50,7 @@ const testimonials = TESTIMONIALS_DATA;
 
     {/* Columna Derecha: Tarjeta de Contenido, Cita y Navegación */}
     <div
-      class="md:col-span-7 lg:col-span-7 flex flex-col justify-center relative w-full max-w-md sm:max-w-lg md:max-w-none mx-auto"
+      class="testimonial-col-text md:col-span-7 lg:col-span-7 flex flex-col justify-center relative w-full max-w-md sm:max-w-lg md:max-w-none mx-auto"
       data-reveal="fade-left"
       data-reveal-delay="400"
     >
@@ -277,3 +278,20 @@ const testimonials = TESTIMONIALS_DATA;
     initSlider();
   }
 </script>
+
+<style>
+  @media (max-width: 767px) {
+    .testimonial-col-img[data-reveal],
+    .testimonial-col-text[data-reveal] {
+      transform: translate3d(0, 30px, 0) !important;
+      transition-delay: 150ms !important;
+      transition-duration: 0.8s !important;
+    }
+    .testimonial-col-img[data-reveal].is-revealed,
+    .testimonial-col-text[data-reveal].is-revealed {
+      transform: translate3d(0, 0, 0) !important;
+      opacity: 1 !important;
+    }
+  }
+</style>
+
