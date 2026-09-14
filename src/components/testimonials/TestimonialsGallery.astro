@@ -14,6 +14,11 @@ const { title = "Nuestros Eventos" } = Astro.props;
 const events: EventItem[] = COMMUNITY_EVENTS;
 ---
 
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
 <section
     class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
 >
@@ -84,64 +89,214 @@ const events: EventItem[] = COMMUNITY_EVENTS;
             data-reveal-delay="500"
         >
             {
-                events.map((event, index) => (
-                    <div
-                        data-event-gallery={event.id}
-                        class:list={[
-                            "event-gallery-item transition-all duration-500",
-                            index === 0 ? "block opacity-100" : "hidden opacity-0",
-                        ]}
-                    >
-                        <!-- Foto Destacada Principal -->
-                        <div class="relative w-full aspect-video sm:aspect-[16/9] md:aspect-[21/9] max-h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-secondary-900 group">
-                            <img
-                                data-featured-img
-                                src={event.featured.src}
-                                alt={event.featured.alt}
-                                class="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-102"
-                                loading="lazy"
-                            />
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-                            <div class="absolute bottom-3 left-3 sm:bottom-5 sm:left-6 right-3 sm:right-6 pointer-events-none">
-                                <span class="bg-primary-500 text-secondary-950 font-bold text-xs sm:text-sm uppercase tracking-wider px-2.5 py-1 rounded-md shadow-md inline-block mb-1.5">
-                                    {event.name}
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Miniaturas de Fotos: 2 cols en móvil, 3 en sm, 5 en md+ -->
-                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-3 md:gap-4 mt-3 sm:mt-4 md:mt-5">
-                            {event.thumbnails.map((thumb, tIdx) => (
-                                <button
-                                    type="button"
-                                    data-thumb-src={thumb.src}
-                                    data-thumb-alt={thumb.alt}
-                                    class:list={[
-                                        "thumb-btn relative aspect-square rounded-xl overflow-hidden cursor-pointer shadow-md transition-all duration-200 border-2 select-none group",
-                                        tIdx === 0
-                                            ? "border-gym-yellow ring-2 ring-gym-yellow/50 scale-102"
-                                            : "border-transparent hover:border-gym-yellow/70 hover:scale-105",
-                                    ]}
-                                    aria-label={`Ver ${thumb.alt}`}
-                                >
+                events.map((event, index) => {
+                    const allEventImages = [event.featured, ...event.thumbnails];
+                    return (
+                        <div
+                            data-event-gallery={event.id}
+                            class:list={[
+                                "event-gallery-item transition-all duration-500",
+                                index === 0 ? "block opacity-100" : "hidden opacity-0",
+                            ]}
+                        >
+                            <!-- VISTA DESKTOP (>= md: 768px): Panel Principal + Grid de Miniaturas -->
+                            <div class="hidden md:block">
+                                <!-- Foto Destacada Principal -->
+                                <div class="relative w-full aspect-video md:aspect-[21/9] max-h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-secondary-900 group">
                                     <img
-                                        src={thumb.src}
-                                        alt={thumb.alt}
-                                        class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+                                        data-featured-img
+                                        src={event.featured.src}
+                                        alt={event.featured.alt}
+                                        class="w-full h-full object-cover object-center transition-all duration-300 group-hover:scale-102"
                                         loading="lazy"
                                     />
-                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-200" />
-                                </button>
-                            ))}
+                                </div>
+
+                                <!-- Miniaturas de Fotos (5 columnas en Desktop) -->
+                                <div class="grid grid-cols-5 gap-3 md:gap-4 mt-4 md:mt-5">
+                                    {event.thumbnails.map((thumb, tIdx) => (
+                                        <button
+                                            type="button"
+                                            data-thumb-src={thumb.src}
+                                            data-thumb-alt={thumb.alt}
+                                            class:list={[
+                                                "thumb-btn relative aspect-square rounded-xl overflow-hidden cursor-pointer shadow-md transition-all duration-200 border-2 select-none group",
+                                                tIdx === 0
+                                                    ? "border-gym-yellow ring-2 ring-gym-yellow/50 scale-102"
+                                                    : "border-transparent hover:border-gym-yellow/70 hover:scale-105",
+                                            ]}
+                                            aria-label={`Ver ${thumb.alt}`}
+                                        >
+                                            <img
+                                                src={thumb.src}
+                                                alt={thumb.alt}
+                                                class="w-full h-full object-cover object-center transition-transform duration-300 group-hover:scale-110"
+                                                loading="lazy"
+                                            />
+                                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-200" />
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <!-- VISTA MÓVIL (< md: 768px): Slider de Imagen Grande con Bucle Infinito -->
+                            <div class="block md:hidden">
+                                <div class="relative w-full">
+                                    <div class="swiper event-mobile-swiper rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-secondary-900">
+                                        <div class="swiper-wrapper">
+                                            {allEventImages.map((img, imgIdx) => (
+                                                <div class="swiper-slide w-full">
+                                                    <div class="relative w-full aspect-video sm:aspect-[16/9] max-h-[460px] overflow-hidden select-none">
+                                                        <img
+                                                            src={img.src}
+                                                            alt={img.alt}
+                                                            class="w-full h-full object-cover object-center"
+                                                            loading={imgIdx === 0 ? "eager" : "lazy"}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <!-- Flechas Flotantes Superpuestas en Móvil -->
+                                        <button
+                                            type="button"
+                                            class="event-slider-prev absolute left-2 top-1/2 -translate-y-1/2 z-20 size-9 sm:size-10 rounded-full bg-secondary-950/80 hover:bg-primary-500 text-gym-yellow hover:text-secondary-950 border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-lg active:scale-90"
+                                            aria-label="Foto anterior"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="size-5"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            >
+                                                <path d="m15 18-6-6 6-6" />
+                                            </svg>
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            class="event-slider-next absolute right-2 top-1/2 -translate-y-1/2 z-20 size-9 sm:size-10 rounded-full bg-secondary-950/80 hover:bg-primary-500 text-gym-yellow hover:text-secondary-950 border border-white/20 flex items-center justify-center transition-all duration-200 cursor-pointer shadow-lg active:scale-90"
+                                            aria-label="Foto siguiente"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="size-5"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2.5"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            >
+                                                <path d="m9 18 6-6-6-6" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Barra inferior con Bullets y Contador -->
+                                    <div class="flex items-center justify-between px-1 mt-2.5 sm:mt-3 text-xs font-semibold text-gym-text-secondary select-none">
+                                        <div class="event-slider-pagination flex items-center gap-1.5"></div>
+                                        <span class="event-slider-counter font-mono tracking-wider text-gym-dark-bg-card-hover font-bold bg-secondary-900/10 px-2 py-0.5 rounded">
+                                            1 / {allEventImages.length}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))
+                    );
+                })
             }
         </div>
     </div>
 </section>
 
 <script>
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+    let eventSwipers: Swiper[] = [];
+
+    function initMobileEventSliders() {
+        eventSwipers.forEach((s) => {
+            try {
+                s.destroy(true, true);
+            } catch {}
+        });
+        eventSwipers = [];
+
+        document
+            .querySelectorAll<HTMLElement>(".event-gallery-item")
+            .forEach((galleryItem) => {
+                const sliderEl = galleryItem.querySelector<HTMLElement>(
+                    ".event-mobile-swiper",
+                );
+                if (!sliderEl) return;
+
+                const prevBtn = galleryItem.querySelector<HTMLElement>(
+                    ".event-slider-prev",
+                );
+                const nextBtn = galleryItem.querySelector<HTMLElement>(
+                    ".event-slider-next",
+                );
+                const paginationEl = galleryItem.querySelector<HTMLElement>(
+                    ".event-slider-pagination",
+                );
+                const counterEl = galleryItem.querySelector<HTMLElement>(
+                    ".event-slider-counter",
+                );
+                const totalSlides =
+                    sliderEl.querySelectorAll(
+                        ".swiper-slide:not(.swiper-slide-duplicate)",
+                    ).length || 6;
+
+                function updateCounter(swiper: Swiper) {
+                    if (!counterEl) return;
+                    const current = (swiper.realIndex ?? 0) + 1;
+                    counterEl.textContent = `${current} / ${totalSlides}`;
+                }
+
+                const swiper = new Swiper(sliderEl, {
+                    modules: [Navigation, Pagination, Autoplay],
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    loop: true,
+                    grabCursor: true,
+                    observer: true,
+                    observeParents: true,
+                    navigation: {
+                        prevEl: prevBtn,
+                        nextEl: nextBtn,
+                    },
+                    pagination: {
+                        el: paginationEl,
+                        clickable: true,
+                        bulletClass: "event-bullet",
+                        bulletActiveClass: "event-bullet-active",
+                    },
+                    autoplay: {
+                        delay: 4000,
+                        disableOnInteraction: true,
+                        pauseOnMouseEnter: true,
+                    },
+                    on: {
+                        init(s) {
+                            updateCounter(s);
+                        },
+                        slideChange(s) {
+                            updateCounter(s);
+                        },
+                    },
+                });
+
+                eventSwipers.push(swiper);
+            });
+    }
+
     function initTestimonialsGallery() {
         const filterButtons = document.querySelectorAll<HTMLButtonElement>(
             "[data-event-filter]",
@@ -151,6 +306,9 @@ const events: EventItem[] = COMMUNITY_EVENTS;
         );
 
         if (!filterButtons.length || !galleryItems.length) return;
+
+        // Inicializar sliders móviles
+        initMobileEventSliders();
 
         // 1. Manejador de Pestañas de Eventos
         filterButtons.forEach((btn) => {
@@ -209,12 +367,17 @@ const events: EventItem[] = COMMUNITY_EVENTS;
                         gallery.getAttribute("data-event-gallery") ===
                         targetFilter;
                     if (isMatch) {
-                        gallery.classList.remove("hidden");
-                        gallery.classList.add("block");
-                        requestAnimationFrame(() => {
-                            gallery.classList.remove("opacity-0");
-                            gallery.classList.add("opacity-100");
-                        });
+                        gallery.classList.remove("hidden", "opacity-0");
+                        gallery.classList.add("block", "opacity-100");
+
+                        // Actualizar Swiper móvil de esta galería
+                        const mobileSwiper = gallery.querySelector<
+                            HTMLElement & { swiper?: Swiper }
+                        >(".event-mobile-swiper")?.swiper;
+                        if (mobileSwiper) {
+                            mobileSwiper.update();
+                            mobileSwiper.slideToLoop(0, 0);
+                        }
                     } else {
                         gallery.classList.add("hidden", "opacity-0");
                         gallery.classList.remove("block", "opacity-100");
@@ -223,13 +386,10 @@ const events: EventItem[] = COMMUNITY_EVENTS;
             });
         });
 
-        // 2. Manejador de Clic en Miniaturas para cambiar la foto destacada
+        // 2. Manejador de Clic en Miniaturas para cambiar la foto destacada en Desktop
         galleryItems.forEach((gallery) => {
             const featuredImg = gallery.querySelector<HTMLImageElement>(
                 "[data-featured-img]",
-            );
-            const featuredCaption = gallery.querySelector<HTMLElement>(
-                "[data-featured-caption]",
             );
             const thumbButtons =
                 gallery.querySelectorAll<HTMLButtonElement>("[data-thumb-src]");
@@ -250,8 +410,6 @@ const events: EventItem[] = COMMUNITY_EVENTS;
                         featuredImg.src = newSrc;
                         if (newAlt) {
                             featuredImg.alt = newAlt;
-                            if (featuredCaption)
-                                featuredCaption.textContent = newAlt;
                         }
                         featuredImg.style.opacity = "1";
                         featuredImg.style.transform = "scale(1)";
@@ -297,3 +455,21 @@ const events: EventItem[] = COMMUNITY_EVENTS;
         initTestimonialsGallery();
     }
 </script>
+
+<style is:global>
+    .event-bullet {
+        width: 8px;
+        height: 8px;
+        border-radius: 9999px;
+        background-color: rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        display: inline-block;
+    }
+    .event-bullet-active {
+        width: 22px;
+        border-radius: 9999px;
+        background-color: #ffde4d !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    }
+</style>
