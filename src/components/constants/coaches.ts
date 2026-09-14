@@ -152,8 +152,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Jairo Rodriguez",
       role: "Instructor de Clases Grupales",
-      img: "/img/coach/coachJairoSF.png",
-      imgHover: "/img/coach/coachJairoSF.png",
+      img: "/img/coach/coachJairoSF.webp",
+      imgHover: "/img/coach/coachJairoSF.webp",
     },
     description: {
       tittle: "Jairo Rodriguez",
