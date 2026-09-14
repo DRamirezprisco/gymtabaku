@@ -38,8 +38,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Andres Sanchez",
       role: "Personal Trainer",
-      img: "/img/coach/coach7SF.png",
-      imgHover: "/img/coach/coach7SF.png",
+      img: "/img/coach/coachAndresSF.png",
+      imgHover: "/img/coach/coachAndresSF.png",
     },
     description: {
       tittle: "Andres Sanchez",
@@ -50,24 +50,24 @@ export const COACHES_DATA: Coach[] = [
         "Mi acompañamiento parte de conocer tus objetivos y condición física para crear un entrenamiento adaptado a ti, cuidando cada movimiento, corrigiendo tu técnica y haciendo seguimiento de tus avances.",
       description3:
         "Tu proceso es único. Mi compromiso es acompañarte en cada paso.",
-      img: "/img/coach/coachandres.jpg",
+      img: "/img/coach/coachDescriptionAndres.jpg",
       video: "/img/coach/coach1.mp4",
     },
     gallery: [
       {
-        img: "/img/coach/coach1.webp",
+        img: "/img/coach/coaches1.webp",
         alt: "Andres Sanchez",
       },
       {
-        img: "/img/coach/coach2.webp",
+        img: "/img/coach/coaches2.webp",
         alt: "Andres Sanchez",
       },
       {
-        img: "/img/coach/coach3.webp",
+        img: "/img/coach/coaches3.webp",
         alt: "Andres Sanchez",
       },
       {
-        img: "/img/coach/coach4.webp",
+        img: "/img/coach/coaches4.webp",
         alt: "Andres Sanchez",
       },
     ],
@@ -76,8 +76,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Jorge Rodriguez",
       role: "Personal Trainer",
-      img: "/img/coach/coach8SF.png",
-      imgHover: "/img/coach/coach8SF.png",
+      img: "/img/coach/coachJorgeSF.png",
+      imgHover: "/img/coach/coachJorgeSF.png",
     },
     description: {
       tittle: "Jorge Rodriguez",
@@ -88,20 +88,24 @@ export const COACHES_DATA: Coach[] = [
         "Su acompañamiento parte de conocer tus objetivos y condición física para crear un entrenamiento adaptado a ti, cuidando cada movimiento, corrigiendo tu técnica y haciendo seguimiento de tus avances.",
       description3:
         "“Tu proceso es único. Mi compromiso es acompañarte en cada paso.”",
-      img: "/img/coach/coachjorge.jpg",
+      img: "/img/coach/coachDescriptionJorge.jpg",
       video: "/img/coach/coach2.mp4",
     },
     gallery: [
       {
-        img: "/img/coach/coach5.webp",
+        img: "/img/coach/coaches1.webp",
         alt: "Jorge Rodriguez",
       },
       {
-        img: "/img/coach/coach3.webp",
+        img: "/img/coach/coaches2.webp",
         alt: "Jorge Rodriguez",
       },
       {
-        img: "/img/coach/coach1.webp",
+        img: "/img/coach/coaches3.webp",
+        alt: "Jorge Rodriguez",
+      },
+      {
+        img: "/img/coach/coaches4.webp",
         alt: "Jorge Rodriguez",
       },
     ],
@@ -110,8 +114,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Jeferson Danilo",
       role: "Entrenador Personalizado",
-      img: "/img/coach/coach6SF.png",
-      imgHover: "/img/coach/coach6SF.png",
+      img: "/img/coach/coachJeferSF.png",
+      imgHover: "/img/coach/coachJeferSF.png",
     },
     description: {
       tittle: "Jeferson Danilo",
@@ -122,24 +126,24 @@ export const COACHES_DATA: Coach[] = [
         "Su acompañamiento parte de conocer tus objetivos y condición física para crear un entrenamiento adaptado a ti, cuidando cada movimiento, corrigiendo tu técnica y haciendo seguimiento de tus avances.",
       description3:
         "“Tu proceso es único. Mi compromiso es acompañarte en cada paso.”",
-      img: "/img/coach/coachjefer.jpg",
+      img: "/img/coach/coachDescriptionJefer.jpg",
       video: "/img/coach/coach3.mp4",
     },
     gallery: [
       {
-        img: "/img/coach/coach2.webp",
+        img: "/img/coach/coaches1.webp",
         alt: "Jeferson Danilo",
       },
       {
-        img: "/img/coach/coach4.webp",
+        img: "/img/coach/coaches2.webp",
         alt: "Jeferson Danilo",
       },
       {
-        img: "/img/coach/coach1.webp",
+        img: "/img/coach/coaches3.webp",
         alt: "Jeferson Danilo",
       },
       {
-        img: "/img/coach/coach3.webp",
+        img: "/img/coach/coaches4.webp",
         alt: "Jeferson Danilo",
       },
     ],
@@ -148,8 +152,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Jairo Rodriguez",
       role: "Instructor de Clases Grupales",
-      img: "/img/coach/coach6SF.png",
-      imgHover: "/img/coach/coach6SF.png",
+      img: "/img/coach/coachJairoSF.png",
+      imgHover: "/img/coach/coachJairoSF.png",
     },
     description: {
       tittle: "Jairo Rodriguez",
@@ -157,27 +161,27 @@ export const COACHES_DATA: Coach[] = [
       description:
         "Con energía, alegría y mucho ritmo, transforma cada clase en un momento para disfrutar, moverse y compartir. Su cercanía con los alumnos crea un ambiente donde todos pueden sentirse cómodos, sin importar su nivel o experiencia.",
       description2:
-        "Sus clases combinan música, movimiento y diversión para ayudarte a mantenerte activo mientras disfrutas del entrenamiento en compañía.",
+        "Sus clases combinan música, movimiento y diversión para ayudarte a mantenerte activo mientras enjoys del entrenamiento en compañía.",
       description3:
         "“Aquí vienes a moverte, disfrutar y contagiarte de nuestra energía.”",
-      img: "/img/coach/coaches.webp",
+      img: "/img/coach/coachDescriptionJairo.webp",
       video: undefined,
     },
     gallery: [
       {
-        img: "/img/coach/coach4.webp",
+        img: "/img/coach/coaches1.webp",
         alt: "Jairo Rodriguez",
       },
       {
-        img: "/img/coach/coach2.webp",
+        img: "/img/coach/coaches2.webp",
         alt: "Jairo Rodriguez",
       },
       {
-        img: "/img/coach/coach1.webp",
+        img: "/img/coach/coaches3.webp",
         alt: "Jairo Rodriguez",
       },
       {
-        img: "/img/coach/coach3.webp",
+        img: "/img/coach/coaches4.webp",
         alt: "Jairo Rodriguez",
       },
     ],
@@ -186,8 +190,8 @@ export const COACHES_DATA: Coach[] = [
     header: {
       name: "Ewduar Lopez",
       role: "Profesor de Baile",
-      img: "/img/coach/coach7SF.png",
-      imgHover: "/img/coach/coach7SF.png",
+      img: "/img/coach/coachAndresSF.png",
+      imgHover: "/img/coach/coachAndresSF.png",
     },
     description: {
       tittle: "Ewduar Lopez",
@@ -198,24 +202,24 @@ export const COACHES_DATA: Coach[] = [
         "Sus clases combinan música, movimiento y diversión para ayudarte a mantenerte activo mientras disfrutas del entrenamiento en compañía.",
       description3:
         "“Aquí vienes a moverte, disfrutar y contagiarte de nuestra energía.”",
-      img: "/img/coach/coaches.webp",
-      video: undefined,
+      img: "/img/coach/coachDescriptionAndres.webp",
+      video: undefined
     },
     gallery: [
       {
-        img: "/img/coach/coach3.webp",
+        img: "/img/coach/coaches1.webp",
         alt: "Ewduar Lopez",
       },
       {
-        img: "/img/coach/coach1.webp",
+        img: "/img/coach/coaches2.webp",
         alt: "Ewduar Lopez",
       },
       {
-        img: "/img/coach/coach2.webp",
+        img: "/img/coach/coaches3.webp",
         alt: "Ewduar Lopez",
       },
       {
-        img: "/img/coach/coach4.webp",
+        img: "/img/coach/coaches4.webp",
         alt: "Ewduar Lopez",
       },
     ],
@@ -224,29 +228,29 @@ export const COACHES_DATA: Coach[] = [
 
 export const HOME_COACHES: CoachPreview[] = [
   {
-    img: "/img/coach/coach6.webp",
+    img: "/img/coach/coachJorge.webp",
     name: "Jorge Perez",
     experiencia: "2 años",
   },
   {
-    img: "/img/coach/coach3.webp",
+    img: "/img/coach/coachAndres.webp",
     name: "Andres Cardona",
     experiencia: "5 años",
   },
   {
-    img: "/img/coach/coach7.webp",
+    img: "/img/coach/coachJefer.webp",
+    name: "Jeferson Jimenez",
+    experiencia: "3 años",
+  },
+  {
+    img: "/img/coach/coachJairo.webp",
     name: "Indio Fit",
-    experiencia: "2 años",
-  },
-  {
-    img: "/img/coach/coach5.webp",
-    name: "Ewduar Rondon",
-    experiencia: "8 años",
-  },
-  {
-    img: "/img/coach/coach8.webp",
-    name: "Pedro Jimenez",
     experiencia: "4 años",
+  },
+  {
+    img: "/img/coach/coach3.webp",
+    name: "Ewduar Rondon",
+    experiencia: "2 años",
   },
 ];
 
