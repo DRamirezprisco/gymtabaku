@@ -10,7 +10,6 @@ import { SERVICES_DATA } from "@/components/constants/services";
     <ServiceHeader items={SERVICES_DATA} />
     <Services items={SERVICES_DATA} />
     <Footer />
-</Layout>
 
 <script>
     function initServiceTabs() {
@@ -54,6 +53,7 @@ import { SERVICES_DATA } from "@/components/constants/services";
                 const rect = currentGallery.getBoundingClientRect();
                 if (rect.top < window.innerHeight) {
                     galleriesTitles?.[index]?.classList.add("is-revealed");
+                    currentGallery.classList.add("is-revealed");
                     currentGallery
                         .querySelectorAll<HTMLElement>("[data-reveal]")
                         .forEach((el) => {
@@ -119,3 +119,5 @@ import { SERVICES_DATA } from "@/components/constants/services";
         initServiceTabs();
     }
 </script>
+</Layout>
+

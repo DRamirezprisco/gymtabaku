@@ -37,16 +37,15 @@ class:list={[
 </div>
 
 <div 
-class:list={[
+    class:list={[
         "gallery-wrapper hidden grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 [.is-active&]:grid",
         { "is-active": isActive },
-    ]}>
-    {columns.map((col, colIndex) => (
-        <div
-            class="grid gap-3 sm:gap-4"
-            data-reveal="fade-up"
-            data-reveal-delay={(300 + colIndex * 180).toString()}
-        >
+    ]}
+    data-reveal="fade-up"
+    data-reveal-delay="200"
+>
+    {columns.map((col) => (
+        <div class="grid gap-3 sm:gap-4">
             {col.map((img) => (
                 <div class="gallery-item group relative overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <img 
