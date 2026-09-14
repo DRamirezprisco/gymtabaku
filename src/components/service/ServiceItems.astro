@@ -1,4 +1,6 @@
 ---
+import Titulo from "@/components/global/Titulo.astro";
+
 const {
     title,
     icon,
@@ -19,11 +21,7 @@ const {
         { "is-active": isActive },
     ]}
 >
-    <h2
-        class="mt-2 sm:mt-4 text-2xl sm:text-3xl md:text-4xl font-black font-serif uppercase text-primary-500 tracking-wide"
-    >
-        {title}
-    </h2>
+    <Titulo title={title || ""} isdark={true} />
 
     <div
         class="flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3 my-2"

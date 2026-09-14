@@ -19,32 +19,36 @@ import HorariosItems from "@/components/home/HorariosItems.astro";
                 data-reveal-duration="500ms"
             >
                 <h1
-                    class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gym-text-primary font-black uppercase tracking-tight leading-tight"
+                    class="text-gym-dark-bg-card-hover font-serif text-2xl sm:text-3xl md:text-4xl xl:text-5xl text- font-black uppercase tracking-tight leading-tight"
                 >
                     Más tiempo para alcanzar{" "}
-                    <span class="text-primary-500 block sm:inline mt-1 sm:mt-0">
+                    <br />
+                    <span
+                        class="text-primary-500 bg-gym-bg-card/6 rounded-full px-2"
+                    >
                         tus objetivos
                     </span>
                 </h1>
-                <h2
-                    class="text-xs sm:text-sm md:text-base lg:text-lg text-primary-500 font-bold uppercase tracking-widest mt-1 sm:mt-2"
-                >
-                    Ampliamos nuestros horarios para ofrecerte mayor flexibilidad y un mejor servicio
-                </h2>
-                <p
-                    class="text-sm sm:text-base lg:text-lg text-gym-text-secondary leading-relaxed max-w-3xl mx-auto mt-3 sm:mt-4 text-center"
-                >
-                    Entendemos que cada persona tiene diferentes responsabilidades
-                    y rutinas. Por eso, ahora contamos con un horario más amplio
-                    que te permite organizar tus entrenamientos de acuerdo con tu
-                    disponibilidad y mantener la constancia que necesitas para
-                    alcanzar tus objetivos.
-                </p>
             </div>
-
-            <div class="relative w-full">
-                <HorariosItems />
-            </div>
+            <h2
+                class="my-2 text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-bold text-gym-dark-bg-card-hover tracking-tight text-center"
+            >
+                Ampliamos nuestros horarios para ofrecerte <br /> mayor flexibilidad
+                y un mejor servicio
+            </h2>
+            <p
+                class="text-sm sm:text-base lg:text-lg text-gym-text-secondary leading-relaxed max-w-3xl mx-auto mt-3 sm:mt-4 text-center"
+            >
+                Entendemos que cada persona tiene diferentes responsabilidades y
+                rutinas. Por eso, ahora contamos con un horario más amplio que
+                te permite organizar tus entrenamientos de acuerdo con tu
+                disponibilidad y mantener la constancia que necesitas para
+                alcanzar tus objetivos.
+            </p>
         </main>
+
+        <div class="relative w-full">
+            <HorariosItems />
+        </div>
     </div>
 </section>

@@ -12,10 +12,12 @@ const lineWidth = large
   : "w-6 sm:w-10 md:w-16 lg:w-24 xl:w-32";
 ---
 
-<div class="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 max-w-full">
+<div
+  class="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 max-w-full"
+>
   <div class={`bg-gym-yellow h-1 rounded-full shrink ${lineWidth}`}></div>
   <h3
-    class={`font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl whitespace-nowrap shrink-0 ${textColor}`}
+    class={`uppercase font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl whitespace-nowrap shrink-0 ${textColor}`}
   >
     {title}
   </h3>

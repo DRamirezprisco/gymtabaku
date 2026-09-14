@@ -53,9 +53,7 @@ const testimonials = TESTIMONIALS_DATA;
       data-reveal="fade-left"
       data-reveal-delay="400"
     >
-      <div
-        class="relative min-h-[215px] sm:min-h-[225px] md:min-h-[260px] lg:min-h-[260px] w-full"
-      >
+      <div class="relative min-h-54 sm:min-h-57 md:min-h-64 lg:min-h-66 w-full">
         {
           testimonials.map((t, index) => (
             <div
@@ -69,7 +67,7 @@ const testimonials = TESTIMONIALS_DATA;
               {/* Encabezado con Nombre y barra de acento amarilla */}
               <div class="flex items-center justify-start gap-3 sm:gap-4">
                 <div class="bg-gym-yellow h-1 w-10 sm:w-16 md:w-24 rounded-full shrink-0" />
-                <h3 class="font-sans font-black italic text-lg sm:text-2xl md:text-3xl text-gym-yellow tracking-wide uppercase">
+                <h3 class="uppercase font-serif font-black italic text-lg sm:text-2xl md:text-3xl text-gym-yellow tracking-wide">
                   {t.name}
                 </h3>
               </div>

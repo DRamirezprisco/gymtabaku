@@ -33,7 +33,7 @@ class:list={[
     data-reveal="fade-up"
     data-reveal-delay="100"
 >
-    <Titulo title={title}></Titulo>                    
+    <Titulo title={title || ""}></Titulo>          
 </div>
 
 <div 
@@ -50,7 +50,7 @@ class:list={[
             {col.map((img) => (
                 <div class="gallery-item group relative overflow-hidden rounded-xl cursor-pointer shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                     <img 
-                        class="gallery-img h-auto max-w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
+                        class="gallery-img h-full w-full rounded-xl object-cover transition-transform duration-500 ease-out group-hover:scale-110" 
                         src={img.src} 
                         alt={img.alt} 
                         loading="lazy"
