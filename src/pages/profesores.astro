@@ -15,8 +15,6 @@ import { COACHES_DATA } from "@/components/constants/coaches";
 
   <script>
     function initCoachSelection() {
-      const coachCards =
-        document.querySelectorAll<HTMLElement>("[data-coach-card]");
       const descriptions = document.querySelectorAll<HTMLElement>(
         "[data-coach-description]",
       );
@@ -24,61 +22,75 @@ import { COACHES_DATA } from "@/components/constants/coaches";
         "[data-coach-gallery]",
       );
 
-      if (!coachCards.length) return;
-
-      coachCards.forEach((card) => {
-        card.addEventListener("click", () => {
-          const index = card.getAttribute("data-coach-index");
-          if (index === null) return;
-
-          // 1. Marcar tarjeta activa en el carrusel de profesores
-          coachCards.forEach((c) => {
-            const isMatch = c.getAttribute("data-coach-index") === index;
-            c.setAttribute("data-active", isMatch ? "true" : "false");
-          });
-
-          // 2. Alternar descripciones de los profesores
-          descriptions.forEach((desc) => {
-            const isMatch =
-              desc.getAttribute("data-coach-description") === index;
-            if (isMatch) {
-              desc.classList.remove("hidden");
-              desc.classList.add("block");
-
-              const rect = desc.getBoundingClientRect();
-              if (rect.top < window.innerHeight) {
-                desc
-                  .querySelectorAll<HTMLElement>("[data-reveal]")
-                  .forEach((el) => el.classList.add("is-revealed"));
-              }
-            } else {
-              desc.classList.add("hidden");
-              desc.classList.remove("block");
-            }
-          });
-
-          // 3. Alternar galerías de los profesores
-          galleries.forEach((gal) => {
-            const isMatch = gal.getAttribute("data-coach-gallery") === index;
-            if (isMatch) {
-              gal.classList.remove("hidden");
-              gal.classList.add("block");
-
-              const rect = gal.getBoundingClientRect();
-              if (rect.top < window.innerHeight) {
-                gal
-                  .querySelectorAll<HTMLElement>("[data-reveal]")
-                  .forEach((el) => el.classList.add("is-revealed"));
-              }
-            } else {
-              gal.classList.add("hidden");
-              gal.classList.remove("block");
-            }
-          });
-
-          // 4. Refrescar Swiper en las galerías que acaban de pasar a visibles
-          window.dispatchEvent(new Event("resize"));
+      function selectCoach(index: string) {
+        // 1. Marcar tarjeta activa en todos los profesores (incluyendo clones creados por Swiper loop)
+        const allCards =
+          document.querySelectorAll<HTMLElement>("[data-coach-card]");
+        allCards.forEach((c) => {
+          const isMatch = c.getAttribute("data-coach-index") === index;
+          c.setAttribute("data-active", isMatch ? "true" : "false");
         });
+
+        // 2. Alternar descripciones de los profesores
+        descriptions.forEach((desc) => {
+          const isMatch =
+            desc.getAttribute("data-coach-description") === index;
+          if (isMatch) {
+            desc.classList.remove("hidden");
+            desc.classList.add("block");
+
+            const rect = desc.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              desc
+                .querySelectorAll<HTMLElement>("[data-reveal]")
+                .forEach((el) => el.classList.add("is-revealed"));
+            }
+          } else {
+            desc.classList.add("hidden");
+            desc.classList.remove("block");
+          }
+        });
+
+        // 3. Alternar galerías de los profesores
+        galleries.forEach((gal) => {
+          const isMatch = gal.getAttribute("data-coach-gallery") === index;
+          if (isMatch) {
+            gal.classList.remove("hidden");
+            gal.classList.add("block");
+
+            const rect = gal.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              gal
+                .querySelectorAll<HTMLElement>("[data-reveal]")
+                .forEach((el) => el.classList.add("is-revealed"));
+            }
+
+            const galSwiperEl = gal.querySelector<HTMLElement & { swiper?: any }>(".coach-gallery-swiper");
+            if (galSwiperEl && galSwiperEl.swiper) {
+              galSwiperEl.swiper.update();
+              galSwiperEl.swiper.slideTo(0, 0);
+            }
+          } else {
+            gal.classList.add("hidden");
+            gal.classList.remove("block");
+          }
+        });
+
+        // 4. Refrescar Swiper en las galerías que acaban de pasar a visibles
+        window.dispatchEvent(new Event("resize"));
+      }
+
+      // Delegación de eventos en el documento para soportar clics tanto en diapositivas originales como en clones de bucle
+      document.addEventListener("click", (e) => {
+        const card = (e.target as HTMLElement).closest<HTMLElement>(
+          "[data-coach-card]",
+        );
+        if (card) {
+          const index = card.getAttribute("data-coach-index");
+          if (index !== null) {
+            selectCoach(index);
+          }
+        }
       });
     }
 

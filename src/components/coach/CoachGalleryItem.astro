@@ -12,6 +12,15 @@ interface Props {
 }
 
 const { isActive = false, gallery = [], index = 0 } = Astro.props;
+
+const originalGallery = gallery || [];
+// Duplicamos el conjunto de fotos 3 veces (para llegar a 12 slides)
+// de modo que el bucle continuo ('loop: true') de Swiper con 'slidesPerView: auto'
+// tenga suficientes diapositivas en el DOM y nunca se bloquee ni muestre huecos.
+const repeatedGallery =
+  originalGallery.length > 0 && originalGallery.length < 12
+    ? [...originalGallery, ...originalGallery, ...originalGallery]
+    : originalGallery;
 ---
 
 <div
@@ -27,14 +36,19 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
       data-reveal="fade-up"
       data-reveal-delay="200"
     >
-      <div class="swiper coach-gallery-swiper overflow-hidden">
+      <div class="swiper coach-gallery-swiper overflow-hidden px-1">
         <div class="swiper-wrapper pt-6 sm:pt-8 pb-8 sm:pb-24 lg:pb-28">
           {
-            gallery?.map((item, i) => {
+            repeatedGallery?.map((item, i) => {
               const isWide = i % 2 === 0;
               const step = i % 3;
+              const photoIndex =
+                originalGallery.length > 0 ? i % originalGallery.length : i;
               return (
-                <div class="swiper-slide !w-auto shrink-0 py-2">
+                <div
+                  class="swiper-slide !w-auto shrink-0 py-2"
+                  data-photo-index={photoIndex}
+                >
                   <!-- Tarjeta de la Galería con traslación escalonada arriba/abajo (Efecto de onda) -->
                   <div
                     data-offset-step={step}
@@ -57,7 +71,7 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
                     >
                       <img
                         src={item.img}
-                        alt={item.alt || `Galería ${i + 1}`}
+                        alt={item.alt || `Galería ${photoIndex + 1}`}
                         class="w-full h-full object-cover object-center group-hover:scale-105 group-hover:rotate-1 transition-transform duration-500"
                         loading="lazy"
                       />
@@ -80,8 +94,10 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
           }
         </div>
 
-        <!-- Controles Inferiores Centrados (Flechas + Paginación 01 02 03) -->
-        <div class="flex items-center justify-center gap-4 sm:gap-6 mt-2 sm:mt-4 mb-2 relative z-20 mx-auto max-w-xs">
+        <!-- Controles Inferiores Centrados (Flechas + Paginación 01 02 03 04) -->
+        <div
+          class="flex items-center justify-center gap-4 sm:gap-6 mt-2 sm:mt-4 mb-2 relative z-20 mx-auto max-w-xs"
+        >
           <!-- Botón Prev -->
           <button
             type="button"
@@ -98,12 +114,32 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M9 6l6 6l-6 6" />
+              <path d="M9 6l6 6l-6 6"></path>
             </svg>
           </button>
 
-          <!-- Paginación Números (01, 02, 03) -->
-          <div class="gallery-pagination flex items-center justify-center gap-3 text-white font-bold text-sm tracking-widest"></div>
+          <!-- Paginación Números (01, 02, 03, 04) -->
+          <div
+            class="gallery-custom-pagination flex items-center justify-center gap-3 text-white font-bold text-sm tracking-widest select-none"
+            data-total-photos={originalGallery.length}
+          >
+            {
+              originalGallery.map((_, pIndex) => (
+                <button
+                  type="button"
+                  data-photo-bullet={pIndex}
+                  class:list={[
+                    "gallery-bullet cursor-pointer bg-transparent text-sm font-bold transition-all px-1 py-0.5 select-none",
+                    pIndex === 0
+                      ? "text-yellow-400 text-base opacity-100 font-extrabold"
+                      : "text-white opacity-60 hover:opacity-100",
+                  ]}
+                >
+                  {(pIndex + 1).toString().padStart(2, "0")}
+                </button>
+              ))
+            }
+          </div>
 
           <!-- Botón Next -->
           <button
@@ -121,7 +157,7 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <path d="M9 6l6 6l-6 6" />
+              <path d="M9 6l6 6l-6 6"></path>
             </svg>
           </button>
         </div>
@@ -132,9 +168,43 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
 
 <script>
   import Swiper from "swiper";
-  import { Navigation, Pagination, Autoplay } from "swiper/modules";
+  import { Navigation, Autoplay } from "swiper/modules";
 
   const swiperInstances: Swiper[] = [];
+
+  function updateGalleryBullets(swiper: Swiper, container: HTMLElement) {
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    if (!activeSlide) return;
+    const photoIdxStr = activeSlide.getAttribute("data-photo-index");
+    if (photoIdxStr === null) return;
+    const currentPhotoIdx = parseInt(photoIdxStr, 10);
+
+    const bullets =
+      container.querySelectorAll<HTMLElement>("[data-photo-bullet]");
+    bullets.forEach((bullet) => {
+      const bIdx = parseInt(
+        bullet.getAttribute("data-photo-bullet") || "-1",
+        10,
+      );
+      if (bIdx === currentPhotoIdx) {
+        bullet.classList.add(
+          "text-yellow-400",
+          "text-base",
+          "opacity-100",
+          "font-extrabold",
+        );
+        bullet.classList.remove("text-white", "opacity-60");
+      } else {
+        bullet.classList.remove(
+          "text-yellow-400",
+          "text-base",
+          "opacity-100",
+          "font-extrabold",
+        );
+        bullet.classList.add("text-white", "opacity-60");
+      }
+    });
+  }
 
   const initGalleries = () => {
     swiperInstances.forEach((s) => {
@@ -148,26 +218,16 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
       .querySelectorAll<HTMLElement>(".coach-gallery-swiper")
       .forEach((container) => {
         const swiper = new Swiper(container, {
-          modules: [Navigation, Pagination, Autoplay],
+          modules: [Navigation, Autoplay],
           slidesPerView: "auto",
           spaceBetween: 24,
-          slidesOffsetBefore: 20,
-          slidesOffsetAfter: 20,
-          rewind: true,
+          loop: true,
           grabCursor: true,
           observer: true,
           observeParents: true,
           navigation: {
             nextEl: container.querySelector<HTMLElement>(".gallery-next"),
             prevEl: container.querySelector<HTMLElement>(".gallery-prev"),
-          },
-          pagination: {
-            el: container.querySelector<HTMLElement>(".gallery-pagination"),
-            clickable: true,
-            renderBullet: function (index, className) {
-              const formattedNumber = (index + 1).toString().padStart(2, "0");
-              return `<span class="${className} cursor-pointer [&.swiper-pagination-bullet-active]:bg-transparent! [&.swiper-pagination-bullet-active]:text-yellow-400 [&.swiper-pagination-bullet-active]:text-base font-bold transition-all select-none">${formattedNumber}</span>`;
-            },
           },
           autoplay: {
             delay: 4500,
@@ -177,16 +237,52 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
           breakpoints: {
             640: {
               spaceBetween: 36,
-              slidesOffsetBefore: 32,
-              slidesOffsetAfter: 32,
             },
             1024: {
               spaceBetween: 48,
-              slidesOffsetBefore: 40,
-              slidesOffsetAfter: 40,
+            },
+          },
+          on: {
+            init(s) {
+              updateGalleryBullets(s, container);
+            },
+            slideChange(s) {
+              updateGalleryBullets(s, container);
             },
           },
         });
+
+        // Event listener para los botones de paginación de fotos (01, 02, 03, 04)
+        const bullets =
+          container.querySelectorAll<HTMLElement>("[data-photo-bullet]");
+        bullets.forEach((bullet) => {
+          bullet.addEventListener("click", () => {
+            const targetIdx = parseInt(
+              bullet.getAttribute("data-photo-bullet") || "0",
+              10,
+            );
+            // Buscar la diapositiva más cercana con data-photo-index coincidente
+            let closestSlideIndex = -1;
+            let minDistance = Infinity;
+            swiper.slides.forEach((slide, idx) => {
+              const pIdx = parseInt(
+                slide.getAttribute("data-photo-index") || "-1",
+                10,
+              );
+              if (pIdx === targetIdx) {
+                const distance = Math.abs(idx - swiper.activeIndex);
+                if (distance < minDistance) {
+                  minDistance = distance;
+                  closestSlideIndex = idx;
+                }
+              }
+            });
+            if (closestSlideIndex !== -1) {
+              swiper.slideTo(closestSlideIndex);
+            }
+          });
+        });
+
         swiperInstances.push(swiper);
       });
   };
@@ -200,19 +296,15 @@ const { isActive = false, gallery = [], index = 0 } = Astro.props;
 </script>
 
 <style is:global>
-  .coach-gallery-swiper .swiper-pagination-bullet {
+  .gallery-bullet {
     width: auto !important;
     height: auto !important;
     background: transparent !important;
-    opacity: 0.6 !important;
-    font-size: 0.95rem;
-    padding: 0 4px;
-    margin: 0 !important;
-    color: #ffffff;
+    border: none;
+    outline: none;
   }
-  .coach-gallery-swiper .swiper-pagination-bullet-active {
-    opacity: 1 !important;
-    color: #eab308 !important;
-    font-size: 1.15rem !important;
+  .gallery-prev.swiper-button-lock,
+  .gallery-next.swiper-button-lock {
+    display: none !important;
   }
 </style>

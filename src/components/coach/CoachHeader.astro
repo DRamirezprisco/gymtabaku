@@ -51,6 +51,8 @@ const { Coaches, activeIndex = 0 } = Astro.props;
   <!-- Carrusel de Profesores con Ancho Fluido Completo -->
   <div
     class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-20 mt-4 sm:mt-6"
+    data-reveal="fade-up"
+    data-reveal-delay="200"
   >
     <div class="relative pt-2 pb-4">
       <div class="swiper coach-slider px-1">
@@ -69,9 +71,7 @@ const { Coaches, activeIndex = 0 } = Astro.props;
 
       <!-- Botones de Navegación del Carrusel -->
       <div
-        class="flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3"
-        data-reveal="fade-up"
-        data-reveal-delay="1000"
+        class="coach-nav-wrapper flex items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-3"
       >
         <button
           type="button"
@@ -125,6 +125,42 @@ const { Coaches, activeIndex = 0 } = Astro.props;
 
   let coachSwiper: Swiper | null = null;
 
+  function updateNavButtons(swiper: Swiper) {
+    const prevBtn = document.querySelector<HTMLElement>(".coach-prev");
+    const nextBtn = document.querySelector<HTMLElement>(".coach-next");
+    if (!prevBtn || !nextBtn) return;
+
+    // Contar el número de tarjetas originales (sin clones de loop)
+    const originalSlidesCount =
+      swiper.el.querySelectorAll<HTMLElement>(
+        ".swiper-slide:not(.swiper-slide-duplicate)",
+      ).length || 5;
+
+    const currentSlidesPerView =
+      typeof swiper.params.slidesPerView === "number"
+        ? swiper.params.slidesPerView
+        : 1;
+
+    // Si la pantalla ya muestra todos los profesores (ej. 5 en desktop >= 1280px)
+    const allVisible = originalSlidesCount <= currentSlidesPerView;
+
+    if (allVisible) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "none";
+      swiper.allowTouchMove = false;
+      if (swiper.autoplay && swiper.autoplay.running) {
+        swiper.autoplay.stop();
+      }
+    } else {
+      prevBtn.style.display = "flex";
+      nextBtn.style.display = "flex";
+      swiper.allowTouchMove = true;
+      if (swiper.autoplay && !swiper.autoplay.running) {
+        swiper.autoplay.start();
+      }
+    }
+  }
+
   function initCoachSwiper() {
     const sliderEl = document.querySelector<HTMLElement>(".coach-slider");
     if (!sliderEl) return;
@@ -139,6 +175,9 @@ const { Coaches, activeIndex = 0 } = Astro.props;
       slidesPerView: 1,
       spaceBetween: 16,
       centeredSlides: false,
+      centerInsufficientSlides: true,
+      watchOverflow: true,
+      loop: true,
       grabCursor: true,
       observer: true,
       observeParents: true,
@@ -169,7 +208,26 @@ const { Coaches, activeIndex = 0 } = Astro.props;
           spaceBetween: 24,
         },
       },
+      on: {
+        init(swiper) {
+          updateNavButtons(swiper);
+        },
+        resize(swiper) {
+          updateNavButtons(swiper);
+        },
+        breakpoint(swiper) {
+          updateNavButtons(swiper);
+        },
+        lock(swiper) {
+          updateNavButtons(swiper);
+        },
+        unlock(swiper) {
+          updateNavButtons(swiper);
+        },
+      },
     });
+
+    updateNavButtons(coachSwiper);
   }
 
   document.addEventListener("astro:page-load", initCoachSwiper);
@@ -183,5 +241,9 @@ const { Coaches, activeIndex = 0 } = Astro.props;
 <style>
   .swiper-slide {
     height: auto;
+  }
+  .coach-prev.swiper-button-lock,
+  .coach-next.swiper-button-lock {
+    display: none !important;
   }
 </style>
