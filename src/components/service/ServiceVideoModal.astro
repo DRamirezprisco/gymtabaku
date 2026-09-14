@@ -44,16 +44,10 @@ const clientVideoData = items.map((item, index) => ({
                     >
                         {items[0]?.title || "Servicio"}
                     </span>
-                    <span
-                        id="svmCounter"
-                        class="text-[11px] sm:text-xs font-semibold text-secondary-300 bg-white/10 px-2.5 py-1 rounded-full border border-white/10"
-                    >
-                        1 / {items.length}
-                    </span>
                 </div>
                 <h3
                     id="svmTitle"
-                    class="text-white font-bold font-serif text-base sm:text-xl lg:text-2xl mt-1.5 drop-shadow-md line-clamp-1"
+                    class="text-white font-bold font-serif text-sm sm:text-xl lg:text-2xl mt-1.5 drop-shadow-md line-clamp-1"
                 >
                     {items[0]?.subtitle || ""}
                 </h3>
@@ -153,7 +147,9 @@ const clientVideoData = items.map((item, index) => ({
         </div>
 
         <!-- Barra Inferior en Móvil: Botones Anterior/Siguiente Adicionales para Mejor Ergonomía -->
-        <div class="flex sm:hidden items-center justify-between w-full mt-3 px-2">
+        <div
+            class="flex sm:hidden items-center justify-between w-full mt-3 px-2"
+        >
             <button
                 id="svmPrevBtnMobile"
                 type="button"
@@ -174,7 +170,10 @@ const clientVideoData = items.map((item, index) => ({
                 <span>Anterior</span>
             </button>
 
-            <span class="text-xs text-secondary-400 font-mono" id="svmCounterMobile">
+            <span
+                class="text-xs text-secondary-400 font-mono"
+                id="svmCounterMobile"
+            >
                 1 / {items.length}
             </span>
 
@@ -200,11 +199,33 @@ const clientVideoData = items.map((item, index) => ({
         </div>
 
         <!-- Atajos de teclado informativos (Desktop) -->
-        <div class="hidden md:flex items-center justify-center gap-6 mt-3 text-xs text-secondary-400">
-            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">Esc</kbd> Cerrar</span>
-            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">←</kbd> Video anterior</span>
-            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">→</kbd> Siguiente video</span>
-            <span><kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]">Espacio</kbd> Pausar / Reproducir</span>
+        <div
+            class="hidden md:flex items-center justify-center gap-6 mt-3 text-xs text-secondary-400"
+        >
+            <span
+                ><kbd
+                    class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]"
+                    >Esc</kbd
+                > Cerrar</span
+            >
+            <span
+                ><kbd
+                    class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]"
+                    >←</kbd
+                > Video anterior</span
+            >
+            <span
+                ><kbd
+                    class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]"
+                    >→</kbd
+                > Siguiente video</span
+            >
+            <span
+                ><kbd
+                    class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono text-[10px]"
+                    >Espacio</kbd
+                > Pausar / Reproducir</span
+            >
         </div>
     </div>
 </div>
@@ -220,20 +241,36 @@ const clientVideoData = items.map((item, index) => ({
     }
 
     function initServiceVideoModal() {
-        const modal = document.getElementById("serviceVideoModal") as HTMLElement;
+        const modal = document.getElementById(
+            "serviceVideoModal",
+        ) as HTMLElement;
         if (!modal) return;
 
         const video = document.getElementById("svmVideo") as HTMLVideoElement;
-        const closeBtn = document.getElementById("svmCloseBtn") as HTMLButtonElement;
-        const prevBtn = document.getElementById("svmPrevBtn") as HTMLButtonElement;
-        const nextBtn = document.getElementById("svmNextBtn") as HTMLButtonElement;
-        const prevBtnMobile = document.getElementById("svmPrevBtnMobile") as HTMLButtonElement;
-        const nextBtnMobile = document.getElementById("svmNextBtnMobile") as HTMLButtonElement;
+        const closeBtn = document.getElementById(
+            "svmCloseBtn",
+        ) as HTMLButtonElement;
+        const prevBtn = document.getElementById(
+            "svmPrevBtn",
+        ) as HTMLButtonElement;
+        const nextBtn = document.getElementById(
+            "svmNextBtn",
+        ) as HTMLButtonElement;
+        const prevBtnMobile = document.getElementById(
+            "svmPrevBtnMobile",
+        ) as HTMLButtonElement;
+        const nextBtnMobile = document.getElementById(
+            "svmNextBtnMobile",
+        ) as HTMLButtonElement;
         const backdrop = document.getElementById("svmBackdrop") as HTMLElement;
-        const categoryEl = document.getElementById("svmCategory") as HTMLElement;
+        const categoryEl = document.getElementById(
+            "svmCategory",
+        ) as HTMLElement;
         const titleEl = document.getElementById("svmTitle") as HTMLElement;
         const counterEl = document.getElementById("svmCounter") as HTMLElement;
-        const counterMobileEl = document.getElementById("svmCounterMobile") as HTMLElement;
+        const counterMobileEl = document.getElementById(
+            "svmCounterMobile",
+        ) as HTMLElement;
         const loaderEl = document.getElementById("svmLoader") as HTMLElement;
 
         let videos: VideoItem[] = [];
@@ -300,9 +337,11 @@ const clientVideoData = items.map((item, index) => ({
             isOpen = true;
 
             // Pausar todos los videos de fondo de las tarjetas
-            document.querySelectorAll<HTMLVideoElement>(".video-player").forEach((v) => {
-                v.pause();
-            });
+            document
+                .querySelectorAll<HTMLVideoElement>(".video-player")
+                .forEach((v) => {
+                    v.pause();
+                });
 
             // Mostrar modal
             modal.classList.remove("hidden");
@@ -342,7 +381,9 @@ const clientVideoData = items.map((item, index) => ({
 
             // Reanudar el video de la tarjeta activa de fondo
             const activeArticle = document.querySelector("article.is-active");
-            const activeVid = activeArticle?.querySelector(".video-player") as HTMLVideoElement;
+            const activeVid = activeArticle?.querySelector(
+                ".video-player",
+            ) as HTMLVideoElement;
             if (activeVid) {
                 activeVid.play().catch(() => {});
             }
@@ -394,27 +435,29 @@ const clientVideoData = items.map((item, index) => ({
 
         // Registrar los triggers en las tarjetas de video
         const registerTriggers = () => {
-            document.querySelectorAll<HTMLElement>("[data-open-service-video]").forEach((trigger) => {
-                if (trigger.dataset.modalListenerAttached) return;
-                trigger.dataset.modalListenerAttached = "true";
+            document
+                .querySelectorAll<HTMLElement>("[data-open-service-video]")
+                .forEach((trigger) => {
+                    if (trigger.dataset.modalListenerAttached) return;
+                    trigger.dataset.modalListenerAttached = "true";
 
-                trigger.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    const idxStr = trigger.dataset.openServiceVideo;
-                    const idx = idxStr ? parseInt(idxStr, 10) : 0;
-                    openModal(isNaN(idx) ? 0 : idx);
-                });
-
-                // Accesibilidad con teclado (Enter o Espacio)
-                trigger.addEventListener("keydown", (e: KeyboardEvent) => {
-                    if (e.key === "Enter" || e.key === " ") {
+                    trigger.addEventListener("click", (e) => {
                         e.preventDefault();
                         const idxStr = trigger.dataset.openServiceVideo;
                         const idx = idxStr ? parseInt(idxStr, 10) : 0;
                         openModal(isNaN(idx) ? 0 : idx);
-                    }
+                    });
+
+                    // Accesibilidad con teclado (Enter o Espacio)
+                    trigger.addEventListener("keydown", (e: KeyboardEvent) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            const idxStr = trigger.dataset.openServiceVideo;
+                            const idx = idxStr ? parseInt(idxStr, 10) : 0;
+                            openModal(isNaN(idx) ? 0 : idx);
+                        }
+                    });
                 });
-            });
         };
 
         registerTriggers();
