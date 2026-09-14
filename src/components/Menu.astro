@@ -12,7 +12,7 @@ const menu = NAV_ITEMS.map((item) => ({
 ---
 
 <nav
-  class="max-w-6xl 2xl:max-w-7xl w-[calc(100%-1.5rem)] sm:w-[calc(100%-2.5rem)] lg:w-full mx-auto bg-secondary-950/95 lg:bg-secondary-950 bg-repeat bg-contain flex items-center justify-between relative z-20 mt-3 sm:mt-5 lg:mt-6 px-3.5 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-0 rounded-2xl lg:rounded-none border border-secondary-800/80 lg:border-none shadow-xl lg:shadow-none lg:after:-skew-x-12 lg:after:w-[105%] lg:after:h-[101%] lg:after:content-[''] lg:after:absolute lg:after:top-0 lg:after:left-1/2 lg:after:-translate-x-1/2 lg:after:-z-10 lg:after:bg-secondary-950 lg:after:bg-[url('/img/bg/bgmenu.webp')] lg:after:bg-contain lg:after:bg-repeat after:hidden lg:after:block"
+  class="max-w-6xl 2xl:max-w-7xl w-[calc(100%-1.5rem)] sm:w-[calc(100%-2.5rem)] lg:w-full mx-auto bg-secondary-950/95 lg:bg-secondary-950 bg-repeat bg-contain flex items-center justify-between relative z-30 mt-3 sm:mt-5 lg:mt-6 px-3.5 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-0 rounded-2xl lg:rounded-none border border-secondary-800/80 lg:border-none shadow-xl lg:shadow-none lg:after:-skew-x-12 lg:after:w-[105%] lg:after:h-[101%] lg:after:content-[''] lg:after:absolute lg:after:top-0 lg:after:left-1/2 lg:after:-translate-x-1/2 lg:after:-z-10 lg:after:bg-secondary-950 lg:after:bg-[url('/img/bg/bgmenu.webp')] lg:after:bg-contain lg:after:bg-repeat after:hidden lg:after:block"
 >
   <!-- Logo y Marca -->
   <div class="flex items-center py-2 sm:py-2.5 lg:py-4 gap-3 sm:gap-6">
@@ -99,7 +99,7 @@ const menu = NAV_ITEMS.map((item) => ({
 <!-- Backdrop del Menú Móvil -->
 <div
   id="mobileMenuBackdrop"
-  class="fixed inset-0 bg-black/80 backdrop-blur-xs z-50 hidden opacity-0 transition-opacity duration-300 lg:hidden"
+  class="fixed inset-0 bg-black/80 backdrop-blur-xs z-[990] hidden opacity-0 transition-opacity duration-300 lg:hidden"
   aria-hidden="true"
 >
 </div>
@@ -107,7 +107,7 @@ const menu = NAV_ITEMS.map((item) => ({
 <!-- Drawer Lateral del Menú Móvil -->
 <aside
   id="mobileNavMenu"
-  class="fixed top-0 right-0 z-50 h-full w-[85%] max-w-sm bg-secondary-950 bg-[url('/img/bg/bgoscuro.webp')] bg-cover bg-repeat shadow-2xl border-l border-secondary-800 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+  class="fixed top-0 right-0 z-[1000] h-full w-[85%] max-w-sm bg-secondary-950 bg-[url('/img/bg/bgoscuro.webp')] bg-cover bg-repeat shadow-2xl border-l border-secondary-800 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Menú principal de navegación"
@@ -195,6 +195,17 @@ const menu = NAV_ITEMS.map((item) => ({
     const navLinks = drawer?.querySelectorAll("a");
 
     if (!toggleBtn || !drawer || !backdrop) return;
+
+    // Aseguramos que el backdrop y el drawer lateral del menú móvil
+    // se sitúen en el nivel raíz del body (fuera de cualquier stacking context
+    // con z-index relativo de los encabezados de las páginas)
+    if (backdrop.parentElement !== document.body) {
+      document.body.appendChild(backdrop);
+    }
+    if (drawer.parentElement !== document.body) {
+      document.body.appendChild(drawer);
+    }
+
     if (toggleBtn.dataset.menuInitialized === "true") return;
     toggleBtn.dataset.menuInitialized = "true";
 
