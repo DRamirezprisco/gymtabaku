@@ -13,6 +13,7 @@ export interface DescriptionCoaches {
   description3: string;
   img: string;
   wallpaperSrc?: string;
+  video?: string;
 }
 
 export interface GalleryCoaches {
@@ -50,6 +51,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "Tu proceso es único. Mi compromiso es acompañarte en cada paso.",
       img: "/img/coach/coachandres.jpg",
+      video: "/img/coach/coach1.mp4",
     },
     gallery: [
       {
@@ -87,6 +89,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "“Tu proceso es único. Mi compromiso es acompañarte en cada paso.”",
       img: "/img/coach/coachjorge.jpg",
+      video: "/img/coach/coach2.mp4",
     },
     gallery: [
       {
@@ -120,6 +123,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "“Tu proceso es único. Mi compromiso es acompañarte en cada paso.”",
       img: "/img/coach/coachjefer.jpg",
+      video: "/img/coach/coach3.mp4",
     },
     gallery: [
       {
@@ -157,6 +161,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "“Aquí vienes a moverte, disfrutar y contagiarte de nuestra energía.”",
       img: "/img/coach/coaches.webp",
+      video: undefined,
     },
     gallery: [
       {
@@ -194,6 +199,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "“Aquí vienes a moverte, disfrutar y contagiarte de nuestra energía.”",
       img: "/img/coach/coaches.webp",
+      video: undefined,
     },
     gallery: [
       {
