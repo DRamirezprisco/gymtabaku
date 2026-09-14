@@ -22,7 +22,9 @@ import { COACHES_DATA } from "@/components/constants/coaches";
         "[data-coach-gallery]",
       );
 
-      function selectCoach(index: string) {
+      const coachSlugs = ["andres", "jorge", "jeferson", "jairo", "ewduar"];
+
+      function selectCoach(index: string, updateUrl = true) {
         // 1. Marcar tarjeta activa en todos los profesores (incluyendo clones creados por Swiper loop)
         const allCards =
           document.querySelectorAll<HTMLElement>("[data-coach-card]");
@@ -78,7 +80,81 @@ import { COACHES_DATA } from "@/components/constants/coaches";
 
         // 4. Refrescar Swiper en las galerías que acaban de pasar a visibles
         window.dispatchEvent(new Event("resize"));
+
+        // 5. Notificar y sincronizar el carrusel de profesores (CoachHeader)
+        const numIdx = parseInt(index, 10);
+        if (!isNaN(numIdx)) {
+          window.dispatchEvent(
+            new CustomEvent("coach:selected", { detail: { index: numIdx } }),
+          );
+
+          const sliderEl = document.querySelector<HTMLElement & { swiper?: any }>(".coach-slider");
+          if (sliderEl?.swiper) {
+            sliderEl.swiper.slideToLoop(numIdx, 400);
+          }
+
+          // 6. Actualizar parámetro en la URL sin recargar
+          if (updateUrl && history.replaceState) {
+            const slug = coachSlugs[numIdx] || index;
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set("coach", slug);
+            newUrl.hash = "";
+            history.replaceState(null, "", newUrl.toString());
+          }
+        }
       }
+
+      function checkUrlCoach() {
+        const query = new URLSearchParams(window.location.search)
+          .get("coach")
+          ?.trim()
+          .toLowerCase();
+        const hash = window.location.hash.replace("#", "").trim().toLowerCase();
+        const target = query || hash;
+
+        if (!target) return;
+
+        let targetIndex = -1;
+        const numeric = parseInt(target, 10);
+        if (!isNaN(numeric) && numeric >= 0 && numeric < descriptions.length) {
+          targetIndex = numeric;
+        } else {
+          const coachMap: Record<string, number> = {
+            "andres": 0,
+            "andres-sanchez": 0,
+            "andres-cardona": 0,
+            "jorge": 1,
+            "jorge-rodriguez": 1,
+            "jorge-perez": 1,
+            "jeferson": 2,
+            "jeferson-danilo": 2,
+            "jeferson-jimenez": 2,
+            "jefer": 2,
+            "jairo": 3,
+            "jairo-rodriguez": 3,
+            "indio": 3,
+            "indio-fit": 3,
+            "ewduar": 4,
+            "ewduar-lopez": 4,
+            "ewduar-rondon": 4,
+          };
+
+          if (coachMap[target] !== undefined) {
+            targetIndex = coachMap[target];
+          }
+        }
+
+        if (targetIndex >= 0) {
+          selectCoach(String(targetIndex), false);
+        }
+      }
+
+      // Comprobar parámetros al iniciar
+      checkUrlCoach();
+
+      // Escuchar cambios de URL mediante historial o hash
+      window.addEventListener("popstate", checkUrlCoach);
+      window.addEventListener("hashchange", checkUrlCoach);
 
       // Delegación de eventos en el documento para soportar clics tanto en diapositivas originales como en clones de bucle
       document.addEventListener("click", (e) => {
@@ -88,7 +164,7 @@ import { COACHES_DATA } from "@/components/constants/coaches";
         if (card) {
           const index = card.getAttribute("data-coach-index");
           if (index !== null) {
-            selectCoach(index);
+            selectCoach(index, true);
           }
         }
       });

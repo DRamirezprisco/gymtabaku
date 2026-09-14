@@ -15,7 +15,11 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
   >
     {
       infiniteCoaches.map((coach) => (
-        <div class="snap-center shrink-0 w-64 sm:w-72 h-96 sm:h-105 rounded-2xl overflow-hidden relative shadow-xl group/card">
+        <a
+          href={`/profesores?coach=${coach.id}`}
+          data-coach-link
+          class="snap-center shrink-0 block w-64 sm:w-72 h-96 sm:h-105 rounded-2xl overflow-hidden relative shadow-xl group/card cursor-pointer"
+        >
           <img
             src={coach.img}
             alt={coach.name}
@@ -34,7 +38,7 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
               </p>
             </div>
           </div>
-        </div>
+        </a>
       ))
     }
   </div>
@@ -122,8 +126,9 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
       Coaches.map((coach, index) => {
         const isInitial = index === 0;
         return (
-          <div
-            class={`group/coach relative overflow-hidden cursor-pointer transition-all duration-700 ease-out h-full first:rounded-l-2xl last:rounded-r-2xl rounded-none
+          <a
+            href={`/profesores?coach=${coach.id}`}
+            class={`group/coach relative block overflow-hidden cursor-pointer transition-all duration-700 ease-out h-full first:rounded-l-2xl last:rounded-r-2xl rounded-none
               ${
                 isInitial
                   ? "flex-[3] group-hover:flex-1 hover:!flex-[3] grayscale-0 brightness-100 group-hover:grayscale group-hover:brightness-75 hover:!grayscale-0 hover:!brightness-100"
@@ -151,7 +156,7 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
                 {coach.experiencia}
               </p>
             </div>
-          </div>
+          </a>
         );
       })
     }
@@ -170,6 +175,9 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
     let startX = 0;
     let scrollLeft = 0;
     let isResetting = false;
+    let hasDragged = false;
+    let touchStartX = 0;
+    let touchMoved = false;
 
     const getSetWidth = () => {
       const card0 = slider.children[0] as HTMLElement | undefined;
@@ -226,6 +234,7 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
     // Eventos de arrastre con mouse
     slider.addEventListener("mousedown", (e) => {
       isDown = true;
+      hasDragged = false;
       slider.classList.add("cursor-grabbing");
       slider.classList.remove("cursor-grab");
       slider.classList.remove("scroll-smooth");
@@ -241,6 +250,9 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
       slider.classList.add("cursor-grab");
       slider.classList.add("scroll-smooth");
       slider.style.scrollSnapType = "";
+      setTimeout(() => {
+        hasDragged = false;
+      }, 80);
     };
 
     slider.addEventListener("mouseleave", stopDragging);
@@ -250,6 +262,9 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - slider.offsetLeft;
+      if (Math.abs(x - startX) > 6) {
+        hasDragged = true;
+      }
       const walk = (x - startX) * 1.5;
       slider.scrollLeft = scrollLeft - walk;
 
@@ -264,6 +279,48 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
         }
       }
     });
+
+    // Soporte táctil móvil (Swipe vs Tap)
+    slider.addEventListener(
+      "touchstart",
+      (e: TouchEvent) => {
+        touchStartX = e.touches[0].clientX;
+        touchMoved = false;
+      },
+      { passive: true },
+    );
+
+    slider.addEventListener(
+      "touchmove",
+      (e: TouchEvent) => {
+        if (Math.abs(e.touches[0].clientX - touchStartX) > 10) {
+          touchMoved = true;
+        }
+      },
+      { passive: true },
+    );
+
+    slider.addEventListener(
+      "touchend",
+      () => {
+        setTimeout(() => {
+          touchMoved = false;
+        }, 80);
+      },
+      { passive: true },
+    );
+
+    // Evitar navegación si el usuario estaba desplazando el carrusel
+    slider
+      .querySelectorAll<HTMLAnchorElement>("[data-coach-link]")
+      .forEach((link) => {
+        link.addEventListener("click", (e) => {
+          if (hasDragged || touchMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+        });
+      });
 
     // Botones de navegación
     if (prevBtn) {

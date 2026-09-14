@@ -228,6 +228,28 @@ const { Coaches, activeIndex = 0 } = Astro.props;
     });
 
     updateNavButtons(coachSwiper);
+
+    // Escuchar evento personalizado cuando se selecciona un profesor para centrarlo en el carrusel
+    window.addEventListener("coach:selected", (e: any) => {
+      const idx = e.detail?.index;
+      if (typeof idx === "number" && coachSwiper && !coachSwiper.destroyed) {
+        coachSwiper.slideToLoop(idx, 400);
+      }
+    });
+
+    // Al iniciar, si ya hay una tarjeta activa (por ejemplo por parámetro de URL ?coach=...)
+    const activeCard = sliderEl.querySelector<HTMLElement>(
+      "[data-coach-card][data-active='true']",
+    );
+    if (activeCard) {
+      const activeIdx = parseInt(
+        activeCard.getAttribute("data-coach-index") || "0",
+        10,
+      );
+      if (!isNaN(activeIdx) && activeIdx > 0) {
+        coachSwiper.slideToLoop(activeIdx, 0);
+      }
+    }
   }
 
   document.addEventListener("astro:page-load", initCoachSwiper);

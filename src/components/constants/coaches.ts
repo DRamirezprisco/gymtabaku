@@ -22,12 +22,15 @@ export interface GalleryCoaches {
 }
 
 export interface Coach {
+  id?: string;
   header: HeaderCoaches;
   description: DescriptionCoaches;
   gallery: GalleryCoaches[];
 }
 
 export interface CoachPreview {
+  id: string;
+  coachIndex: number;
   img: string;
   name: string;
   experiencia: string;
@@ -35,6 +38,7 @@ export interface CoachPreview {
 
 export const COACHES_DATA: Coach[] = [
   {
+    id: "andres",
     header: {
       name: "Andres Sanchez",
       role: "Personal Trainer",
@@ -73,6 +77,7 @@ export const COACHES_DATA: Coach[] = [
     ],
   },
   {
+    id: "jorge",
     header: {
       name: "Jorge Rodriguez",
       role: "Personal Trainer",
@@ -111,6 +116,7 @@ export const COACHES_DATA: Coach[] = [
     ],
   },
   {
+    id: "jeferson",
     header: {
       name: "Jeferson Danilo",
       role: "Entrenador Personalizado",
@@ -149,6 +155,7 @@ export const COACHES_DATA: Coach[] = [
     ],
   },
   {
+    id: "jairo",
     header: {
       name: "Jairo Rodriguez",
       role: "Instructor de Clases Grupales",
@@ -187,6 +194,7 @@ export const COACHES_DATA: Coach[] = [
     ],
   },
   {
+    id: "ewduar",
     header: {
       name: "Ewduar Lopez",
       role: "Profesor de Baile",
@@ -228,26 +236,36 @@ export const COACHES_DATA: Coach[] = [
 
 export const HOME_COACHES: CoachPreview[] = [
   {
+    id: "jorge",
+    coachIndex: 1,
     img: "/img/coach/coachJorge.webp",
     name: "Jorge Perez",
     experiencia: "2 años",
   },
   {
+    id: "andres",
+    coachIndex: 0,
     img: "/img/coach/coachAndres.webp",
     name: "Andres Cardona",
     experiencia: "5 años",
   },
   {
+    id: "jeferson",
+    coachIndex: 2,
     img: "/img/coach/coachJefer.webp",
     name: "Jeferson Jimenez",
     experiencia: "3 años",
   },
   {
+    id: "jairo",
+    coachIndex: 3,
     img: "/img/coach/coachJairo.webp",
     name: "Indio Fit",
     experiencia: "4 años",
   },
   {
+    id: "ewduar",
+    coachIndex: 4,
     img: "/img/coach/coach3.webp",
     name: "Ewduar Rondon",
     experiencia: "2 años",
