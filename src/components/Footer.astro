@@ -123,9 +123,12 @@ import { SITE_CONFIG } from "@/components/constants/site";
                 >
                   Dirección
                 </h3>
-                <p class="text-secondary-300 text-sm sm:text-base truncate">
+                <a
+                  href={SITE_CONFIG.contact.googleMapsUrl}
+                  class="text-secondary-300 hover:text-primary-400 text-sm sm:text-base truncate"
+                >
                   {SITE_CONFIG.contact.address}
-                </p>
+                </a>
               </div>
             </div>
 

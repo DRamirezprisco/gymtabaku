@@ -36,8 +36,8 @@ export const SITE_CONFIG: SiteConfig = {
     whatsappUrl: "https://wa.me/573158361031",
     email: "Gymtabaku@gmail.com",
     emailMailto: "mailto:Gymtabaku@gmail.com",
-    address: "Dg. 3 #83-02, Kennedy",
-    googleMapsUrl: "https://maps.google.com/?q=Dg.+3+%2383-02,+Kennedy",
+    address: "Cra. 82a #6-16, Kennedy",
+    googleMapsUrl: "https://www.google.com/maps/place/Cra.+82a+%236+-16,+Bogot%C3%A1/@4.6386727,-74.1554122,18z/data=!3m1!4b1!4m6!3m5!1s0x8e3f9c3b4ae06ac1:0x4a2b97ca35ee20d2!8m2!3d4.6386711!4d-74.1546467!16s%2Fg%2F11yjgqxnsq?entry=ttu&g_ep=EgoyMDI2MDkwOS4wIKXMDSoASAFQAw%3D%3D",
   },
   developer: {
     name: "Daniela Ramirez",
