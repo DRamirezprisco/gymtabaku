@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "generate-types": "wrangler types"
+    "generate-types": "wrangler types",
+    "images:optimize": "node scripts/generate-responsive-images.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.2.4",

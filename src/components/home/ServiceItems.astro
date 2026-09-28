@@ -8,6 +8,8 @@ const containerClasses = active
 const infoClasses = active
   ? "opacity-100 md:group-hover/grid:opacity-0 md:group-hover:!opacity-100"
   : "opacity-100 md:opacity-0 md:group-hover:opacity-100";
+
+const imgSm = typeof img === "string" ? img.replace(/\.webp$/i, "-sm.webp") : img;
 ---
 
 <div
@@ -15,6 +17,8 @@ const infoClasses = active
 >
   <img
     src={img}
+    srcset={`${imgSm} 480w, ${img} 1000w`}
+    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 400px"
     alt={title}
     loading="lazy"
     decoding="async"

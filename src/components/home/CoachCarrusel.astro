@@ -26,6 +26,7 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
             draggable="false"
             class="object-cover object-top w-full h-full pointer-events-none select-none transition-transform duration-500 group-hover/card:scale-105"
             loading="lazy"
+            decoding="async"
           />
           <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/25 to-transparent pointer-events-none" />
           <div class="absolute bottom-0 left-0 w-full p-4 text-white pointer-events-none">
@@ -139,6 +140,8 @@ const infiniteCoaches = [...Coaches, ...Coaches, ...Coaches];
               src={coach.img}
               alt={coach.name}
               draggable="false"
+              loading="lazy"
+              decoding="async"
               class="object-cover object-top w-full h-full transition-transform duration-700 group-hover/coach:scale-105 select-none"
             />
             <div

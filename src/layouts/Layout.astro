@@ -110,15 +110,25 @@ const jsonLd = {
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImage} />
 
-    {/* Preload Hero LCP Image on Homepage */}
+    {/* Preload Hero LCP Image on Homepage (Adaptive by screen size) */}
     {
       isHomePage && (
-        <link
-          rel="preload"
-          as="image"
-          href="/img/bg/heeder.webp"
-          fetchpriority="high"
-        />
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href="/img/bg/heeder-mobile.webp"
+            media="(max-width: 639px)"
+            fetchpriority="high"
+          />
+          <link
+            rel="preload"
+            as="image"
+            href="/img/bg/heeder.webp"
+            media="(min-width: 640px)"
+            fetchpriority="high"
+          />
+        </>
       )
     }
 
