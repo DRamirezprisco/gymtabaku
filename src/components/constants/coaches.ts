@@ -40,14 +40,14 @@ export const COACHES_DATA: Coach[] = [
   {
     id: "andres",
     header: {
-      name: "Andres Sanchez",
+      name: "Andres Sastoque",
       role: "Personal Trainer",
       img: "/img/coach/coachAndresSF.png",
       imgHover: "/img/coach/coachAndresSF.png",
     },
     description: {
-      tittle: "Andres Sanchez",
-      subTittle: "Personal Trainer · 5 años de experiencia",
+      tittle: "Andres Sastoque",
+      subTittle: "Personal Trainer · 15 años de experiencia",
       description:
         "Más que entrenarte, busco acompañarte en el camino hacia una vida más saludable y activa. Mi empatía, liderazgo y cercanía permiten entender que cada persona tiene un ritmo, unas capacidades y unos desafíos diferentes.",
       description2:
@@ -60,33 +60,33 @@ export const COACHES_DATA: Coach[] = [
     gallery: [
       {
         img: "/img/coach/coaches1.webp",
-        alt: "Andres Sanchez",
+        alt: "Andres Sastoque",
       },
       {
         img: "/img/coach/coaches2.webp",
-        alt: "Andres Sanchez",
+        alt: "Andres Sastoque",
       },
       {
         img: "/img/coach/coaches3.webp",
-        alt: "Andres Sanchez",
+        alt: "Andres Sastoque",
       },
       {
         img: "/img/coach/coaches4.webp",
-        alt: "Andres Sanchez",
+        alt: "Andres Sastoque",
       },
     ],
   },
   {
     id: "jorge",
     header: {
-      name: "Jorge Rodriguez",
+      name: "Jorge Martinez",
       role: "Personal Trainer",
       img: "/img/coach/coachJorgeSF.png",
       imgHover: "/img/coach/coachJorgeSF.png",
     },
     description: {
-      tittle: "Jorge Rodriguez",
-      subTittle: "Personal Trainer · 2 años de experiencia",
+      tittle: "Jorge Martinez",
+      subTittle: "Personal Trainer · 5 años de experiencia",
       description:
         "Más que entrenarte, Jorge busca acompañarte en el camino hacia una vida más saludable y activa. Su empatía, liderazgo y cercanía le permiten entender que cada persona tiene un ritmo, unas capacidades y unos desafíos diferentes.",
       description2:
@@ -99,33 +99,33 @@ export const COACHES_DATA: Coach[] = [
     gallery: [
       {
         img: "/img/coach/coaches1.webp",
-        alt: "Jorge Rodriguez",
+        alt: "Jorge Martinez",
       },
       {
         img: "/img/coach/coaches2.webp",
-        alt: "Jorge Rodriguez",
+        alt: "Jorge Martinez",
       },
       {
         img: "/img/coach/coaches3.webp",
-        alt: "Jorge Rodriguez",
+        alt: "Jorge Martinez",
       },
       {
         img: "/img/coach/coaches4.webp",
-        alt: "Jorge Rodriguez",
+        alt: "Jorge Martinez",
       },
     ],
   },
   {
-    id: "jeferson",
+    id: "jeferson Gomez",
     header: {
-      name: "Jeferson Danilo",
+      name: "Jeferson Gomez",
       role: "Entrenador Personalizado",
       img: "/img/coach/coachJeferSF.png",
       imgHover: "/img/coach/coachJeferSF.png",
     },
     description: {
-      tittle: "Jeferson Danilo",
-      subTittle: "Entrenador Personalizado · 3 años de experiencia",
+      tittle: "Jeferson Gomez",
+      subTittle: "Entrenador Personalizado · 5 años de experiencia",
       description:
         "Más que entrenarte, Jeferson busca acompañarte en el camino hacia una vida más saludable y activa. Su empatía, liderazgo y cercanía le permiten entender que cada persona tiene un ritmo, unas capacidades y unos desafíos diferentes.",
       description2:
@@ -138,19 +138,19 @@ export const COACHES_DATA: Coach[] = [
     gallery: [
       {
         img: "/img/coach/coaches1.webp",
-        alt: "Jeferson Danilo",
+        alt: "Jeferson Gomez",
       },
       {
         img: "/img/coach/coaches2.webp",
-        alt: "Jeferson Danilo",
+        alt: "Jeferson Gomez",
       },
       {
         img: "/img/coach/coaches3.webp",
-        alt: "Jeferson Danilo",
+        alt: "Jeferson Gomez",
       },
       {
         img: "/img/coach/coaches4.webp",
-        alt: "Jeferson Danilo",
+        alt: "Jeferson Gomez",
       },
     ],
   },
