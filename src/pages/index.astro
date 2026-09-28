@@ -10,13 +10,18 @@ import Precios from "@/components/home/Precios.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
-<Layout>
+<Layout
+  title="Gimnasio en Bogotá Kennedy"
+  description="Gym Tabaku: El mejor gimnasio en Bogotá, sector Kennedy. Entrenamientos personalizados, clases grupales, pesas, cardio y la mejor comunidad fitness."
+>
   <Header />
-  <About />
-  <Services />
-  <Coaches />
-  <Horarios />
-  <Precios />
-  <Testimonials />
+  <main id="main-content">
+    <About />
+    <Services />
+    <Coaches />
+    <Horarios />
+    <Precios />
+    <Testimonials />
+  </main>
   <Footer />
 </Layout>

@@ -7,10 +7,15 @@ import Footer from "@/components/Footer.astro";
 import { COACHES_DATA } from "@/components/constants/coaches";
 ---
 
-<Layout>
+<Layout
+  title="Nuestros Profesores"
+  description="Conoce al equipo de entrenadores profesionales y coaches certificados de Gym Tabaku en Bogotá."
+>
   <CoachHeader Coaches={COACHES_DATA} activeIndex={0} />
-  <CoachDescription Coaches={COACHES_DATA} activeIndex={0} />
-  <CoachGallery Coaches={COACHES_DATA} activeIndex={0} />
+  <main id="main-content">
+    <CoachDescription Coaches={COACHES_DATA} activeIndex={0} />
+    <CoachGallery Coaches={COACHES_DATA} activeIndex={0} />
+  </main>
   <Footer />
 
   <script>

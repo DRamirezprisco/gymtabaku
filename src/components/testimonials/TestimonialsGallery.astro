@@ -4,6 +4,9 @@ import {
     COMMUNITY_EVENTS,
     type EventItem,
 } from "@/components/constants/testimonials";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface Props {
     title?: string;
@@ -13,11 +16,6 @@ const { title = "Nuestros Eventos" } = Astro.props;
 
 const events: EventItem[] = COMMUNITY_EVENTS;
 ---
-
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
 
 <section
     class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
@@ -46,11 +44,11 @@ const events: EventItem[] = COMMUNITY_EVENTS;
         <!-- Título de la Sección -->
         <div class="text-center mb-6 sm:mb-8 md:mb-10" data-reveal="fade-up" data-reveal-delay="100">
             <Titulo title={title} />
-            <h1
+            <h2
                 class="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl text-center text-gym-dark-bg-card-hover tracking-tight my-2 sm:my-3"
             >
                 ¡Momentos inolvidables, siempre juntos!
-            </h1>
+            </h2>
             <p
                 class="mt-2 text-sm sm:text-base lg:text-lg text-gym-text-secondary max-w-2xl mx-auto leading-relaxed"
             >

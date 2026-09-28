@@ -3,6 +3,8 @@ import Menu from "@/components/Menu.astro";
 import Titulo from "@/components/global/Titulo.astro";
 import CoachItem from "@/components/coach/CoachItem.astro";
 import type { Coach } from "@/components/constants/coaches";
+import "swiper/css";
+import "swiper/css/navigation";
 
 interface Props {
   Coaches: Coach[];
@@ -11,11 +13,6 @@ interface Props {
 
 const { Coaches, activeIndex = 0 } = Astro.props;
 ---
-
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
 
 <section
   class="relative bg-gym-bg bg-[url('/img/bg/bgclaro1.webp')] bg-cover w-full overflow-hidden pb-4 sm:pb-8"

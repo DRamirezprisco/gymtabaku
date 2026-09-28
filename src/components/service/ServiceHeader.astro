@@ -33,7 +33,7 @@ const { items = [] } = Astro.props;
   <div class="relative z-10">
     <Menu />
 
-    <main
+    <div
       class="max-w-6xl 2xl:max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16"
     >
       <header
@@ -41,11 +41,11 @@ const { items = [] } = Astro.props;
         data-reveal="fade-up"
         data-reveal-delay="0"
       >
-        <h2
+        <p
           class="mb-4 text-xs sm:text-sm md:text-base lg:text-lg font-bold tracking-widest uppercase text-gym-yellow"
         >
           ¡Entrena · crece · pertenece!
-        </h2>
+        </p>
         <h1
           class="font-serif text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gym-dark-text-secondary font-black uppercase tracking-tight leading-tight"
         >
@@ -99,7 +99,7 @@ const { items = [] } = Astro.props;
           }
         </div>
       </div>
-    </main>
+    </div>
   </div>
 
   <ServiceVideoModal items={items} />

@@ -6,9 +6,14 @@ import AboutHistory from "@/components/nosotros/AboutHistory.astro";
 import Footer from "@/components/Footer.astro";
 ---
 
-<Layout>
+<Layout
+    title="Sobre Nosotros"
+    description="Conoce Gym Tabaku: un espacio creado para tu bienestar físico y mental con acompañamiento profesional en Bogotá, Kennedy."
+>
     <AboutHeader />
-    <AboutRedes />
-    <AboutHistory />
+    <main id="main-content">
+        <AboutRedes />
+        <AboutHistory />
+    </main>
     <Footer />
 </Layout>

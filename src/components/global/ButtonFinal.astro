@@ -48,8 +48,6 @@
         "progress-circle",
     ) as SVGCircleElement | null;
 
-    console.log(button, progressCircle);
-
     if (button && progressCircle) {
         // El radio del círculo es 16. La longitud del borde (circunferencia) es 2 * PI * r = 2 * 3.1416 * 16 ≈ 100.53
         const circumference = 100.53;
@@ -58,7 +56,6 @@
             const scrollTop = window.scrollY;
             const docHeight =
                 document.documentElement.scrollHeight - window.innerHeight;
-            console.log(scrollTop, docHeight);
 
             if (docHeight <= 0) return;
 

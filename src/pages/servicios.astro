@@ -6,9 +6,14 @@ import Footer from "@/components/Footer.astro";
 import { SERVICES_DATA } from "@/components/constants/services";
 ---
 
-<Layout>
+<Layout
+    title="Nuestros Servicios"
+    description="Descubre los servicios de Gym Tabaku: zonas de entrenamiento, entrenadores personalizados, clases grupales y spinning en Bogotá."
+>
     <ServiceHeader items={SERVICES_DATA} />
-    <Services items={SERVICES_DATA} />
+    <main id="main-content">
+        <Services items={SERVICES_DATA} />
+    </main>
     <Footer />
 
 <script>

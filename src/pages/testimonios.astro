@@ -5,8 +5,13 @@ import TestimonialsGallery from "@/components/testimonials/TestimonialsGallery.a
 import Footer from "@/components/Footer.astro";
 ---
 
-<Layout>
+<Layout
+    title="Testimonios y Eventos"
+    description="Descubre los testimonios de nuestra comunidad y los eventos deportivos de Gym Tabaku en Bogotá."
+>
     <TestimonialsHeader />
-    <TestimonialsGallery title="Nuestros Eventos" />
+    <main id="main-content">
+        <TestimonialsGallery title="Nuestros Eventos" />
+    </main>
     <Footer />
 </Layout>
