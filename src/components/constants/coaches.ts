@@ -164,7 +164,7 @@ export const COACHES_DATA: Coach[] = [
     },
     description: {
       tittle: "Jairo Rodriguez",
-      subTittle: "Instructor de Clases Grupales · 4 años de experiencia",
+      subTittle: "Instructor de Clases Grupales · 5 años de experiencia",
       description:
         "Con energía, alegría y mucho ritmo, transforma cada clase en un momento para disfrutar, moverse y compartir. Su cercanía con los alumnos crea un ambiente donde todos pueden sentirse cómodos, sin importar su nivel o experiencia.",
       description2:
@@ -211,7 +211,7 @@ export const COACHES_DATA: Coach[] = [
       description3:
         "“Aquí vienes a moverte, disfrutar y contagiarte de nuestra energía.”",
       img: "/img/coach/coachDescriptionAndres.webp",
-      video: undefined
+      video: undefined,
     },
     gallery: [
       {
@@ -240,35 +240,35 @@ export const HOME_COACHES: CoachPreview[] = [
     coachIndex: 1,
     img: "/img/coach/coachJorge.webp",
     name: "Jorge Perez",
-    experiencia: "2 años",
+    experiencia: "5 años",
   },
   {
     id: "andres",
     coachIndex: 0,
     img: "/img/coach/coachAndres.webp",
     name: "Andres Cardona",
-    experiencia: "5 años",
+    experiencia: "15 años",
   },
   {
     id: "jeferson",
     coachIndex: 2,
     img: "/img/coach/coachJefer.webp",
     name: "Jeferson Jimenez",
-    experiencia: "3 años",
+    experiencia: "5 años",
   },
   {
     id: "jairo",
     coachIndex: 3,
     img: "/img/coach/coachJairo.webp",
     name: "Indio Fit",
-    experiencia: "4 años",
+    experiencia: "5 años",
   },
   {
     id: "ewduar",
     coachIndex: 4,
     img: "/img/coach/coach3.webp",
     name: "Ewduar Rondon",
-    experiencia: "2 años",
+    experiencia: "5 años",
   },
 ];
 

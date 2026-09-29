@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Página Principal / Inicio -->
+  <url>
+    <loc>https://gymtabaku.com/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/bg/heeder.webp</image:loc>
+      <image:title>Gym Tabaku - Gimnasio en Bogotá Kennedy</image:title>
+      <image:caption>Entrena con fuerza. Crece en familia en Gym Tabaku Bogotá Kennedy</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/logo.webp</image:loc>
+      <image:title>Logo Oficial Gym Tabaku</image:title>
+    </image:image>
+  </url>
+
+  <!-- Servicios y Zonas de Entrenamiento -->
+  <url>
+    <loc>https://gymtabaku.com/servicios/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/services/zonasEntrenamiento.webp</image:loc>
+      <image:title>Zonas de Entrenamiento - Gym Tabaku</image:title>
+      <image:caption>Áreas de pesas, cardio, spinning y entrenamiento funcional</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/services/entrenamientosPersonalizados.webp</image:loc>
+      <image:title>Entrenamientos Personalizados - Gym Tabaku</image:title>
+      <image:caption>Coaches profesionales con acompañamiento y corrección postural continua</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/services/clasesGrupales.webp</image:loc>
+      <image:title>Clases Grupales - Rumba y Zumba</image:title>
+      <image:caption>Clases grupales de baile y cardio los lunes y miércoles a las 7:00 PM</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Profesores y Entrenadores -->
+  <url>
+    <loc>https://gymtabaku.com/profesores/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/coach/coachAndresSF.png</image:loc>
+      <image:title>Coach Andres Sanchez - Personal Trainer Gym Tabaku</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/coach/coachJorgeSF.png</image:loc>
+      <image:title>Coach Jorge Rodriguez - Personal Trainer Gym Tabaku</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/coach/coachJeferSF.png</image:loc>
+      <image:title>Coach Jeferson Danilo - Entrenador Personalizado Gym Tabaku</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/coach/coachJairoSF.webp</image:loc>
+      <image:title>Coach Jairo Rodriguez Indio Fit - Clases Grupales</image:title>
+    </image:image>
+  </url>
+
+  <!-- Horarios de Atención 365 Días -->
+  <url>
+    <loc>https://gymtabaku.com/horarios/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sobre Nosotros / Historia y Comunidad -->
+  <url>
+    <loc>https://gymtabaku.com/nosotros/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/about.webp</image:loc>
+      <image:title>Comunidad y Entrenadores Gym Tabaku</image:title>
+      <image:caption>Espacio acogedor y familiar en Kennedy Bogotá</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Contáctanos y Ubicación -->
+  <url>
+    <loc>https://gymtabaku.com/contactanos/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Testimonios y Casos de Éxito -->
+  <url>
+    <loc>https://gymtabaku.com/testimonios/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/testimonios/testimonio1.webp</image:loc>
+      <image:title>Testimonio Maria Rodriguez - Gym Tabaku</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gymtabaku.com/img/testimonios/testimonio2.webp</image:loc>
+      <image:title>Testimonio Andres Martinez - Gym Tabaku</image:title>
+    </image:image>
+  </url>
+
+</urlset>
